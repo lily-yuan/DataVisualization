@@ -6,445 +6,473 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 var baseNodes = [
-{id: "00GovStr", label: "00GovStr",level: 2},
-{id: "00LatCon", label: "00LatCon",level: 2},
-{id: "00WrkGrp", label: "00WrkGrp",level: 2},
-{id: "01PreTran", label: "01PreTran",level: 2},
-{id: "02Festsch", label: "02Festsch",level: 2},
-{id: "02Simmel3", label: "02Simmel3",level: 2},
-{id: "03Equil", label: "03Equil",level: 2},
-{id: "03NetChng", label: "03NetChng",level: 2},
-{id: "03Vis2", label: "03Vis2",level: 2},
-{id: "06Cent", label: "06Cent",level: 2},
-{id: "06Simmel4", label: "06Simmel4",level: 2},
-{id: "07DiscHand", label: "07DiscHand",level: 2},
-{id: "07QAP3", label: "07QAP3",level: 2},
-{id: "08SmWrld", label: "08SmWrld",level: 2},
-{id: "09RvJack", label: "09RvJack",level: 2},
-{id: "10Activ", label: "10Activ",level: 2},
-{id: "10ChldWel", label: "10ChldWel",level: 2},
-{id: "10HlthRec", label: "10HlthRec",level: 2},
-{id: "11EMFam1", label: "11EMFam1",level: 2},
-{id: "12EMEvnt", label: "12EMEvnt",level: 2},
-{id: "12GrphTh2", label: "12GrphTh2",level: 2},
-{id: "12TeamCon", label: "12TeamCon",level: 2},
-{id: "13Embed", label: "13Embed",level: 2},
-{id: "13TeamCom", label: "13TeamCom",level: 2},
-{id: "14Accur", label: "14Accur",level: 2},
-{id: "14AdEvnt", label: "14AdEvnt",level: 2},
-{id: "14PeerInf", label: "14PeerInf",level: 2},
-{id: "14Simmel4", label: "14Simmel4",level: 2},
-{id: "15Catlst", label: "15Catlst",level: 2},
-{id: "15EMfam2", label: "15EMfam2",level: 2},
-{id: "15Psych", label: "15Psych",level: 2},
-{id: "16TeamInj", label: "16TeamInj",level: 2},
-{id: "77Povrty", label: "77Povrty",level: 2},
-{id: "81EmpTO", label: "81EmpTO",level: 2},
-{id: "81FuncTO", label: "81FuncTO",level: 2},
-{id: "85FrLeave", label: "85FrLeave",level: 2},
-{id: "86Snow", label: "86Snow",level: 2},
-{id: "87CSS", label: "87CSS",level: 2},
-{id: "87QAP1", label: "87QAP1",level: 2},
-{id: "88Crises", label: "88Crises",level: 2},
-{id: "88QAP2", label: "88QAP2",level: 2},
-{id: "90Cult", label: "90Cult",level: 2},
-{id: "90Polit", label: "90Polit",level: 2},
-{id: "92Philos", label: "92Philos",level: 2},
-{id: "93InfNet", label: "93InfNet",level: 2},
-{id: "94Bring", label: "94Bring",level: 2},
-{id: "95RevSH", label: "95RevSH",level: 2},
-{id: "96CommBK", label: "96CommBK",level: 2},
-{id: "96HistBal", label: "96HistBal",level: 2},
-{id: "96Incon", label: "96Incon",level: 2},
-{id: "96Lead", label: "96Lead",level: 2},
-{id: "97Vis1", label: "97Vis1",level: 2},
-{id: "97Viscos", label: "97Viscos",level: 2},
-{id: "98Polyn", label: "98Polyn",level: 2},
-{id: "99AffAcc", label: "99AffAcc",level: 2},
-{id: "99ClsFar", label: "99ClsFar",level: 2}
+{id: "02Simmel3", label: "02Simmel3",level:2002},
+{id: "07QAP3", label: "07QAP3",level:2007},
+{id: "12GrphTh2", label: "12GrphTh2",level:2012},
+{id: "09RvJack", label: "09RvJack",level:2009},
+{id: "13TeamCom", label: "13TeamCom",level:2013},
+{id: "14Accur", label: "14Accur",level:2014},
+{id: "93InfNet", label: "93InfNet",level:1993},
+{id: "03Equil", label: "03Equil",level:2003},
+{id: "97Vis1", label: "97Vis1",level:1997},
+{id: "06Cent", label: "06Cent",level:2006},
+{id: "96HistBal", label: "96HistBal",level:1996},
+{id: "03NetChng", label: "03NetChng",level:2003},
+{id: "88QAP2", label: "88QAP2",level:1988},
+{id: "94Bring", label: "94Bring",level:1994},
+{id: "00LatCon", label: "00LatCon",level:2000},
+{id: "87CSS", label: "87CSS",level:1987},
+{id: "15Catlst", label: "15Catlst",level:2015},
+{id: "92Philos", label: "92Philos",level:1992},
+{id: "07DiscHand", label: "07DiscHand",level:2007},
+{id: "00WrkGrp", label: "00WrkGrp",level:2000},
+{id: "10HlthRec", label: "10HlthRec",level:2010},
+{id: "00GovStr", label: "00GovStr",level:2000},
+{id: "96Lead", label: "96Lead",level:1996},
+{id: "15EMfam2", label: "15EMfam2",level:2015},
+{id: "95RevSH", label: "95RevSH",level:1995},
+{id: "03Vis2", label: "03Vis2",level:2003},
+{id: "15Psych", label: "15Psych",level:2015},
+{id: "87QAP1", label: "87QAP1",level:1987},
+{id: "98Polyn", label: "98Polyn",level:1998},
+{id: "90Cult", label: "90Cult",level:1990},
+{id: "81EmpTO", label: "81EmpTO",level:1981},
+{id: "77Povrty", label: "77Povrty",level:1977},
+{id: "10ChldWel", label: "10ChldWel",level:2010},
+{id: "14AdEvnt", label: "14AdEvnt",level:2014},
+{id: "16TeamInj", label: "16TeamInj",level:2016},
+{id: "01PreTran", label: "01PreTran",level:2001},
+{id: "90Polit", label: "90Polit",level:1990},
+{id: "12TeamCon", label: "12TeamCon",level:2012},
+{id: "88Crises", label: "88Crises",level:1988},
+{id: "10Activ", label: "10Activ",level:2010},
+{id: "99AffAcc", label: "99AffAcc",level:1999},
+{id: "12EMEvnt", label: "12EMEvnt",level:2012},
+{id: "14PeerInf", label: "14PeerInf",level:2014},
+{id: "02Festsch", label: "02Festsch",level:2002},
+{id: "14Simmel4", label: "14Simmel4",level:2014},
+{id: "08SmWrld", label: "08SmWrld",level:2008},
+{id: "06Simmel4", label: "06Simmel4",level:2006},
+{id: "86Snow", label: "86Snow",level:1986},
+{id: "81FuncTO", label: "81FuncTO",level:1981},
+{id: "13Embed", label: "13Embed",level:2013},
+{id: "11EMFam1", label: "11EMFam1",level:2011},
+{id: "96CommBK", label: "96CommBK",level:1996}
 ]
 
 var baseLinks = [
-{ target: "00LatCon", source: "00GovStr", strength: 0.1},
-{ target: "00WrkGrp", source: "00GovStr", strength: 0.09999999999622486},
-{ target: "01PreTran", source: "00GovStr", strength: 0.0999983298578152},
-{ target: "02Festsch", source: "00GovStr", strength: 0.09933071490757153},
-{ target: "02Simmel3", source: "00GovStr", strength: 0.09975273768433654},
-{ target: "03Equil", source: "00GovStr", strength: 0.09999546021312976},
-{ target: "03NetChng", source: "00GovStr", strength: 0.09999991684719722},
-{ target: "03Vis2", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "06Cent", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "06Simmel4", source: "00GovStr", strength: 0.09999999943972035},
-{ target: "07DiscHand", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "07QAP3", source: "00GovStr", strength: 0.07310585786300049},
-{ target: "08SmWrld", source: "00GovStr", strength: 0.07310585786300049},
-{ target: "09RvJack", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "10ChldWel", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "10HlthRec", source: "00GovStr", strength: 0.09525741268224333},
-{ target: "11EMFam1", source: "00GovStr", strength: 0.07310585786300049},
-{ target: "12EMEvnt", source: "00GovStr", strength: 0.09525741268224333},
-{ target: "12GrphTh2", source: "00GovStr", strength: 0.09820137900379085},
-{ target: "14AdEvnt", source: "00GovStr", strength: 0.07310585786300049},
-{ target: "87CSS", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "88Crises", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "96CommBK", source: "00GovStr", strength: 0.07310585786300049},
-{ target: "96HistBal", source: "00GovStr", strength: 0.08807970779778823},
-{ target: "00WrkGrp", source: "00LatCon", strength: 0.1},
-{ target: "01PreTran", source: "00LatCon", strength: 0.09999999999999065},
-{ target: "02Festsch", source: "00LatCon", strength: 0.09999999999993085},
-{ target: "02Simmel3", source: "00LatCon", strength: 0.09999999999999873},
-{ target: "03Equil", source: "00LatCon", strength: 0.1},
-{ target: "03NetChng", source: "00LatCon", strength: 0.09999999999999656},
-{ target: "03Vis2", source: "00LatCon", strength: 0.09990889488055994},
-{ target: "06Cent", source: "00LatCon", strength: 0.09525741268224333},
-{ target: "06Simmel4", source: "00LatCon", strength: 0.09999999586006245},
-{ target: "07DiscHand", source: "00LatCon", strength: 0.09999999992417438},
-{ target: "07QAP3", source: "00LatCon", strength: 0.09998766054240137},
-{ target: "08SmWrld", source: "00LatCon", strength: 0.0999999694097773},
-{ target: "09RvJack", source: "00LatCon", strength: 0.09999938558253978},
-{ target: "10Activ", source: "00LatCon", strength: 0.07310585786300049},
-{ target: "10ChldWel", source: "00LatCon", strength: 0.09999991684719722},
-{ target: "10HlthRec", source: "00LatCon", strength: 0.09998766054240137},
-{ target: "11EMFam1", source: "00LatCon", strength: 0.09933071490757153},
-{ target: "12EMEvnt", source: "00LatCon", strength: 0.09996646498695336},
-{ target: "12GrphTh2", source: "00LatCon", strength: 0.09990889488055994},
-{ target: "12TeamCon", source: "00LatCon", strength: 0.09990889488055994},
-{ target: "13TeamCom", source: "00LatCon", strength: 0.09525741268224333},
-{ target: "14AdEvnt", source: "00LatCon", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "00LatCon", strength: 0.09933071490757153},
-{ target: "86Snow", source: "00LatCon", strength: 0.07310585786300049},
-{ target: "87CSS", source: "00LatCon", strength: 0.07310585786300049},
-{ target: "88Crises", source: "00LatCon", strength: 0.07310585786300049},
-{ target: "01PreTran", source: "00WrkGrp", strength: 0.1},
-{ target: "02Festsch", source: "00WrkGrp", strength: 0.09999999999999953},
-{ target: "02Simmel3", source: "00WrkGrp", strength: 0.1},
-{ target: "03Equil", source: "00WrkGrp", strength: 0.1},
-{ target: "03NetChng", source: "00WrkGrp", strength: 0.1},
-{ target: "03Vis2", source: "00WrkGrp", strength: 0.09975273768433654},
-{ target: "06Cent", source: "00WrkGrp", strength: 0.08807970779778823},
-{ target: "06Simmel4", source: "00WrkGrp", strength: 0.09999991684719722},
-{ target: "07DiscHand", source: "00WrkGrp", strength: 0.09999999997210532},
-{ target: "07QAP3", source: "00WrkGrp", strength: 0.09998766054240137},
-{ target: "08SmWrld", source: "00WrkGrp", strength: 0.09999999997210532},
-{ target: "09RvJack", source: "00WrkGrp", strength: 0.09999999999999953},
-{ target: "10ChldWel", source: "00WrkGrp", strength: 0.09999999992417438},
-{ target: "10HlthRec", source: "00WrkGrp", strength: 0.09999999943972035},
-{ target: "11EMFam1", source: "00WrkGrp", strength: 0.09933071490757153},
-{ target: "12EMEvnt", source: "00WrkGrp", strength: 0.09999999847700206},
-{ target: "12GrphTh2", source: "00WrkGrp", strength: 0.0999983298578152},
-{ target: "12TeamCon", source: "00WrkGrp", strength: 0.09999999992417438},
-{ target: "13Embed", source: "00WrkGrp", strength: 0.07310585786300049},
-{ target: "14Accur", source: "00WrkGrp", strength: 0.09525741268224333},
-{ target: "14AdEvnt", source: "00WrkGrp", strength: 0.09525741268224333},
-{ target: "14Simmel4", source: "00WrkGrp", strength: 0.08807970779778823},
-{ target: "15Catlst", source: "00WrkGrp", strength: 0.07310585786300049},
-{ target: "16TeamInj", source: "00WrkGrp", strength: 0.07310585786300049},
-{ target: "88Crises", source: "00WrkGrp", strength: 0.08807970779778823},
-{ target: "90Cult", source: "00WrkGrp", strength: 0.07310585786300049},
-{ target: "02Festsch", source: "01PreTran", strength: 0.09999999979388463},
-{ target: "02Simmel3", source: "01PreTran", strength: 0.09999999999993085},
-{ target: "03Equil", source: "01PreTran", strength: 0.09999999999997455},
-{ target: "03NetChng", source: "01PreTran", strength: 0.09999999586006245},
-{ target: "03Vis2", source: "01PreTran", strength: 0.09998766054240137},
-{ target: "06Cent", source: "01PreTran", strength: 0.09933071490757153},
-{ target: "06Simmel4", source: "01PreTran", strength: 0.09999546021312976},
-{ target: "07DiscHand", source: "01PreTran", strength: 0.0999999694097773},
-{ target: "07QAP3", source: "01PreTran", strength: 0.09975273768433654},
-{ target: "08SmWrld", source: "01PreTran", strength: 0.0999999694097773},
-{ target: "09RvJack", source: "01PreTran", strength: 0.09933071490757153},
-{ target: "10ChldWel", source: "01PreTran", strength: 0.0999999694097773},
-{ target: "10HlthRec", source: "01PreTran", strength: 0.09975273768433654},
-{ target: "11EMFam1", source: "01PreTran", strength: 0.09975273768433654},
-{ target: "12EMEvnt", source: "01PreTran", strength: 0.09525741268224333},
-{ target: "12GrphTh2", source: "01PreTran", strength: 0.09820137900379085},
-{ target: "13TeamCom", source: "01PreTran", strength: 0.07310585786300049},
-{ target: "14Accur", source: "01PreTran", strength: 0.07310585786300049},
-{ target: "14PeerInf", source: "01PreTran", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "01PreTran", strength: 0.09525741268224333},
-{ target: "77Povrty", source: "01PreTran", strength: 0.07310585786300049},
-{ target: "81FuncTO", source: "01PreTran", strength: 0.07310585786300049},
-{ target: "87CSS", source: "01PreTran", strength: 0.08807970779778823},
-{ target: "02Simmel3", source: "02Festsch", strength: 0.09999938558253978},
-{ target: "03Equil", source: "02Festsch", strength: 0.1},
-{ target: "03NetChng", source: "02Festsch", strength: 0.0999999999986112},
-{ target: "03Vis2", source: "02Festsch", strength: 0.1},
-{ target: "06Cent", source: "02Festsch", strength: 0.09998766054240137},
-{ target: "06Simmel4", source: "02Festsch", strength: 0.09998766054240137},
-{ target: "07DiscHand", source: "02Festsch", strength: 0.09999938558253978},
-{ target: "07QAP3", source: "02Festsch", strength: 0.09998766054240137},
-{ target: "08SmWrld", source: "02Festsch", strength: 0.09996646498695336},
-{ target: "09RvJack", source: "02Festsch", strength: 0.09996646498695336},
-{ target: "10ChldWel", source: "02Festsch", strength: 0.09999999847700206},
-{ target: "10HlthRec", source: "02Festsch", strength: 0.09998766054240137},
-{ target: "11EMFam1", source: "02Festsch", strength: 0.09820137900379085},
-{ target: "12EMEvnt", source: "02Festsch", strength: 0.07310585786300049},
-{ target: "12GrphTh2", source: "02Festsch", strength: 0.08807970779778823},
-{ target: "12TeamCon", source: "02Festsch", strength: 0.09525741268224333},
-{ target: "13Embed", source: "02Festsch", strength: 0.09525741268224333},
-{ target: "13TeamCom", source: "02Festsch", strength: 0.08807970779778823},
-{ target: "14Accur", source: "02Festsch", strength: 0.08807970779778823},
-{ target: "14Simmel4", source: "02Festsch", strength: 0.07310585786300049},
-{ target: "15Catlst", source: "02Festsch", strength: 0.08807970779778823},
-{ target: "88Crises", source: "02Festsch", strength: 0.07310585786300049},
-{ target: "93InfNet", source: "02Festsch", strength: 0.09525741268224333},
-{ target: "98Polyn", source: "02Festsch", strength: 0.07310585786300049},
-{ target: "99AffAcc", source: "02Festsch", strength: 0.07310585786300049},
-{ target: "03Equil", source: "02Simmel3", strength: 0.09999999999622486},
-{ target: "03NetChng", source: "02Simmel3", strength: 0.09999999586006245},
-{ target: "03Vis2", source: "02Simmel3", strength: 0.09820137900379085},
-{ target: "06Cent", source: "02Simmel3", strength: 0.09933071490757153},
-{ target: "06Simmel4", source: "02Simmel3", strength: 0.09990889488055994},
-{ target: "07DiscHand", source: "02Simmel3", strength: 0.09975273768433654},
-{ target: "07QAP3", source: "02Simmel3", strength: 0.09996646498695336},
-{ target: "08SmWrld", source: "02Simmel3", strength: 0.09820137900379085},
-{ target: "09RvJack", source: "02Simmel3", strength: 0.09975273768433654},
-{ target: "10ChldWel", source: "02Simmel3", strength: 0.09996646498695336},
-{ target: "10HlthRec", source: "02Simmel3", strength: 0.09820137900379085},
-{ target: "11EMFam1", source: "02Simmel3", strength: 0.09975273768433654},
-{ target: "12EMEvnt", source: "02Simmel3", strength: 0.09933071490757153},
-{ target: "12GrphTh2", source: "02Simmel3", strength: 0.08807970779778823},
-{ target: "12TeamCon", source: "02Simmel3", strength: 0.09933071490757153},
-{ target: "14Accur", source: "02Simmel3", strength: 0.07310585786300049},
-{ target: "14PeerInf", source: "02Simmel3", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "02Simmel3", strength: 0.08807970779778823},
-{ target: "15Psych", source: "02Simmel3", strength: 0.08807970779778823},
-{ target: "81FuncTO", source: "02Simmel3", strength: 0.07310585786300049},
-{ target: "87CSS", source: "02Simmel3", strength: 0.09525741268224333},
-{ target: "88Crises", source: "02Simmel3", strength: 0.09525741268224333},
-{ target: "03NetChng", source: "03Equil", strength: 0.1},
-{ target: "03Vis2", source: "03Equil", strength: 0.1},
-{ target: "06Cent", source: "03Equil", strength: 0.09933071490757153},
-{ target: "06Simmel4", source: "03Equil", strength: 0.09999546021312976},
-{ target: "07DiscHand", source: "03Equil", strength: 0.0999999694097773},
-{ target: "07QAP3", source: "03Equil", strength: 0.09975273768433654},
-{ target: "08SmWrld", source: "03Equil", strength: 0.0999999694097773},
-{ target: "09RvJack", source: "03Equil", strength: 0.1},
-{ target: "10ChldWel", source: "03Equil", strength: 0.0999999999986112},
-{ target: "10HlthRec", source: "03Equil", strength: 0.0999999999986112},
-{ target: "11EMFam1", source: "03Equil", strength: 0.09975273768433654},
-{ target: "12EMEvnt", source: "03Equil", strength: 0.09999999992417438},
-{ target: "12GrphTh2", source: "03Equil", strength: 0.09998766054240137},
-{ target: "12TeamCon", source: "03Equil", strength: 0.09999999847700206},
-{ target: "13Embed", source: "03Equil", strength: 0.09975273768433654},
-{ target: "13TeamCom", source: "03Equil", strength: 0.09820137900379085},
-{ target: "14Accur", source: "03Equil", strength: 0.09990889488055994},
-{ target: "14PeerInf", source: "03Equil", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "03Equil", strength: 0.08807970779778823},
-{ target: "15Psych", source: "03Equil", strength: 0.08807970779778823},
-{ target: "86Snow", source: "03Equil", strength: 0.09525741268224333},
-{ target: "87CSS", source: "03Equil", strength: 0.07310585786300049},
-{ target: "88Crises", source: "03Equil", strength: 0.09975273768433654},
-{ target: "90Cult", source: "03Equil", strength: 0.07310585786300049},
-{ target: "93InfNet", source: "03Equil", strength: 0.07310585786300049},
-{ target: "94Bring", source: "03Equil", strength: 0.07310585786300049},
-{ target: "96HistBal", source: "03Equil", strength: 0.08807970779778823},
-{ target: "97Vis1", source: "03Equil", strength: 0.08807970779778823},
-{ target: "03Vis2", source: "03NetChng", strength: 0.0999983298578152},
-{ target: "06Cent", source: "03NetChng", strength: 0.08807970779778823},
-{ target: "06Simmel4", source: "03NetChng", strength: 0.09998766054240137},
-{ target: "07DiscHand", source: "03NetChng", strength: 0.09999999586006245},
-{ target: "07QAP3", source: "03NetChng", strength: 0.09998766054240137},
-{ target: "08SmWrld", source: "03NetChng", strength: 0.09999991684719722},
-{ target: "09RvJack", source: "03NetChng", strength: 0.09999999999999994},
-{ target: "10ChldWel", source: "03NetChng", strength: 0.0999997739675702},
-{ target: "10HlthRec", source: "03NetChng", strength: 0.09990889488055994},
-{ target: "11EMFam1", source: "03NetChng", strength: 0.09999546021312976},
-{ target: "12EMEvnt", source: "03NetChng", strength: 0.09999991684719722},
-{ target: "12GrphTh2", source: "03NetChng", strength: 0.09996646498695336},
-{ target: "12TeamCon", source: "03NetChng", strength: 0.09999938558253978},
-{ target: "13Embed", source: "03NetChng", strength: 0.07310585786300049},
-{ target: "13TeamCom", source: "03NetChng", strength: 0.07310585786300049},
-{ target: "14Accur", source: "03NetChng", strength: 0.07310585786300049},
-{ target: "86Snow", source: "03NetChng", strength: 0.09525741268224333},
-{ target: "87CSS", source: "03NetChng", strength: 0.07310585786300049},
-{ target: "88Crises", source: "03NetChng", strength: 0.09525741268224333},
-{ target: "90Cult", source: "03NetChng", strength: 0.08807970779778823},
-{ target: "96HistBal", source: "03NetChng", strength: 0.07310585786300049},
-{ target: "06Cent", source: "03Vis2", strength: 0.09820137900379085},
-{ target: "06Simmel4", source: "03Vis2", strength: 0.09990889488055994},
-{ target: "07DiscHand", source: "03Vis2", strength: 0.07310585786300049},
-{ target: "07QAP3", source: "03Vis2", strength: 0.08807970779778823},
-{ target: "09RvJack", source: "03Vis2", strength: 0.09525741268224333},
-{ target: "10ChldWel", source: "03Vis2", strength: 0.09820137900379085},
-{ target: "10HlthRec", source: "03Vis2", strength: 0.09525741268224333},
-{ target: "11EMFam1", source: "03Vis2", strength: 0.08807970779778823},
-{ target: "12EMEvnt", source: "03Vis2", strength: 0.07310585786300049},
-{ target: "12GrphTh2", source: "03Vis2", strength: 0.07310585786300049},
-{ target: "13Embed", source: "03Vis2", strength: 0.09525741268224333},
-{ target: "14Simmel4", source: "03Vis2", strength: 0.07310585786300049},
-{ target: "15Catlst", source: "03Vis2", strength: 0.07310585786300049},
-{ target: "93InfNet", source: "03Vis2", strength: 0.08807970779778823},
-{ target: "06Simmel4", source: "06Cent", strength: 0.08807970779778823},
-{ target: "09RvJack", source: "06Cent", strength: 0.08807970779778823},
-{ target: "10HlthRec", source: "06Cent", strength: 0.08807970779778823},
-{ target: "11EMFam1", source: "06Cent", strength: 0.07310585786300049},
-{ target: "12EMEvnt", source: "06Cent", strength: 0.09525741268224333},
-{ target: "12GrphTh2", source: "06Cent", strength: 0.07310585786300049},
-{ target: "12TeamCon", source: "06Cent", strength: 0.09525741268224333},
-{ target: "14Accur", source: "06Cent", strength: 0.08807970779778823},
-{ target: "14Simmel4", source: "06Cent", strength: 0.07310585786300049},
-{ target: "15Psych", source: "06Cent", strength: 0.07310585786300049},
-{ target: "88Crises", source: "06Cent", strength: 0.07310585786300049},
-{ target: "98Polyn", source: "06Cent", strength: 0.07310585786300049},
-{ target: "07DiscHand", source: "06Simmel4", strength: 0.09820137900379085},
-{ target: "07QAP3", source: "06Simmel4", strength: 0.09525741268224333},
-{ target: "09RvJack", source: "06Simmel4", strength: 0.09933071490757153},
-{ target: "10Activ", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "10ChldWel", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "10HlthRec", source: "06Simmel4", strength: 0.09820137900379085},
-{ target: "11EMFam1", source: "06Simmel4", strength: 0.09525741268224333},
-{ target: "12EMEvnt", source: "06Simmel4", strength: 0.09820137900379085},
-{ target: "12GrphTh2", source: "06Simmel4", strength: 0.09990889488055994},
-{ target: "12TeamCon", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "13Embed", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "14AdEvnt", source: "06Simmel4", strength: 0.09525741268224333},
-{ target: "14Simmel4", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "15Catlst", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "16TeamInj", source: "06Simmel4", strength: 0.09525741268224333},
-{ target: "86Snow", source: "06Simmel4", strength: 0.07310585786300049},
-{ target: "96CommBK", source: "06Simmel4", strength: 0.08807970779778823},
-{ target: "07QAP3", source: "07DiscHand", strength: 0.08807970779778823},
-{ target: "08SmWrld", source: "07DiscHand", strength: 0.1},
-{ target: "09RvJack", source: "07DiscHand", strength: 0.0999983298578152},
-{ target: "10Activ", source: "07DiscHand", strength: 0.0999983298578152},
-{ target: "10ChldWel", source: "07DiscHand", strength: 0.09999546021312976},
-{ target: "10HlthRec", source: "07DiscHand", strength: 0.09525741268224333},
-{ target: "11EMFam1", source: "07DiscHand", strength: 0.09525741268224333},
-{ target: "12EMEvnt", source: "07DiscHand", strength: 0.09975273768433654},
-{ target: "12GrphTh2", source: "07DiscHand", strength: 0.09820137900379085},
-{ target: "12TeamCon", source: "07DiscHand", strength: 0.08807970779778823},
-{ target: "13TeamCom", source: "07DiscHand", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "07DiscHand", strength: 0.07310585786300049},
-{ target: "15EMfam2", source: "07DiscHand", strength: 0.08807970779778823},
-{ target: "15Psych", source: "07DiscHand", strength: 0.07310585786300049},
-{ target: "86Snow", source: "07DiscHand", strength: 0.08807970779778823},
-{ target: "88Crises", source: "07DiscHand", strength: 0.07310585786300049},
-{ target: "93InfNet", source: "07DiscHand", strength: 0.07310585786300049},
-{ target: "08SmWrld", source: "07QAP3", strength: 0.08807970779778823},
-{ target: "09RvJack", source: "07QAP3", strength: 0.09525741268224333},
-{ target: "10ChldWel", source: "07QAP3", strength: 0.09525741268224333},
-{ target: "10HlthRec", source: "07QAP3", strength: 0.08807970779778823},
-{ target: "11EMFam1", source: "07QAP3", strength: 0.07310585786300049},
-{ target: "12EMEvnt", source: "07QAP3", strength: 0.08807970779778823},
-{ target: "12TeamCon", source: "07QAP3", strength: 0.07310585786300049},
-{ target: "86Snow", source: "07QAP3", strength: 0.07310585786300049},
-{ target: "09RvJack", source: "08SmWrld", strength: 0.09990889488055994},
-{ target: "10Activ", source: "08SmWrld", strength: 0.09996646498695336},
-{ target: "10ChldWel", source: "08SmWrld", strength: 0.09999546021312976},
-{ target: "10HlthRec", source: "08SmWrld", strength: 0.08807970779778823},
-{ target: "11EMFam1", source: "08SmWrld", strength: 0.09820137900379085},
-{ target: "12EMEvnt", source: "08SmWrld", strength: 0.08807970779778823},
-{ target: "12GrphTh2", source: "08SmWrld", strength: 0.08807970779778823},
-{ target: "13TeamCom", source: "08SmWrld", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "08SmWrld", strength: 0.07310585786300049},
-{ target: "86Snow", source: "08SmWrld", strength: 0.08807970779778823},
-{ target: "88Crises", source: "08SmWrld", strength: 0.07310585786300049},
-{ target: "93InfNet", source: "08SmWrld", strength: 0.07310585786300049},
-{ target: "10Activ", source: "09RvJack", strength: 0.07310585786300049},
-{ target: "10ChldWel", source: "09RvJack", strength: 0.09999546021312976},
-{ target: "10HlthRec", source: "09RvJack", strength: 0.09996646498695336},
-{ target: "11EMFam1", source: "09RvJack", strength: 0.08807970779778823},
-{ target: "12EMEvnt", source: "09RvJack", strength: 0.0999997739675702},
-{ target: "12GrphTh2", source: "09RvJack", strength: 0.09990889488055994},
-{ target: "12TeamCon", source: "09RvJack", strength: 0.0999983298578152},
-{ target: "13Embed", source: "09RvJack", strength: 0.07310585786300049},
-{ target: "13TeamCom", source: "09RvJack", strength: 0.08807970779778823},
-{ target: "14Accur", source: "09RvJack", strength: 0.08807970779778823},
-{ target: "15Psych", source: "09RvJack", strength: 0.07310585786300049},
-{ target: "86Snow", source: "09RvJack", strength: 0.08807970779778823},
-{ target: "88Crises", source: "09RvJack", strength: 0.08807970779778823},
-{ target: "15EMfam2", source: "10Activ", strength: 0.08807970779778823},
-{ target: "10HlthRec", source: "10ChldWel", strength: 0.08807970779778823},
-{ target: "11EMFam1", source: "10ChldWel", strength: 0.08807970779778823},
-{ target: "12EMEvnt", source: "10ChldWel", strength: 0.07310585786300049},
-{ target: "12GrphTh2", source: "10ChldWel", strength: 0.09933071490757153},
-{ target: "12TeamCon", source: "10ChldWel", strength: 0.08807970779778823},
-{ target: "13Embed", source: "10ChldWel", strength: 0.07310585786300049},
-{ target: "86Snow", source: "10ChldWel", strength: 0.07310585786300049},
-{ target: "88Crises", source: "10ChldWel", strength: 0.07310585786300049},
-{ target: "11EMFam1", source: "10HlthRec", strength: 0.08807970779778823},
-{ target: "12EMEvnt", source: "10HlthRec", strength: 0.08807970779778823},
-{ target: "12GrphTh2", source: "10HlthRec", strength: 0.09820137900379085},
-{ target: "12TeamCon", source: "10HlthRec", strength: 0.09975273768433654},
-{ target: "13Embed", source: "10HlthRec", strength: 0.08807970779778823},
-{ target: "13TeamCom", source: "10HlthRec", strength: 0.07310585786300049},
-{ target: "14Accur", source: "10HlthRec", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "10HlthRec", strength: 0.07310585786300049},
-{ target: "88Crises", source: "10HlthRec", strength: 0.07310585786300049},
-{ target: "98Polyn", source: "10HlthRec", strength: 0.07310585786300049},
-{ target: "12GrphTh2", source: "11EMFam1", strength: 0.07310585786300049},
-{ target: "15Catlst", source: "11EMFam1", strength: 0.07310585786300049},
-{ target: "86Snow", source: "11EMFam1", strength: 0.07310585786300049},
-{ target: "88Crises", source: "11EMFam1", strength: 0.07310585786300049},
-{ target: "12GrphTh2", source: "12EMEvnt", strength: 0.08807970779778823},
-{ target: "12TeamCon", source: "12EMEvnt", strength: 0.0999983298578152},
-{ target: "14Accur", source: "12EMEvnt", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "12EMEvnt", strength: 0.07310585786300049},
-{ target: "87CSS", source: "12EMEvnt", strength: 0.07310585786300049},
-{ target: "88Crises", source: "12EMEvnt", strength: 0.08807970779778823},
-{ target: "12TeamCon", source: "12GrphTh2", strength: 0.08807970779778823},
-{ target: "13Embed", source: "12GrphTh2", strength: 0.07310585786300049},
-{ target: "14Accur", source: "12GrphTh2", strength: 0.07310585786300049},
-{ target: "14Simmel4", source: "12GrphTh2", strength: 0.07310585786300049},
-{ target: "96CommBK", source: "12GrphTh2", strength: 0.08807970779778823},
-{ target: "98Polyn", source: "12GrphTh2", strength: 0.07310585786300049},
-{ target: "13Embed", source: "12TeamCon", strength: 0.07310585786300049},
-{ target: "88Crises", source: "12TeamCon", strength: 0.07310585786300049},
-{ target: "13TeamCom", source: "13Embed", strength: 0.09933071490757153},
-{ target: "15Catlst", source: "13Embed", strength: 0.08807970779778823},
-{ target: "14Simmel4", source: "14Accur", strength: 0.07310585786300049},
-{ target: "94Bring", source: "14Accur", strength: 0.07310585786300049},
-{ target: "98Polyn", source: "14Accur", strength: 0.07310585786300049},
-{ target: "15Psych", source: "14PeerInf", strength: 0.09525741268224333},
-{ target: "81FuncTO", source: "14PeerInf", strength: 0.07310585786300049},
-{ target: "92Philos", source: "15Catlst", strength: 0.07310585786300049},
-{ target: "81FuncTO", source: "15Psych", strength: 0.08807970779778823},
-{ target: "87QAP1", source: "81EmpTO", strength: 0.09525741268224333},
-{ target: "95RevSH", source: "81EmpTO", strength: 0.07310585786300049},
-{ target: "88QAP2", source: "87QAP1", strength: 0.09525741268224333},
-{ target: "90Polit", source: "87QAP1", strength: 0.08807970779778823},
-{ target: "95RevSH", source: "87QAP1", strength: 0.07310585786300049},
-{ target: "96HistBal", source: "88Crises", strength: 0.07310585786300049},
-{ target: "96Lead", source: "88QAP2", strength: 0.07310585786300049}
+{ target: "00LatCon", source: "00GovStr", strength: 0.1 ,original: 74},
+{ target: "00WrkGrp", source: "00GovStr", strength: 0.09999999999622486 ,original: 24},
+{ target: "01PreTran", source: "00GovStr", strength: 0.0999983298578152 ,original: 11},
+{ target: "02Festsch", source: "00GovStr", strength: 0.09933071490757153 ,original: 5},
+{ target: "02Simmel3", source: "00GovStr", strength: 0.09975273768433654 ,original: 6},
+{ target: "03Equil", source: "00GovStr", strength: 0.09999546021312976 ,original: 10},
+{ target: "03NetChng", source: "00GovStr", strength: 0.09999991684719722 ,original: 14},
+{ target: "03Vis2", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "06Cent", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "06Simmel4", source: "00GovStr", strength: 0.09999999943972035 ,original: 19},
+{ target: "07DiscHand", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "07QAP3", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+{ target: "08SmWrld", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+{ target: "09RvJack", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "10ChldWel", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "10HlthRec", source: "00GovStr", strength: 0.09525741268224333 ,original: 3},
+{ target: "11EMFam1", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+{ target: "12EMEvnt", source: "00GovStr", strength: 0.09525741268224333 ,original: 3},
+{ target: "12GrphTh2", source: "00GovStr", strength: 0.09820137900379085 ,original: 4},
+{ target: "14AdEvnt", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+{ target: "87CSS", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "88Crises", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "96CommBK", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+{ target: "96HistBal", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+{ target: "00WrkGrp", source: "00LatCon", strength: 0.1 ,original: 50},
+{ target: "01PreTran", source: "00LatCon", strength: 0.09999999999999065 ,original: 30},
+{ target: "02Festsch", source: "00LatCon", strength: 0.09999999999993085 ,original: 28},
+{ target: "02Simmel3", source: "00LatCon", strength: 0.09999999999999873 ,original: 32},
+{ target: "03Equil", source: "00LatCon", strength: 0.1 ,original: 43},
+{ target: "03NetChng", source: "00LatCon", strength: 0.09999999999999656 ,original: 31},
+{ target: "03Vis2", source: "00LatCon", strength: 0.09990889488055994 ,original: 7},
+{ target: "06Cent", source: "00LatCon", strength: 0.09525741268224333 ,original: 3},
+{ target: "06Simmel4", source: "00LatCon", strength: 0.09999999586006245 ,original: 17},
+{ target: "07DiscHand", source: "00LatCon", strength: 0.09999999992417438 ,original: 21},
+{ target: "07QAP3", source: "00LatCon", strength: 0.09998766054240137 ,original: 9},
+{ target: "08SmWrld", source: "00LatCon", strength: 0.0999999694097773 ,original: 15},
+{ target: "09RvJack", source: "00LatCon", strength: 0.09999938558253978 ,original: 12},
+{ target: "10Activ", source: "00LatCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "10ChldWel", source: "00LatCon", strength: 0.09999991684719722 ,original: 14},
+{ target: "10HlthRec", source: "00LatCon", strength: 0.09998766054240137 ,original: 9},
+{ target: "11EMFam1", source: "00LatCon", strength: 0.09933071490757153 ,original: 5},
+{ target: "12EMEvnt", source: "00LatCon", strength: 0.09996646498695336 ,original: 8},
+{ target: "12GrphTh2", source: "00LatCon", strength: 0.09990889488055994 ,original: 7},
+{ target: "12TeamCon", source: "00LatCon", strength: 0.09990889488055994 ,original: 7},
+{ target: "13TeamCom", source: "00LatCon", strength: 0.09525741268224333 ,original: 3},
+{ target: "14AdEvnt", source: "00LatCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "00LatCon", strength: 0.09933071490757153 ,original: 5},
+{ target: "86Snow", source: "00LatCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "87CSS", source: "00LatCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "00LatCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "01PreTran", source: "00WrkGrp", strength: 0.1 ,original: 40},
+{ target: "02Festsch", source: "00WrkGrp", strength: 0.09999999999999953 ,original: 33},
+{ target: "02Simmel3", source: "00WrkGrp", strength: 0.1 ,original: 40},
+{ target: "03Equil", source: "00WrkGrp", strength: 0.1 ,original: 100},
+{ target: "03NetChng", source: "00WrkGrp", strength: 0.1 ,original: 59},
+{ target: "03Vis2", source: "00WrkGrp", strength: 0.09975273768433654 ,original: 6},
+{ target: "06Cent", source: "00WrkGrp", strength: 0.08807970779778823 ,original: 2},
+{ target: "06Simmel4", source: "00WrkGrp", strength: 0.09999991684719722 ,original: 14},
+{ target: "07DiscHand", source: "00WrkGrp", strength: 0.09999999997210532 ,original: 22},
+{ target: "07QAP3", source: "00WrkGrp", strength: 0.09998766054240137 ,original: 9},
+{ target: "08SmWrld", source: "00WrkGrp", strength: 0.09999999997210532 ,original: 22},
+{ target: "09RvJack", source: "00WrkGrp", strength: 0.09999999999999953 ,original: 33},
+{ target: "10ChldWel", source: "00WrkGrp", strength: 0.09999999992417438 ,original: 21},
+{ target: "10HlthRec", source: "00WrkGrp", strength: 0.09999999943972035 ,original: 19},
+{ target: "11EMFam1", source: "00WrkGrp", strength: 0.09933071490757153 ,original: 5},
+{ target: "12EMEvnt", source: "00WrkGrp", strength: 0.09999999847700206 ,original: 18},
+{ target: "12GrphTh2", source: "00WrkGrp", strength: 0.0999983298578152 ,original: 11},
+{ target: "12TeamCon", source: "00WrkGrp", strength: 0.09999999992417438 ,original: 21},
+{ target: "13Embed", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Accur", source: "00WrkGrp", strength: 0.09525741268224333 ,original: 3},
+{ target: "14AdEvnt", source: "00WrkGrp", strength: 0.09525741268224333 ,original: 3},
+{ target: "14Simmel4", source: "00WrkGrp", strength: 0.08807970779778823 ,original: 2},
+{ target: "15Catlst", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+{ target: "16TeamInj", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "00WrkGrp", strength: 0.08807970779778823 ,original: 2},
+{ target: "90Cult", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+{ target: "02Festsch", source: "01PreTran", strength: 0.09999999979388463 ,original: 20},
+{ target: "02Simmel3", source: "01PreTran", strength: 0.09999999999993085 ,original: 28},
+{ target: "03Equil", source: "01PreTran", strength: 0.09999999999997455 ,original: 29},
+{ target: "03NetChng", source: "01PreTran", strength: 0.09999999586006245 ,original: 17},
+{ target: "03Vis2", source: "01PreTran", strength: 0.09998766054240137 ,original: 9},
+{ target: "06Cent", source: "01PreTran", strength: 0.09933071490757153 ,original: 5},
+{ target: "06Simmel4", source: "01PreTran", strength: 0.09999546021312976 ,original: 10},
+{ target: "07DiscHand", source: "01PreTran", strength: 0.0999999694097773 ,original: 15},
+{ target: "07QAP3", source: "01PreTran", strength: 0.09975273768433654 ,original: 6},
+{ target: "08SmWrld", source: "01PreTran", strength: 0.0999999694097773 ,original: 15},
+{ target: "09RvJack", source: "01PreTran", strength: 0.09933071490757153 ,original: 5},
+{ target: "10ChldWel", source: "01PreTran", strength: 0.0999999694097773 ,original: 15},
+{ target: "10HlthRec", source: "01PreTran", strength: 0.09975273768433654 ,original: 6},
+{ target: "11EMFam1", source: "01PreTran", strength: 0.09975273768433654 ,original: 6},
+{ target: "12EMEvnt", source: "01PreTran", strength: 0.09525741268224333 ,original: 3},
+{ target: "12GrphTh2", source: "01PreTran", strength: 0.09820137900379085 ,original: 4},
+{ target: "13TeamCom", source: "01PreTran", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Accur", source: "01PreTran", strength: 0.07310585786300049 ,original: 1},
+{ target: "14PeerInf", source: "01PreTran", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "01PreTran", strength: 0.09525741268224333 ,original: 3},
+{ target: "77Povrty", source: "01PreTran", strength: 0.07310585786300049 ,original: 1},
+{ target: "81FuncTO", source: "01PreTran", strength: 0.07310585786300049 ,original: 1},
+{ target: "87CSS", source: "01PreTran", strength: 0.08807970779778823 ,original: 2},
+{ target: "02Simmel3", source: "02Festsch", strength: 0.09999938558253978 ,original: 12},
+{ target: "03Equil", source: "02Festsch", strength: 0.1 ,original: 144},
+{ target: "03NetChng", source: "02Festsch", strength: 0.0999999999986112 ,original: 25},
+{ target: "03Vis2", source: "02Festsch", strength: 0.1 ,original: 102},
+{ target: "06Cent", source: "02Festsch", strength: 0.09998766054240137 ,original: 9},
+{ target: "06Simmel4", source: "02Festsch", strength: 0.09998766054240137 ,original: 9},
+{ target: "07DiscHand", source: "02Festsch", strength: 0.09999938558253978 ,original: 12},
+{ target: "07QAP3", source: "02Festsch", strength: 0.09998766054240137 ,original: 9},
+{ target: "08SmWrld", source: "02Festsch", strength: 0.09996646498695336 ,original: 8},
+{ target: "09RvJack", source: "02Festsch", strength: 0.09996646498695336 ,original: 8},
+{ target: "10ChldWel", source: "02Festsch", strength: 0.09999999847700206 ,original: 18},
+{ target: "10HlthRec", source: "02Festsch", strength: 0.09998766054240137 ,original: 9},
+{ target: "11EMFam1", source: "02Festsch", strength: 0.09820137900379085 ,original: 4},
+{ target: "12EMEvnt", source: "02Festsch", strength: 0.07310585786300049 ,original: 1},
+{ target: "12GrphTh2", source: "02Festsch", strength: 0.08807970779778823 ,original: 2},
+{ target: "12TeamCon", source: "02Festsch", strength: 0.09525741268224333 ,original: 3},
+{ target: "13Embed", source: "02Festsch", strength: 0.09525741268224333 ,original: 3},
+{ target: "13TeamCom", source: "02Festsch", strength: 0.08807970779778823 ,original: 2},
+{ target: "14Accur", source: "02Festsch", strength: 0.08807970779778823 ,original: 2},
+{ target: "14Simmel4", source: "02Festsch", strength: 0.07310585786300049 ,original: 1},
+{ target: "15Catlst", source: "02Festsch", strength: 0.08807970779778823 ,original: 2},
+{ target: "88Crises", source: "02Festsch", strength: 0.07310585786300049 ,original: 1},
+{ target: "93InfNet", source: "02Festsch", strength: 0.09525741268224333 ,original: 3},
+{ target: "98Polyn", source: "02Festsch", strength: 0.07310585786300049 ,original: 1},
+{ target: "99AffAcc", source: "02Festsch", strength: 0.07310585786300049 ,original: 1},
+{ target: "03Equil", source: "02Simmel3", strength: 0.09999999999622486 ,original: 24},
+{ target: "03NetChng", source: "02Simmel3", strength: 0.09999999586006245 ,original: 17},
+{ target: "03Vis2", source: "02Simmel3", strength: 0.09820137900379085 ,original: 4},
+{ target: "06Cent", source: "02Simmel3", strength: 0.09933071490757153 ,original: 5},
+{ target: "06Simmel4", source: "02Simmel3", strength: 0.09990889488055994 ,original: 7},
+{ target: "07DiscHand", source: "02Simmel3", strength: 0.09975273768433654 ,original: 6},
+{ target: "07QAP3", source: "02Simmel3", strength: 0.09996646498695336 ,original: 8},
+{ target: "08SmWrld", source: "02Simmel3", strength: 0.09820137900379085 ,original: 4},
+{ target: "09RvJack", source: "02Simmel3", strength: 0.09975273768433654 ,original: 6},
+{ target: "10ChldWel", source: "02Simmel3", strength: 0.09996646498695336 ,original: 8},
+{ target: "10HlthRec", source: "02Simmel3", strength: 0.09820137900379085 ,original: 4},
+{ target: "11EMFam1", source: "02Simmel3", strength: 0.09975273768433654 ,original: 6},
+{ target: "12EMEvnt", source: "02Simmel3", strength: 0.09933071490757153 ,original: 5},
+{ target: "12GrphTh2", source: "02Simmel3", strength: 0.08807970779778823 ,original: 2},
+{ target: "12TeamCon", source: "02Simmel3", strength: 0.09933071490757153 ,original: 5},
+{ target: "14Accur", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+{ target: "14PeerInf", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "02Simmel3", strength: 0.08807970779778823 ,original: 2},
+{ target: "15Psych", source: "02Simmel3", strength: 0.08807970779778823 ,original: 2},
+{ target: "81FuncTO", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+{ target: "87CSS", source: "02Simmel3", strength: 0.09525741268224333 ,original: 3},
+{ target: "88Crises", source: "02Simmel3", strength: 0.09525741268224333 ,original: 3},
+{ target: "03NetChng", source: "03Equil", strength: 0.1 ,original: 47},
+{ target: "03Vis2", source: "03Equil", strength: 0.1 ,original: 59},
+{ target: "06Cent", source: "03Equil", strength: 0.09933071490757153 ,original: 5},
+{ target: "06Simmel4", source: "03Equil", strength: 0.09999546021312976 ,original: 10},
+{ target: "07DiscHand", source: "03Equil", strength: 0.0999999694097773 ,original: 15},
+{ target: "07QAP3", source: "03Equil", strength: 0.09975273768433654 ,original: 6},
+{ target: "08SmWrld", source: "03Equil", strength: 0.0999999694097773 ,original: 15},
+{ target: "09RvJack", source: "03Equil", strength: 0.1 ,original: 42},
+{ target: "10ChldWel", source: "03Equil", strength: 0.0999999999986112 ,original: 25},
+{ target: "10HlthRec", source: "03Equil", strength: 0.0999999999986112 ,original: 25},
+{ target: "11EMFam1", source: "03Equil", strength: 0.09975273768433654 ,original: 6},
+{ target: "12EMEvnt", source: "03Equil", strength: 0.09999999992417438 ,original: 21},
+{ target: "12GrphTh2", source: "03Equil", strength: 0.09998766054240137 ,original: 9},
+{ target: "12TeamCon", source: "03Equil", strength: 0.09999999847700206 ,original: 18},
+{ target: "13Embed", source: "03Equil", strength: 0.09975273768433654 ,original: 6},
+{ target: "13TeamCom", source: "03Equil", strength: 0.09820137900379085 ,original: 4},
+{ target: "14Accur", source: "03Equil", strength: 0.09990889488055994 ,original: 7},
+{ target: "14PeerInf", source: "03Equil", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "03Equil", strength: 0.08807970779778823 ,original: 2},
+{ target: "15Psych", source: "03Equil", strength: 0.08807970779778823 ,original: 2},
+{ target: "86Snow", source: "03Equil", strength: 0.09525741268224333 ,original: 3},
+{ target: "87CSS", source: "03Equil", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "03Equil", strength: 0.09975273768433654 ,original: 6},
+{ target: "90Cult", source: "03Equil", strength: 0.07310585786300049 ,original: 1},
+{ target: "93InfNet", source: "03Equil", strength: 0.07310585786300049 ,original: 1},
+{ target: "94Bring", source: "03Equil", strength: 0.07310585786300049 ,original: 1},
+{ target: "96HistBal", source: "03Equil", strength: 0.08807970779778823 ,original: 2},
+{ target: "97Vis1", source: "03Equil", strength: 0.08807970779778823 ,original: 2},
+{ target: "03Vis2", source: "03NetChng", strength: 0.0999983298578152 ,original: 11},
+{ target: "06Cent", source: "03NetChng", strength: 0.08807970779778823 ,original: 2},
+{ target: "06Simmel4", source: "03NetChng", strength: 0.09998766054240137 ,original: 9},
+{ target: "07DiscHand", source: "03NetChng", strength: 0.09999999586006245 ,original: 17},
+{ target: "07QAP3", source: "03NetChng", strength: 0.09998766054240137 ,original: 9},
+{ target: "08SmWrld", source: "03NetChng", strength: 0.09999991684719722 ,original: 14},
+{ target: "09RvJack", source: "03NetChng", strength: 0.09999999999999994 ,original: 35},
+{ target: "10ChldWel", source: "03NetChng", strength: 0.0999997739675702 ,original: 13},
+{ target: "10HlthRec", source: "03NetChng", strength: 0.09990889488055994 ,original: 7},
+{ target: "11EMFam1", source: "03NetChng", strength: 0.09999546021312976 ,original: 10},
+{ target: "12EMEvnt", source: "03NetChng", strength: 0.09999991684719722 ,original: 14},
+{ target: "12GrphTh2", source: "03NetChng", strength: 0.09996646498695336 ,original: 8},
+{ target: "12TeamCon", source: "03NetChng", strength: 0.09999938558253978 ,original: 12},
+{ target: "13Embed", source: "03NetChng", strength: 0.07310585786300049 ,original: 1},
+{ target: "13TeamCom", source: "03NetChng", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Accur", source: "03NetChng", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "03NetChng", strength: 0.09525741268224333 ,original: 3},
+{ target: "87CSS", source: "03NetChng", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "03NetChng", strength: 0.09525741268224333 ,original: 3},
+{ target: "90Cult", source: "03NetChng", strength: 0.08807970779778823 ,original: 2},
+{ target: "96HistBal", source: "03NetChng", strength: 0.07310585786300049 ,original: 1},
+{ target: "06Cent", source: "03Vis2", strength: 0.09820137900379085 ,original: 4},
+{ target: "06Simmel4", source: "03Vis2", strength: 0.09990889488055994 ,original: 7},
+{ target: "07DiscHand", source: "03Vis2", strength: 0.07310585786300049 ,original: 1},
+{ target: "07QAP3", source: "03Vis2", strength: 0.08807970779778823 ,original: 2},
+{ target: "09RvJack", source: "03Vis2", strength: 0.09525741268224333 ,original: 3},
+{ target: "10ChldWel", source: "03Vis2", strength: 0.09820137900379085 ,original: 4},
+{ target: "10HlthRec", source: "03Vis2", strength: 0.09525741268224333 ,original: 3},
+{ target: "11EMFam1", source: "03Vis2", strength: 0.08807970779778823 ,original: 2},
+{ target: "12EMEvnt", source: "03Vis2", strength: 0.07310585786300049 ,original: 1},
+{ target: "12GrphTh2", source: "03Vis2", strength: 0.07310585786300049 ,original: 1},
+{ target: "13Embed", source: "03Vis2", strength: 0.09525741268224333 ,original: 3},
+{ target: "14Simmel4", source: "03Vis2", strength: 0.07310585786300049 ,original: 1},
+{ target: "15Catlst", source: "03Vis2", strength: 0.07310585786300049 ,original: 1},
+{ target: "93InfNet", source: "03Vis2", strength: 0.08807970779778823 ,original: 2},
+{ target: "06Simmel4", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+{ target: "09RvJack", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+{ target: "10HlthRec", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+{ target: "11EMFam1", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+{ target: "12EMEvnt", source: "06Cent", strength: 0.09525741268224333 ,original: 3},
+{ target: "12GrphTh2", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+{ target: "12TeamCon", source: "06Cent", strength: 0.09525741268224333 ,original: 3},
+{ target: "14Accur", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+{ target: "14Simmel4", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+{ target: "15Psych", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+{ target: "98Polyn", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+{ target: "07DiscHand", source: "06Simmel4", strength: 0.09820137900379085 ,original: 4},
+{ target: "07QAP3", source: "06Simmel4", strength: 0.09525741268224333 ,original: 3},
+{ target: "09RvJack", source: "06Simmel4", strength: 0.09933071490757153 ,original: 5},
+{ target: "10Activ", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "10ChldWel", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "10HlthRec", source: "06Simmel4", strength: 0.09820137900379085 ,original: 4},
+{ target: "11EMFam1", source: "06Simmel4", strength: 0.09525741268224333 ,original: 3},
+{ target: "12EMEvnt", source: "06Simmel4", strength: 0.09820137900379085 ,original: 4},
+{ target: "12GrphTh2", source: "06Simmel4", strength: 0.09990889488055994 ,original: 7},
+{ target: "12TeamCon", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "13Embed", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "14AdEvnt", source: "06Simmel4", strength: 0.09525741268224333 ,original: 3},
+{ target: "14Simmel4", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "15Catlst", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "16TeamInj", source: "06Simmel4", strength: 0.09525741268224333 ,original: 3},
+{ target: "86Snow", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+{ target: "96CommBK", source: "06Simmel4", strength: 0.08807970779778823 ,original: 2},
+{ target: "07QAP3", source: "07DiscHand", strength: 0.08807970779778823 ,original: 2},
+{ target: "08SmWrld", source: "07DiscHand", strength: 0.1 ,original: 47},
+{ target: "09RvJack", source: "07DiscHand", strength: 0.0999983298578152 ,original: 11},
+{ target: "10Activ", source: "07DiscHand", strength: 0.0999983298578152 ,original: 11},
+{ target: "10ChldWel", source: "07DiscHand", strength: 0.09999546021312976 ,original: 10},
+{ target: "10HlthRec", source: "07DiscHand", strength: 0.09525741268224333 ,original: 3},
+{ target: "11EMFam1", source: "07DiscHand", strength: 0.09525741268224333 ,original: 3},
+{ target: "12EMEvnt", source: "07DiscHand", strength: 0.09975273768433654 ,original: 6},
+{ target: "12GrphTh2", source: "07DiscHand", strength: 0.09820137900379085 ,original: 4},
+{ target: "12TeamCon", source: "07DiscHand", strength: 0.08807970779778823 ,original: 2},
+{ target: "13TeamCom", source: "07DiscHand", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "07DiscHand", strength: 0.07310585786300049 ,original: 1},
+{ target: "15EMfam2", source: "07DiscHand", strength: 0.08807970779778823 ,original: 2},
+{ target: "15Psych", source: "07DiscHand", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "07DiscHand", strength: 0.08807970779778823 ,original: 2},
+{ target: "88Crises", source: "07DiscHand", strength: 0.07310585786300049 ,original: 1},
+{ target: "93InfNet", source: "07DiscHand", strength: 0.07310585786300049 ,original: 1},
+{ target: "08SmWrld", source: "07QAP3", strength: 0.08807970779778823 ,original: 2},
+{ target: "09RvJack", source: "07QAP3", strength: 0.09525741268224333 ,original: 3},
+{ target: "10ChldWel", source: "07QAP3", strength: 0.09525741268224333 ,original: 3},
+{ target: "10HlthRec", source: "07QAP3", strength: 0.08807970779778823 ,original: 2},
+{ target: "11EMFam1", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+{ target: "12EMEvnt", source: "07QAP3", strength: 0.08807970779778823 ,original: 2},
+{ target: "12TeamCon", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+{ target: "09RvJack", source: "08SmWrld", strength: 0.09990889488055994 ,original: 7},
+{ target: "10Activ", source: "08SmWrld", strength: 0.09996646498695336 ,original: 8},
+{ target: "10ChldWel", source: "08SmWrld", strength: 0.09999546021312976 ,original: 10},
+{ target: "10HlthRec", source: "08SmWrld", strength: 0.08807970779778823 ,original: 2},
+{ target: "11EMFam1", source: "08SmWrld", strength: 0.09820137900379085 ,original: 4},
+{ target: "12EMEvnt", source: "08SmWrld", strength: 0.08807970779778823 ,original: 2},
+{ target: "12GrphTh2", source: "08SmWrld", strength: 0.08807970779778823 ,original: 2},
+{ target: "13TeamCom", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "08SmWrld", strength: 0.08807970779778823 ,original: 2},
+{ target: "88Crises", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+{ target: "93InfNet", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+{ target: "10Activ", source: "09RvJack", strength: 0.07310585786300049 ,original: 1},
+{ target: "10ChldWel", source: "09RvJack", strength: 0.09999546021312976 ,original: 10},
+{ target: "10HlthRec", source: "09RvJack", strength: 0.09996646498695336 ,original: 8},
+{ target: "11EMFam1", source: "09RvJack", strength: 0.08807970779778823 ,original: 2},
+{ target: "12EMEvnt", source: "09RvJack", strength: 0.0999997739675702 ,original: 13},
+{ target: "12GrphTh2", source: "09RvJack", strength: 0.09990889488055994 ,original: 7},
+{ target: "12TeamCon", source: "09RvJack", strength: 0.0999983298578152 ,original: 11},
+{ target: "13Embed", source: "09RvJack", strength: 0.07310585786300049 ,original: 1},
+{ target: "13TeamCom", source: "09RvJack", strength: 0.08807970779778823 ,original: 2},
+{ target: "14Accur", source: "09RvJack", strength: 0.08807970779778823 ,original: 2},
+{ target: "15Psych", source: "09RvJack", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "09RvJack", strength: 0.08807970779778823 ,original: 2},
+{ target: "88Crises", source: "09RvJack", strength: 0.08807970779778823 ,original: 2},
+{ target: "15EMfam2", source: "10Activ", strength: 0.08807970779778823 ,original: 2},
+{ target: "10HlthRec", source: "10ChldWel", strength: 0.08807970779778823 ,original: 2},
+{ target: "11EMFam1", source: "10ChldWel", strength: 0.08807970779778823 ,original: 2},
+{ target: "12EMEvnt", source: "10ChldWel", strength: 0.07310585786300049 ,original: 1},
+{ target: "12GrphTh2", source: "10ChldWel", strength: 0.09933071490757153 ,original: 5},
+{ target: "12TeamCon", source: "10ChldWel", strength: 0.08807970779778823 ,original: 2},
+{ target: "13Embed", source: "10ChldWel", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "10ChldWel", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "10ChldWel", strength: 0.07310585786300049 ,original: 1},
+{ target: "11EMFam1", source: "10HlthRec", strength: 0.08807970779778823 ,original: 2},
+{ target: "12EMEvnt", source: "10HlthRec", strength: 0.08807970779778823 ,original: 2},
+{ target: "12GrphTh2", source: "10HlthRec", strength: 0.09820137900379085 ,original: 4},
+{ target: "12TeamCon", source: "10HlthRec", strength: 0.09975273768433654 ,original: 6},
+{ target: "13Embed", source: "10HlthRec", strength: 0.08807970779778823 ,original: 2},
+{ target: "13TeamCom", source: "10HlthRec", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Accur", source: "10HlthRec", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "10HlthRec", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "10HlthRec", strength: 0.07310585786300049 ,original: 1},
+{ target: "98Polyn", source: "10HlthRec", strength: 0.07310585786300049 ,original: 1},
+{ target: "12GrphTh2", source: "11EMFam1", strength: 0.07310585786300049 ,original: 1},
+{ target: "15Catlst", source: "11EMFam1", strength: 0.07310585786300049 ,original: 1},
+{ target: "86Snow", source: "11EMFam1", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "11EMFam1", strength: 0.07310585786300049 ,original: 1},
+{ target: "12GrphTh2", source: "12EMEvnt", strength: 0.08807970779778823 ,original: 2},
+{ target: "12TeamCon", source: "12EMEvnt", strength: 0.0999983298578152 ,original: 11},
+{ target: "14Accur", source: "12EMEvnt", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "12EMEvnt", strength: 0.07310585786300049 ,original: 1},
+{ target: "87CSS", source: "12EMEvnt", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "12EMEvnt", strength: 0.08807970779778823 ,original: 2},
+{ target: "12TeamCon", source: "12GrphTh2", strength: 0.08807970779778823 ,original: 2},
+{ target: "13Embed", source: "12GrphTh2", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Accur", source: "12GrphTh2", strength: 0.07310585786300049 ,original: 1},
+{ target: "14Simmel4", source: "12GrphTh2", strength: 0.07310585786300049 ,original: 1},
+{ target: "96CommBK", source: "12GrphTh2", strength: 0.08807970779778823 ,original: 2},
+{ target: "98Polyn", source: "12GrphTh2", strength: 0.07310585786300049 ,original: 1},
+{ target: "13Embed", source: "12TeamCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "88Crises", source: "12TeamCon", strength: 0.07310585786300049 ,original: 1},
+{ target: "13TeamCom", source: "13Embed", strength: 0.09933071490757153 ,original: 5},
+{ target: "15Catlst", source: "13Embed", strength: 0.08807970779778823 ,original: 2},
+{ target: "14Simmel4", source: "14Accur", strength: 0.07310585786300049 ,original: 1},
+{ target: "94Bring", source: "14Accur", strength: 0.07310585786300049 ,original: 1},
+{ target: "98Polyn", source: "14Accur", strength: 0.07310585786300049 ,original: 1},
+{ target: "15Psych", source: "14PeerInf", strength: 0.09525741268224333 ,original: 3},
+{ target: "81FuncTO", source: "14PeerInf", strength: 0.07310585786300049 ,original: 1},
+{ target: "92Philos", source: "15Catlst", strength: 0.07310585786300049 ,original: 1},
+{ target: "81FuncTO", source: "15Psych", strength: 0.08807970779778823 ,original: 2},
+{ target: "87QAP1", source: "81EmpTO", strength: 0.09525741268224333 ,original: 3},
+{ target: "95RevSH", source: "81EmpTO", strength: 0.07310585786300049 ,original: 1},
+{ target: "88QAP2", source: "87QAP1", strength: 0.09525741268224333 ,original: 3},
+{ target: "90Polit", source: "87QAP1", strength: 0.08807970779778823 ,original: 2},
+{ target: "95RevSH", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
+{ target: "96HistBal", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
+{ target: "96Lead", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
 ]
 
 var nodes = [...baseNodes]
 var links = [...baseLinks]
 
+
+
+function get_max(data, col){
+    max = 0;
+    for(var i = 0 ; i < data.length; i ++){
+        if(data[i][col] > max){
+            max = data[i][col]
+        }
+    }
+    return max;
+}
+
+function get_min(data, col){
+    min = 3000;
+    for(var i = 0 ; i < data.length; i ++){
+        if(data[i][col] < min){
+            min = data[i][col]
+        }
+    }
+    return min;
+}
+
+function get_color(curr_node){
+    var starts = [0, 58, 140];//earliest year
+    var ends = [145, 213, 255];//latest year
+
+    var max_year = get_max(nodes, "level");
+    var min_year = get_min(nodes, "level");
+
+    var scales = (curr_node.level - min_year) / (max_year - min_year);
+    var rs = starts[0] + (ends[0] - starts[0]) * scales;
+    var gs = starts[1] + (ends[1] - starts[1]) * scales;
+    var bs = starts[2] + (ends[2] - starts[2]) * scales;
+
+    return "rgb("  + rs + ", " 
+                    + gs + ", " 
+                    + bs + ")";
+}
+
 function getNeighbors(node) {
-  return baseLinks.reduce(function (neighbors, link) {
-      if (link.target.id === node.id) {
-        neighbors.push(link.source.id)
-      } else if (link.source.id === node.id) {
-        neighbors.push(link.target.id)
-      }
-      return neighbors
-    },
-    [node.id]
-  )
+    return baseLinks.reduce(function (neighbors, link) {
+        if (link.target.id === node.id) {
+            neighbors.push(link.source.id)
+        }else if(link.source.id === node.id) {
+            neighbors.push(link.target.id)
+        }
+    return neighbors}, [node.id])
 }
 
 function isNeighborLink(node, link) {
-  return link.target.id === node.id || link.source.id === node.id
+    return link.target.id === node.id || link.source.id === node.id
 }
 
 
 function getNodeColor(node, neighbors) {
-  if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
-    return node.level === 1 ? 'blue' : 'green'
-  }
-
-  return node.level === 1 ? 'red' : 'gray'
+    if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
+        return node.level === 1 ? 'blue' : 'green'
+    }
+    return node.level === 1 ? 'red' : 'gray'
 }
 
 
 function getLinkColor(node, link) {
-  return isNeighborLink(node, link) ? 'green' : '#E5E5E5'
+    return isNeighborLink(node, link) ? 'green' : '#E5E5E5'
 }
 
-function getTextColor(node, neighbors) {
-  return Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1 ? 'green' : 'black'
-}
 
 var width = window.innerWidth * 0.9
 var height = window.innerHeight * 0.9
@@ -454,13 +482,11 @@ var svg = d3.select('svg')
 svg.attr('width', width).attr('height', height)
 
 var linkElements,
-  nodeElements,
-  textElements
+    nodeElements
 
 // we use svg groups to logically group the elements together
 var linkGroup = svg.append('g').attr('class', 'links')
 var nodeGroup = svg.append('g').attr('class', 'nodes')
-var textGroup = svg.append('g').attr('class', 'texts')
 
 // we use this reference to select/deselect
 // after clicking the same element twice
@@ -468,161 +494,154 @@ var selectedId
 
 // simulation setup with all forces
 var linkForce = d3
-  .forceLink()
-  .id(function (link) { return link.id })
-  .strength(function (link) { return link.strength })
+    .forceLink()
+    .id(function (link) { return link.id })
+    .strength(function (link) { return link.strength * 0.6 })
 
 var simulation = d3
-  .forceSimulation()
-  .force('link', linkForce)
-  .force('charge', d3.forceManyBody().strength(-50))
-  .force('center', d3.forceCenter(width / 2, height / 2))
+    .forceSimulation()
+    .force('link', linkForce)
+    .force('charge', d3.forceManyBody().strength(-30))
+    .force('center', d3.forceCenter(width / 2, height / 2))
 
 var dragDrop = d3.drag().on('start', function (node) {
-  node.fx = node.x
-  node.fy = node.y
+    node.fx = node.x
+    node.fy = node.y
 }).on('drag', function (node) {
-  simulation.alphaTarget(0.7).restart()
-  node.fx = d3.event.x
-  node.fy = d3.event.y
+    simulation.alphaTarget(0.7).restart()
+    node.fx = d3.event.x
+    node.fy = d3.event.y
 }).on('end', function (node) {
-  if (!d3.event.active) {
-    simulation.alphaTarget(0)
-  }
-  node.fx = null
-  node.fy = null
+    if (!d3.event.active) {
+      simulation.alphaTarget(0)
+    }
+    node.fx = null
+    node.fy = null
 })
 
 // select node is called on every click
 // we either update the data according to the selection
 // or reset the data if the same node is clicked twice
 function selectNode(selectedNode) {
-  if (selectedId === selectedNode.id) {
-    selectedId = undefined
-    resetData()
-    updateSimulation()
-  } else {
-    selectedId = selectedNode.id
-    updateData(selectedNode)
-    updateSimulation()
-  }
+    if (selectedId === selectedNode.id) {
+        selectedId = undefined
+        resetData()
+        updateSimulation()
+    } else {
+        selectedId = selectedNode.id
+        updateData(selectedNode)
+        updateSimulation()
+    }
 
-  var neighbors = getNeighbors(selectedNode)
+    var neighbors = getNeighbors(selectedNode)
 
-  // we modify the styles to highlight selected nodes
-  nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors) })
-  textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
-  linkElements.attr('stroke', function (link) { return getLinkColor(selectedNode, link) })
+    // we modify the styles to highlight selected nodes
+    nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors) })
+    linkElements.attr('stroke', function (link) { return getLinkColor(selectedNode, link) })
 }
 
 // this helper simple adds all nodes and links
 // that are missing, to recreate the initial state
 function resetData() {
-  var nodeIds = nodes.map(function (node) { return node.id })
+    var nodeIds = nodes.map(function (node) { return node.id })
 
-  baseNodes.forEach(function (node) {
-    if (nodeIds.indexOf(node.id) === -1) {
-      nodes.push(node)
-    }
-  })
+    baseNodes.forEach(function (node) {
+        if (nodeIds.indexOf(node.id) === -1) {
+            nodes.push(node)
+        }
+    })
 
-  links = baseLinks
+    links = baseLinks
 }
 
 // diffing and mutating the data
 function updateData(selectedNode) {
-  var neighbors = getNeighbors(selectedNode)
-  var newNodes = baseNodes.filter(function (node) {
-    return neighbors.indexOf(node.id) > -1 || node.level === 1
-  })
-
-  var diff = {
-    removed: nodes.filter(function (node) { return newNodes.indexOf(node) === -1 }),
-    added: newNodes.filter(function (node) { return nodes.indexOf(node) === -1 })
-  }
-
-  diff.removed.forEach(function (node) { nodes.splice(nodes.indexOf(node), 1) })
-  diff.added.forEach(function (node) { nodes.push(node) })
-
-  links = baseLinks.filter(function (link) {
-    return link.target.id === selectedNode.id || link.source.id === selectedNode.id
-  })
-}
-
-
-
-
-
-function updateGraph() {
-  // links
-  linkElements = linkGroup.selectAll('line')
-    .data(links, function (link) {
-      return link.target.id + link.source.id
+    var neighbors = getNeighbors(selectedNode)
+    var newNodes = baseNodes.filter(function (node) {
+        return neighbors.indexOf(node.id) > -1 || node.level === 1
     })
 
-  linkElements.exit().remove()
+    var diff = {
+        removed: nodes.filter(function (node) { return newNodes.indexOf(node) === -1 }),
+        added: newNodes.filter(function (node) { return nodes.indexOf(node) === -1 })
+    }
 
-  var linkEnter = linkElements
-    .enter().append('line')
-    .attr('stroke-width', 1)
-    .attr('stroke', 'rgba(50, 50, 50, 0.2)')
+    diff.removed.forEach(function (node) { nodes.splice(nodes.indexOf(node), 1) })
+    diff.added.forEach(function (node) { nodes.push(node) })
 
-  linkElements = linkEnter.merge(linkElements)
+    links = baseLinks.filter(function (link) {
+        return link.target.id === selectedNode.id || link.source.id === selectedNode.id
+    })
+}
 
-  // nodes
-  nodeElements = nodeGroup.selectAll('circle')
-    .data(nodes, function (node) { return node.id })
+function updateGraph() {
+    // links
+    linkElements = linkGroup.selectAll('line')
+        .data(links, function (link) {
+        return link.target.id + link.source.id
+        })
 
-  nodeElements.exit().remove()
+    linkElements.exit().remove()
 
-  var nodeEnter = nodeElements
-    .enter()
-    .append('circle')
-    .attr('r', radius)
-    .attr('fill', function (node) { return node.level === 1 ? 'red' : 'gray' })
-    .call(dragDrop)
-    // we link the selectNode method here
-    // to update the graph on every click
-    .on('click', selectNode)
+    var linkEnter = linkElements
+        .enter().append('line')
+        .attr('stroke', 'rgba(50, 50, 50, 0.2)')
+        .style("stroke-width", function(link) {
+            return Math.sqrt(link.original);
+        })
+        .style("stroke-opacity", function(link) {
+        return link.strength * 5;
+    })
 
-  nodeElements = nodeEnter.merge(nodeElements)
+    linkElements = linkEnter.merge(linkElements)
 
-  // texts
-  textElements = textGroup.selectAll('text')
-    .data(nodes, function (node) { return node.id })
+    // nodes
+    nodeElements = nodeGroup.selectAll('circle')
+        .data(nodes, function (node) { return node.id })
 
-  textElements.exit().remove()
+    nodeElements.exit().remove()
 
-  var textEnter = textElements
-    .enter()
-    .append('text')
-    .text(function (node) { return node.label })
-    .attr('font-size', 15)
-    .attr('dx', 15)
-    .attr('dy', 4)
+    var scale_size = d3.scaleSqrt()
+                        .domain([get_min(nodes, "level"), get_max(nodes, "level")])
+                        .range([4, 10]);
 
-  textElements = textEnter.merge(textElements)
+    var nodeEnter = nodeElements
+        .enter()
+        .append('circle')
+        //.attr('r', radius)
+        .attr("r",  function(node) { 
+            return scale_size(node.level); 
+        })
+        .attr('fill', function(node){
+            return get_color(node);
+        })
+        .call(dragDrop)
+        // we link the selectNode method here
+        // to update the graph on every click
+        .on('click', selectNode)
+  
+    nodeEnter.append("title")
+    .text(function(d) {return "Name: " + d.id; });
+
+    nodeElements = nodeEnter.merge(nodeElements)
 }
 
 function updateSimulation() {
-  updateGraph()
+    updateGraph()
 
-  simulation.nodes(nodes).on('tick', () => {
-    nodeElements
-      .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
-      .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
-    textElements
-      .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x)));  })
-      .attr('y', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
-    linkElements
-      .attr('x1', function (link) { return link.source.x })
-      .attr('y1', function (link) { return link.source.y })
-      .attr('x2', function (link) { return link.target.x })
-      .attr('y2', function (link) { return link.target.y })
-  })
+    simulation.nodes(nodes).on('tick', () => {
+        nodeElements
+          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
+          .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
+        linkElements
+          .attr('x1', function (link) { return link.source.x })
+          .attr('y1', function (link) { return link.source.y })
+          .attr('x2', function (link) { return link.target.x })
+          .attr('y2', function (link) { return link.target.y })
+    })
 
-  simulation.force('link').links(links)
-  //simulation.alphaTarget(0.05).restart()
+    simulation.force('link').links(links)
+    simulation.alphaTarget(0.05).restart()
 }
 
 // last but not least, we call updateSimulation
