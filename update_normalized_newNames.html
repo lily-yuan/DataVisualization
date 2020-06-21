@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 
-<svg width="960" height="600"></svg>
+<svg width="960" height="600">
+    <style>
+        .small { font: italic 18px sans-serif; }
+        .heavy { font: bold 18px sans-serif; }
+      </style>
+    <text x="930" y="50" fill="black"> Welcome to David's publication network!</text>
+    <text x="930" y="90" fill="black"> Network links are based on the number of </text>
+    <text x="930" y="120" fill="black"> times the publications are co-cited in other documents.</text>
+    <text x="930" y="160" fill="black"> Node color represents the year of documents.</text>
+    <text x="930" y="190" class="heavy" fill="aqua" > latest</text>
+    <text x="1010" y="190"  fill="black"> -----> </text>
+    <text x="1080" y="190" fill="navy" class="heavy"> oldest</text>
+    <text x="930" y="230" fill="black"> Thickness of links represents the number of cocitations.</text>
+    <text x="930" y="260" class = "small" fill="black"> less cocitations</text>
+    <text x="1070" y="260"  fill="black"> -----> </text>
+    <text x="1140" y="260" fill="black" class="heavy"> more cocitations</text>
+    <text x="930" y="300" fill="red" class="heavy"> USER GUIDE: </text>
+    <text x="930" y="340" fill="black"> hover over a node to see the name of document. </text>
+    <text x="930" y="380" fill="black"> drag node to see how dynamic changes. </text>
+    <text x="930" y="420" fill="black"> click on a node to see its own connections and subplots. </text>
+    <text x="930" y="460" fill="black"> If you are in the subplot, click on the red node to come </text>
+    <text x="930" y="490" fill="black"> back to the original graph.</text>
+
+</svg>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
@@ -466,10 +489,7 @@ function getNodeColor(node, neighbors, selectedNode) {
     if(node.id == selectedNode.id) {
         return 'red'
     }
-    if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
-        return node.level === 1 ? 'blue' : 'green'
-    }
-    return node.level === 1 ? 'red' : get_color(node)
+    return get_color(node)
 }
 
 
@@ -484,6 +504,12 @@ var radius = 10
 
 var svg = d3.select('svg')
 svg.attr('width', width).attr('height', height)
+svg.append("text")
+        .attr("x", (width / 6))             
+        .attr("y", 20)
+        .attr("text-anchor", "middle")  
+        .style("font-size", "20px") 
+        .text("DAVID M. KRACKHARDT's cocitation network");
 
 var linkElements,
     nodeElements
@@ -505,14 +531,16 @@ var linkForce = d3
 var simulation = d3
     .forceSimulation()
     .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(-30))
+    .force('charge', d3.forceManyBody().strength(-50))
     .force('center', d3.forceCenter(width / 2, height / 2))
+    .force("x", d3.forceX().strength(0.02))
+    .force("y", d3.forceY().strength(0.05));
 
 var dragDrop = d3.drag().on('start', function (node) {
     node.fx = node.x
     node.fy = node.y
 }).on('drag', function (node) {
-    simulation.alphaTarget(0.7).restart()
+    simulation.alphaTarget(0.3).restart()
     node.fx = d3.event.x
     node.fy = d3.event.y
 }).on('end', function (node) {
@@ -529,8 +557,9 @@ var dragDrop = d3.drag().on('start', function (node) {
 function selectNode(selectedNode) {
     if (selectedId === selectedNode.id) {
         selectedId = undefined
-        resetData()
-        updateSimulation()
+        //resetData()
+        //updateSimulation()
+        location.reload()
     } else {
         selectedId = selectedNode.id
         updateData(selectedNode)
@@ -660,7 +689,7 @@ function updateSimulation() {
     })
 
     simulation.force('link').links(links)
-    simulation.alphaTarget(0.03).restart()
+    simulation.alphaMin(0.05)
 }
 
 // last but not least, we call updateSimulation
