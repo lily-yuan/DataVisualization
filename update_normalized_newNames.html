@@ -456,21 +456,25 @@ function getNeighbors(node) {
     return neighbors}, [node.id])
 }
 
-function isNeighborLink(node, link) {
+function isNeighborLink(node, link, neighbors) {
+    return node.level == 2
     return link.target.id === node.id || link.source.id === node.id
 }
 
 
-function getNodeColor(node, neighbors) {
+function getNodeColor(node, neighbors, selectedNode) {
+    if(node.id == selectedNode.id) {
+        return 'red'
+    }
     if (Array.isArray(neighbors) && neighbors.indexOf(node.id) > -1) {
         return node.level === 1 ? 'blue' : 'green'
     }
-    return node.level === 1 ? 'red' : 'gray'
+    return node.level === 1 ? 'red' : get_color(node)
 }
 
 
-function getLinkColor(node, link) {
-    return isNeighborLink(node, link) ? 'green' : '#E5E5E5'
+function getLinkColor(node, link, neighbors) {
+    return isNeighborLink(node, link, neighbors) ? 'green' : '#E5E5E5'
 }
 
 
@@ -536,8 +540,12 @@ function selectNode(selectedNode) {
     var neighbors = getNeighbors(selectedNode)
 
     // we modify the styles to highlight selected nodes
-    nodeElements.attr('fill', function (node) { return getNodeColor(node, neighbors) })
-    linkElements.attr('stroke', function (link) { return getLinkColor(selectedNode, link) })
+    nodeElements.attr('fill', function (node) { 
+        return getNodeColor(node, neighbors,selectedNode) 
+    })
+    linkElements.attr('stroke', function (link) { 
+        return getLinkColor(selectedNode, link, neighbors)
+    })
 }
 
 // this helper simple adds all nodes and links
@@ -570,7 +578,16 @@ function updateData(selectedNode) {
     diff.added.forEach(function (node) { nodes.push(node) })
 
     links = baseLinks.filter(function (link) {
-        return link.target.id === selectedNode.id || link.source.id === selectedNode.id
+
+        if (Array.isArray(neighbors) 
+            && neighbors.indexOf(link.source.id) > -1
+            && neighbors.indexOf(link.target.id) > -1){
+            return true
+        }
+        
+        return link.target.id === selectedNode.id
+                || link.source.id === selectedNode.id
+
     })
 }
 
@@ -578,10 +595,14 @@ function updateGraph() {
     // links
     linkElements = linkGroup.selectAll('line')
         .data(links, function (link) {
-        return link.target.id + link.source.id
+            return link.target.id + link.source.id
         })
 
     linkElements.exit().remove()
+
+    var scale_opacity = d3.scaleLinear()
+                        .domain([get_min(links, "original"), get_max(links, "original")])
+                        .range([0.5, 1]);
 
     var linkEnter = linkElements
         .enter().append('line')
@@ -590,7 +611,7 @@ function updateGraph() {
             return Math.sqrt(link.original);
         })
         .style("stroke-opacity", function(link) {
-        return link.strength * 5;
+            return scale_opacity(link.original);
     })
 
     linkElements = linkEnter.merge(linkElements)
@@ -608,7 +629,6 @@ function updateGraph() {
     var nodeEnter = nodeElements
         .enter()
         .append('circle')
-        //.attr('r', radius)
         .attr("r",  function(node) { 
             return scale_size(node.level); 
         })
@@ -616,8 +636,7 @@ function updateGraph() {
             return get_color(node);
         })
         .call(dragDrop)
-        // we link the selectNode method here
-        // to update the graph on every click
+        // we link the selectNode method here to update the graph on every click
         .on('click', selectNode)
   
     nodeEnter.append("title")
@@ -641,7 +660,7 @@ function updateSimulation() {
     })
 
     simulation.force('link').links(links)
-    simulation.alphaTarget(0.05).restart()
+    simulation.alphaTarget(0.03).restart()
 }
 
 // last but not least, we call updateSimulation
