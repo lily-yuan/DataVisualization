@@ -574,6 +574,23 @@ var dragDrop = d3.drag().on('start', function (node) {
 // or reset the data if the same node is clicked twice
 function selectNode(selectedNode) {
 
+    
+
+    if (selectedId === selectedNode.id) {
+        selectedId = undefined
+        // resetData()
+        // updateSimulation()
+        location.reload()
+    } else {
+        selectedId = selectedNode.id
+        updateData(selectedNode)
+        updateSimulation()
+    }
+
+    d3.select("#tooltip_id").remove(); 
+    d3.select("#tooltip_description").remove(); 
+    d3.select("#tooltip_nums").remove(); 
+
     var tooltip_id = nodeGroup.append("text")
                             .text("ID: " + selectedNode.id)
                             .attr("x", 0)
@@ -597,17 +614,6 @@ function selectNode(selectedNode) {
                             .attr("id", "tooltip_nums");
     tooltip_nums.attr("text-anchor", "start");
     tooltip_nums.attr("dx", 0);
-
-    if (selectedId === selectedNode.id) {
-        selectedId = undefined
-        // resetData()
-        // updateSimulation()
-        location.reload()
-    } else {
-        selectedId = selectedNode.id
-        updateData(selectedNode)
-        updateSimulation()
-    }
 
     var neighbors = getNeighbors(selectedNode)
 
