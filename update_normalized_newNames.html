@@ -1,86 +1,107 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DAVID M. KRACKHARDT's cocitation network</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<svg width="960" height="600">
     <style>
-        .small { font: italic 18px sans-serif; }
-        .heavy { font: bold 18px sans-serif; }
-      </style>
-    <text x="930" y="50" fill="black"> Welcome to David's publication network!</text>
-    <text x="930" y="90" fill="black"> Network links are based on the number of </text>
-    <text x="930" y="120" fill="black"> times the publications are co-cited in other documents.</text>
-    <text x="930" y="160" fill="black"> Node color represents the year of documents.</text>
-    <text x="930" y="190" class="heavy" fill="aqua" > latest</text>
-    <text x="1010" y="190"  fill="black"> -----> </text>
-    <text x="1080" y="190" fill="navy" class="heavy"> oldest</text>
-    <text x="930" y="230" fill="black"> Thickness of links represents the number of cocitations.</text>
-    <text x="930" y="260" class = "small" fill="black"> less cocitations</text>
-    <text x="1070" y="260"  fill="black"> -----> </text>
-    <text x="1140" y="260" fill="black" class="heavy"> more cocitations</text>
-    <text x="930" y="300" fill="red" class="heavy"> USER GUIDE: </text>
-    <text x="930" y="340" fill="black"> hover over a node to see the name of document. </text>
-    <text x="930" y="380" fill="black"> drag node to see how dynamic changes. </text>
-    <text x="930" y="420" fill="black"> click on a node to see its own connections and subplots. </text>
-    <text x="930" y="460" fill="black"> If you are in the subplot, click on the red node to come </text>
-    <text x="930" y="490" fill="black"> back to the original graph.</text>
+        svg {
+            max-width: 100%;
+            margin: 0.2em;
+            padding: 10px;
+            font-size: 1vw;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="100%" height="100%">
+    <style>
+        .big {font: 10vw}
+        .small { font: italic 1vw sans-serif; }
+        .heavy { font: bold 1vw sans-serif; }
+    </style>
+    <text x="1%" y="6%" class = "big" fill="black"> DAVID M. KRACKHARDT's publications network</text>
+    <text x="67%" y="6%" fill="black"> Welcome to David's publication network!</text>
+    <text x="67%" y="12%" fill="black"> Network links are based on the number of </text>
+    <text x="67%" y="18%" fill="black"> times the publications are co-cited in other documents.</text>
+    <text x="67%" y="24%" fill="black"> Node color represents the year of documents.</text>
+    <text x="67%" y="30%" class="heavy" fill="aqua" > latest</text>
+    <text x="72%" y="30%"  fill="black"> -----> </text>
+    <text x="77%" y="30%" fill="navy" class="heavy"> oldest</text>
+    <text x="67%" y="36%" fill="black"> Thickness of links represents the number of cocitations.</text>
+    <text x="67%" y="42%" class = "small" fill="black"> less cocitations</text>
+    <text x="77%" y="42%"  fill="black"> -----> </text>
+    <text x="83%" y="42%" fill="black" class="heavy"> more cocitations</text>
+    <text x="67%" y="48%" fill="red" class="heavy"> USER GUIDE: </text>
+    <text x="67%" y="54%" fill="black"> .hover over a node to see the name of document. </text>
+    <text x="67%" y="60%" fill="black"> .drag node to see how dynamic changes. </text>
+    <text x="67%" y="66%" fill="black"> .click on a node to see its own connections and subplots. </text>
+    <text x="67%" y="72%" fill="black"> .If you are in the subplot, click on the red node to come </text>
+    <text x="67%" y="78%" fill="black"> back to the original graph.</text>
 
 </svg>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 var baseNodes = [
-{id: "02Simmel3", label: "02Simmel3",level:2002},
-{id: "07QAP3", label: "07QAP3",level:2007},
-{id: "12GrphTh2", label: "12GrphTh2",level:2012},
-{id: "09RvJack", label: "09RvJack",level:2009},
-{id: "13TeamCom", label: "13TeamCom",level:2013},
-{id: "14Accur", label: "14Accur",level:2014},
-{id: "93InfNet", label: "93InfNet",level:1993},
-{id: "03Equil", label: "03Equil",level:2003},
-{id: "97Vis1", label: "97Vis1",level:1997},
-{id: "06Cent", label: "06Cent",level:2006},
-{id: "96HistBal", label: "96HistBal",level:1996},
-{id: "03NetChng", label: "03NetChng",level:2003},
-{id: "88QAP2", label: "88QAP2",level:1988},
-{id: "94Bring", label: "94Bring",level:1994},
-{id: "00LatCon", label: "00LatCon",level:2000},
-{id: "87CSS", label: "87CSS",level:1987},
-{id: "15Catlst", label: "15Catlst",level:2015},
-{id: "92Philos", label: "92Philos",level:1992},
-{id: "07DiscHand", label: "07DiscHand",level:2007},
-{id: "00WrkGrp", label: "00WrkGrp",level:2000},
-{id: "10HlthRec", label: "10HlthRec",level:2010},
-{id: "00GovStr", label: "00GovStr",level:2000},
-{id: "96Lead", label: "96Lead",level:1996},
-{id: "15EMfam2", label: "15EMfam2",level:2015},
-{id: "95RevSH", label: "95RevSH",level:1995},
-{id: "03Vis2", label: "03Vis2",level:2003},
-{id: "15Psych", label: "15Psych",level:2015},
-{id: "87QAP1", label: "87QAP1",level:1987},
-{id: "98Polyn", label: "98Polyn",level:1998},
-{id: "90Cult", label: "90Cult",level:1990},
-{id: "81EmpTO", label: "81EmpTO",level:1981},
-{id: "77Povrty", label: "77Povrty",level:1977},
-{id: "10ChldWel", label: "10ChldWel",level:2010},
-{id: "14AdEvnt", label: "14AdEvnt",level:2014},
-{id: "16TeamInj", label: "16TeamInj",level:2016},
-{id: "01PreTran", label: "01PreTran",level:2001},
-{id: "90Polit", label: "90Polit",level:1990},
-{id: "12TeamCon", label: "12TeamCon",level:2012},
-{id: "88Crises", label: "88Crises",level:1988},
-{id: "10Activ", label: "10Activ",level:2010},
-{id: "99AffAcc", label: "99AffAcc",level:1999},
-{id: "12EMEvnt", label: "12EMEvnt",level:2012},
-{id: "14PeerInf", label: "14PeerInf",level:2014},
-{id: "02Festsch", label: "02Festsch",level:2002},
-{id: "14Simmel4", label: "14Simmel4",level:2014},
-{id: "08SmWrld", label: "08SmWrld",level:2008},
-{id: "06Simmel4", label: "06Simmel4",level:2006},
-{id: "86Snow", label: "86Snow",level:1986},
-{id: "81FuncTO", label: "81FuncTO",level:1981},
-{id: "13Embed", label: "13Embed",level:2013},
-{id: "11EMFam1", label: "11EMFam1",level:2011},
-{id: "96CommBK", label: "96CommBK",level:1996}
+  {id: "87CSS", label: "Cognitive Social-Structures - Krackhardt, D; Social Networks - Jun 1987",level:1987 ,total_citation:846},
+  {id: "86Snow", label: "The Snowball Effect; Krackhardt, D; Porter, LW; Journal of Applied Psychology - Feb 1986",level:1986 ,total_citation:628},
+  {id: "90Polit", label: "Assessing the Political Landscape - Krackhardt, D; Administrative Science Quarterly - June 1992",level:1990 ,total_citation:583},
+  {id: "07DiscHand", label: "Discussion on the paper by Handcock, Raftery and Tantrum - Krackhardt, D; Snijders, T; et al - Journal of the Royal Statistical Society Series A - Statistics in Society - 2007",level:2007 ,total_citation:420},
+  {id: "92Philos", label: "The Strength of Strong Ties - Krackhardt, D - Networks & Organizations: Structure, Form, & Action - 1992",level:1992 ,total_citation:438},
+  {id: "02Festsch", label: "Festschrift for Linton C Freeman: Introduction - Friedkin, NE; Krackhardt, D - Social Networks - Oct 2002",level:2002 ,total_citation:385},
+  {id: "08SmWrld", label: "Organizational Network Perceptions - Kilduff, Martin; Crossland, Craig; Krackhardt, D - Organizational Behavior and Human Decision Processes - Sep 2008",level:2008 ,total_citation:620},
+  {id: "97Vis1", label: "The effect of spatial arrangement - McGrath, C; Blythe, J; Krackhardt, D - Social Networks - Aug 1997",level:1997 ,total_citation:303},
+  {id: "14Simmel4", label: "The Role of Simmelian Friendship Ties on Retaliation with Triads - Goh, K; Krackhardt, D; Weingart, R - Small Group Research - Oct 2014",level:2014 ,total_citation:237},
+  {id: "98Polyn", label: "A test of communication and cultural similarity in Polynesian prehistory - Friedkin, NE; Krackhardt, D - Current Anthropology - Dec 1998",level:1998 ,total_citation:210},
+  {id: "14Accur", label: "A Preliminary Look at Accuracy in Egonets - Krackhardt, D - Contemporary Perspectives on Organizational Social Networks Book Series - 2014",level:2014 ,total_citation:187},
+  {id: "77Povrty", label: "Structural-Change and Disadvantaged Empirical Test of Culture of Poverty - Situational Theories of Hard-core Work Behavior - Davidson, L; Krackhardt, D - Human Organization - 1997",level:1977 ,total_citation:171},
+  {id: "03NetChng", label: "Networked for change? Kravitz, RL, Krackhardt, D; Melnikow, J - Social Science & Medicine - Dec 2003",level:2003 ,total_citation:149},
+  {id: "96CommBK", label: "Comment on Burt and Knez's third-party effects on trust - Krackhardt, D - Rationality and Society - Feb 1996",level:1996 ,total_citation:146},
+  {id: "02Simmel3", label: "Structure, culture, and Simmelian ties in entrepreneurial firms - Krackhardt, D; Kilduff, M - Social Networks - July 2002",level:2002 ,total_citation:112},
+  {id: "96HistBal", label: "A brief history of balance through time - Doreian, P; Kapuscinski, R; Krackhardt, D - Journal of Mathematical Sociology - 1996",level:1996 ,total_citation:95},
+  {id: "07QAP3", label: "Sensitivity of MRQAP Tests; Dekker, D; Krackhardt, D; Snijders, T. A.B.; Psychometrika - Dec. 2007",level:2007 ,total_citation:86},
+  {id: "81EmpTO", label: "Supervisory Behavior and Employee Turnover - Krackhardt, D; McKenna, J; Porter, LW - Academy of Management Journal - 1981",level:1981 ,total_citation:80},
+  {id: "15Catlst", label: "Being a Catalyst of Innovation - Tortoriello, Marco; McEvily, Bill; Krackhardt, David - Organization Science - Mar-Apr 2015",level:2015 ,total_citation:58},
+  {id: "10ChldWel", label: "Innovation in Child Welfare - Rauktis, M; McCarthy, S; Krackhardt, D - Children and Youth Services Review - May 2010",level:2010 ,total_citation:61},
+  {id: "01PreTran", label: "Pre-transitive balance mechanisms for signed networks - Doreian, P; Krackhardt, D - Journal of Mathematical Sociology - 2001",level:2001 ,total_citation:53},
+  {id: "14PeerInf", label: "Peer Influence in the Diffusion of iPhone 3G Over a Large Social Network - de Matos, Miguel Godinho; Ferreira, Pedro; Krackhardt, David - MIS Quarterly - Dec 2014",level:2014 ,total_citation:54},
+  {id: "13TeamCom", label: "Network analysis of team communication in a busy emergency department - Patterson, P; Pfeiffer, A; Weaver, D; Krackhardt, D - BMC Health Services Research - Mar 2013",level:2013 ,total_citation:50},
+  {id: "95RevSH", label: "Structural Holes - Krackhardt, D - Administrative Science Quarterly - Jun 1995",level:1995 ,total_citation:40},
+  {id: "94Bring", label: "Bringing the Individual Back In; Kilduff, M; Krackhardt, D; Academy of Management Journal - Feb. 1994",level:1994 ,total_citation:37},
+  {id: "12TeamCon", label: "Measuring Teamwork and Conflict Among Emergency Medical Technician Personnel - Patterson, P; Weaver, M; Weaver, S; Krackhardt, D - Prehospital Emergency Care - Jan/Mar 2012",level:2012 ,total_citation:39},
+  {id: "12EMEvnt", label: "Identification of Adverse Events in Ground Transport Emergency Medical Services - Patterson, P; Weaver, M; Abebe, K; Krackhardt, D - American Journal of Medical Quality - Mar/Apr 2012",level:2012 ,total_citation:32},
+  {id: "15Psych", label: "The Integration of Psychological and Network Perspectives in Organizational Scholarship - Casciaro, T; Barsade, S; Edmonson, A; Krackhardt, D - Organization Science - July/Aug 2015",level:2015 ,total_citation:25},
+  {id: "09RvJack", label: "Social and Economic Networks - Krackhardt, D - Science - Oct 2009",level:2009 ,total_citation:23},
+  {id: "99AffAcc", label: "Positive affectivity and accuracy - Casciaro, T; Carley, KM; Krackhardt, D - Motivation and Emotion - Dec 1999",level:1999 ,total_citation:22},
+  {id: "16TeamInj", label: "Teammate familiarity and risk of injury in emergency medical services - Patterson, P; Weaver, M; Landsittel, D; Krackhardt, D - Emergency Medicine Journal - Apr 2016",level:2016 ,total_citation:21},
+  {id: "90Cult", label: "Friendship Patterns and Culture - Krackhardt, D; Kilduff, M - American Anthropologist - Mar 1990",level:1990 ,total_citation:18},
+  {id: "88QAP2", label: "Predicting with Networks - Krackhardt, D; Social Networks - Dec. 1988",level:1988 ,total_citation:15},
+  {id: "00LatCon", label: "Spreading and shifting costs of lateral control among peers - Lazega, E; Krackhardt, D - Quality & Quantity - May 2000",level:2000 ,total_citation:15},
+  {id: "88Crises", label: "Informal Network and Organizational Crises - Krackhardt, D; Stern, RN; Social Psychology Quarterly - June 1988",level:1988 ,total_citation:12},
+  {id: "00GovStr", label: "Redudant Governance Structures - Rowley, T; Behrens, D; Krackhardt, D; Strategic Management Journal - March 2000",level:2000 ,total_citation:12},
+  {id: "11EMFam1", label: "Variation in Emergency Medical Technician Partner Familiarity - Patterson, P; Arnold, R; Abebe, K; Krackhardt, D - Health Services Research - Aug 2011",level:2011 ,total_citation:12},
+  {id: "03Vis2", label: "The effect of graph layout on interference from social network data - Blythe, J; McGrath, C; Krackhardt, D - Graph Drawing - 1996",level:2003 ,total_citation:12},
+  {id: "93InfNet", label: "Informal Networks - Krackhardt, D; Hanson JR - Harvard Business Review - Jul/Aug 1993",level:1993 ,total_citation:12},
+  {id: "13Embed", label: "The impact of network embeddedness on research output - Gonzalez-Brambila, Claudia; Veloso, Francisco; Krackhardt, D - Research Policy - Nov 2013",level:2013 ,total_citation:12},
+  {id: "87QAP1", label: "QAP Partialling as a Test of Spuriousness; Krackhardt, D; Social Networks - Jun 1987",level:1987 ,total_citation:9},
+  {id: "96Lead", label: "The social capital of twenty-first century leaders - Brass, DJ; Krackhardt, D - Conference on Out of the Box Leadership - March 1996",level:1996 ,total_citation:6},
+  {id: "14AdEvnt", label: "Comparative Assessment of Adverse Event Classification in the Out-of-Hospital Setting - Patterson, P; Lave, J; Krackhardt, D - Prehospital Emergency Care - Oct-Dec 2014",level:2014 ,total_citation:5},
+  {id: "10HlthRec", label: "Social networks and physician adoption of electronic health records - Zheng, Kai; Padman, Rema; Krackhardt, David - Journal of the American Medical Informatics Association - May 2010",level:2010 ,total_citation:5},
+  {id: "00WrkGrp", label: "Choosing Work Group Members; Hinds, PJ; Carley, KM; Krackhardt, D; et al.; Organizational Behavior and Human Decision Processes - Mar 2000",level:2000 ,total_citation:5},
+  {id: "12GrphTh2", label: "A second look at Krackhardt's graph theoretical dimensions of informal organizations - Everett, M; Krackhardt, D - Social Networks - May 2012",level:2012 ,total_citation:5},
+  {id: "81FuncTO", label: "Functional Turnover - Dalton, DR; Krackhardt, DM; Porter, LW - Journal of Applied Psychology - 1981",level:1981 ,total_citation:4},
+  {id: "03Equil", label: "An equilibrium-correction model for dynamic network data - Dekker, D; Franses, PH; Krackhardt, D - Journal of Mathematical Sociology - Apr-Sept 2003",level:2003 ,total_citation:3},
+  {id: "15EMfam2", label: "How familiar are clinician teammates in the emergency department? Patterson, P; Pfeiffer, A; Lave, J; Krackhardt, D - Emergency Medicine Journal - Apr 2015",level:2015 ,total_citation:3},
+  {id: "10Activ", label: "Activating Cross-Boundary Knowledge; Tortoriello, Marco; Krackhardt, David; Academy of Management Journal - Feb 2010",level:2010 ,total_citation:3},
+  {id: "06Simmel4", label: "Heider vs simmel Emergent features in dynamic structures - Krackhardt, David; Handcock, Mark - Statistical Network Analysis: Models, Issues, and New Directions - 2007",level:2006 ,total_citation:2},
+  {id: "06Cent", label: "On the robustness of centrality; Borgatti, SP; Carley, KM; Krackhardt, D; Social Networks - May 2006",level:2006 ,total_citation:2},
 ]
 
 var baseLinks = [
@@ -424,7 +445,7 @@ var baseLinks = [
 { target: "90Polit", source: "87QAP1", strength: 0.08807970779778823 ,original: 2},
 { target: "95RevSH", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
 { target: "96HistBal", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
-{ target: "96Lead", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
+{ target: "96Lead", source: "88QAP2", strength: 0.09975273768433654 ,original: 6},
 ]
 
 var nodes = [...baseNodes]
@@ -504,12 +525,9 @@ var radius = 10
 
 var svg = d3.select('svg')
 svg.attr('width', width).attr('height', height)
-svg.append("text")
-        .attr("x", (width / 6))             
-        .attr("y", 20)
-        .attr("text-anchor", "middle")  
-        .style("font-size", "20px") 
-        .text("DAVID M. KRACKHARDT's cocitation network");
+
+
+
 
 var linkElements,
     nodeElements
@@ -526,21 +544,21 @@ var selectedId
 var linkForce = d3
     .forceLink()
     .id(function (link) { return link.id })
-    .strength(function (link) { return link.strength * 0.6 })
+    .strength(function (link) { return link.strength  })
 
 var simulation = d3
     .forceSimulation()
     .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(-50))
-    .force('center', d3.forceCenter(width / 2, height / 2))
-    .force("x", d3.forceX().strength(0.02))
-    .force("y", d3.forceY().strength(0.05));
+    .force('charge', d3.forceManyBody().strength(-60))
+    .force('center', d3.forceCenter(width / 3, height / 2))
+    .force("x", d3.forceX().strength(0.01))
+    .force("y", d3.forceY().strength(0.03));
 
 var dragDrop = d3.drag().on('start', function (node) {
     node.fx = node.x
     node.fy = node.y
 }).on('drag', function (node) {
-    simulation.alphaTarget(0.3).restart()
+    simulation.alphaTarget(0.03).restart()
     node.fx = d3.event.x
     node.fy = d3.event.y
 }).on('end', function (node) {
@@ -555,10 +573,35 @@ var dragDrop = d3.drag().on('start', function (node) {
 // we either update the data according to the selection
 // or reset the data if the same node is clicked twice
 function selectNode(selectedNode) {
+
+    var tooltip_id = nodeGroup.append("text")
+                            .text("ID: " + selectedNode.id)
+                            .attr("x", 0)
+                            .attr("y", 100)
+                            .attr("id", "tooltip_id");
+    tooltip_id.attr("text-anchor", "start");
+    tooltip_id.attr("dx", 0);
+            
+    var tooltip_description = nodeGroup.append("text")
+                            .text("Description: " + selectedNode.label)
+                            .attr("x", 0)
+                            .attr("y", 120)
+                            .attr("id", "tooltip_description");
+    tooltip_description.attr("text-anchor", "start");
+    tooltip_description.attr("dx", 0);
+
+    var tooltip_nums = nodeGroup.append("text")
+                            .text("Citation: " + selectedNode.total_citation)
+                            .attr("x", 0)
+                            .attr("y", 140)
+                            .attr("id", "tooltip_nums");
+    tooltip_nums.attr("text-anchor", "start");
+    tooltip_nums.attr("dx", 0);
+
     if (selectedId === selectedNode.id) {
         selectedId = undefined
-        //resetData()
-        //updateSimulation()
+        // resetData()
+        // updateSimulation()
         location.reload()
     } else {
         selectedId = selectedNode.id
@@ -651,25 +694,57 @@ function updateGraph() {
 
     nodeElements.exit().remove()
 
-    var scale_size = d3.scaleSqrt()
-                        .domain([get_min(nodes, "level"), get_max(nodes, "level")])
-                        .range([4, 10]);
+    var scale_citation = d3.scaleSqrt()
+                        .domain([get_min(nodes, "total_citation"), get_max(nodes, "total_citation")])
+                        .range([6, 10]);
 
     var nodeEnter = nodeElements
         .enter()
         .append('circle')
         .attr("r",  function(node) { 
-            return scale_size(node.level); 
+            return scale_citation(node.total_citation); 
         })
         .attr('fill', function(node){
             return get_color(node);
         })
         .call(dragDrop)
+        /*
+        .on("mouseover", function(node) {
+            var r = parseFloat(d3.select(this).attr("r"));
+            var x = parseFloat(d3.select(this).attr("cx"));
+            var y = parseFloat(d3.select(this).attr("cy"));
+            var text = node.id;
+            var tooltip = nodeGroup
+                            .append("text")
+                            .text(text)
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", -r * 2)
+                            .attr("id", "tooltip");
+            tooltip.attr("text-anchor", "middle");
+            tooltip.attr("dx", 0);
+            var tooltip_1 = nodeGroup
+                            .append("text")
+                            .text(text)
+                            .attr("x", x)
+                            .attr("y", y - 10)
+                            .attr("dy", -r * 2)
+                            .attr("id", "tooltip_1");
+            tooltip_1.attr("text-anchor", "middle");
+            tooltip_1.attr("dx", 0);
+        })
+        .on("mouseout",  function(node) { 
+            d3.select("#tooltip").remove(); 
+            d3.select("#tooltip_1").remove(); 
+        })
+        */
         // we link the selectNode method here to update the graph on every click
         .on('click', selectNode)
   
     nodeEnter.append("title")
-    .text(function(d) {return "Name: " + d.id; });
+    .text(function(d) {return "ID :  " + d.id
+                              +"\n" +"Description :  " + d.label
+                              +"\n" +"Cited by :  " + d.total_citation; });
 
     nodeElements = nodeEnter.merge(nodeElements)
 }
@@ -679,7 +754,7 @@ function updateSimulation() {
 
     simulation.nodes(nodes).on('tick', () => {
         nodeElements
-          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
+          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
           .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
         linkElements
           .attr('x1', function (link) { return link.source.x })
@@ -689,7 +764,7 @@ function updateSimulation() {
     })
 
     simulation.force('link').links(links)
-    simulation.alphaMin(0.05)
+    simulation.alphaMin(0.03)
 }
 
 // last but not least, we call updateSimulation
@@ -697,3 +772,5 @@ function updateSimulation() {
 updateSimulation()
 
 </script>
+</body>
+</html>
