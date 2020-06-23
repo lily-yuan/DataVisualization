@@ -16,6 +16,46 @@
             font-size: 1vw;
             font-family: sans-serif;
         }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+            }
+
+            /* Tooltip text */
+            .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+            }
+        #tooltip_id {
+            font-size: 10pt;
+            font-weight: 900;
+
+            fill: #000000;
+        }
+        #tooltip_description {
+            font-size: 10pt;
+            font-weight: 900;
+
+            fill: #000000;
+            width: 150px;
+            height: 300px;
+        }
+        #tooltip_nums {
+            font-size: 10pt;
+            font-weight: 900;
+
+            fill: #000000;
+        }
     </style>
 </head>
 
@@ -474,16 +514,16 @@ function get_min(data, col){
 }
 
 function get_color(curr_node){
-    var starts = [0, 58, 140];//earliest year
-    var ends = [145, 213, 255];//latest year
+    var starts = [254, 0, 2];//earliest year
+    var ends = [3, 2, 252];//latest year
 
     var max_year = get_max(nodes, "level");
     var min_year = get_min(nodes, "level");
 
     var scales = (curr_node.level - min_year) / (max_year - min_year);
     var rs = starts[0] + (ends[0] - starts[0]) * scales;
-    var gs = starts[1] + (ends[1] - starts[1]) * scales;
-    var bs = starts[2] + (ends[2] - starts[2]) * scales;
+    var gs = 0;
+    var bs = starts[2] + (ends[2] - starts[2]) * scales;;
 
     return "rgb("  + rs + ", " 
                     + gs + ", " 
