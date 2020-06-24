@@ -739,6 +739,21 @@ document.getElementById("button").addEventListener("change", function() {
     }
 });
 
+d3.selection.prototype.moveToBack = function() { 
+    console.log("in")
+    return this.each(function() { 
+        var firstChild = this.parentNode.firstChild; 
+        if (firstChild) { 
+            this.parentNode.insertBefore(this, firstChild); 
+        } 
+    });
+    };
+d3.selection.prototype.moveToFront = function() {  
+    return this.each(function(){
+    this.parentNode.appendChild(this);
+    });
+};
+
 function updateGraph(showingText) {
     // links
     linkElements = linkGroup.selectAll('line')
@@ -764,6 +779,31 @@ function updateGraph(showingText) {
 
     linkElements = linkEnter.merge(linkElements)
 
+    // we enter text element first.
+    textElements = textGroup.selectAll('text')
+    .data(nodes, function (node) { return node.id })
+
+    textElements.exit().remove()
+    textEnter = textElements
+        .enter()
+        .append('text')
+        .text(function (node) { return node.id  })
+        .attr('font-size', 0)
+        .attr('dx', 15)
+        .attr('dy', 4)
+        .attr("fill-opacity", 1)
+        .classed('noselect', true)
+
+    if (!showingText) {
+        textElements.attr("font-size", 0)
+    } else {
+        textElements.attr("font-size", 15)
+    }
+
+
+    textElements = textEnter.merge(textElements)
+
+    
     // nodes
     nodeElements = nodeGroup.selectAll('circle')
         .data(nodes, function (node) { return node.id })
@@ -794,28 +834,8 @@ function updateGraph(showingText) {
 
     nodeElements = nodeEnter.merge(nodeElements)
 
-    
-    textElements = textGroup.selectAll('text')
-    .data(nodes, function (node) { return node.id })
+    d3.select(nodeElements).raise()
 
-    textElements.exit().remove()
-    textEnter = textElements
-        .enter()
-        .append('text')
-        .text(function (node) { return node.id  })
-        .attr('font-size', 15)
-        .attr('dx', 15)
-        .attr('dy', 4)
-        .attr("fill-opacity", 0)
-        .classed('noselect', true)
-    if (!showingText) {
-        textElements.attr("fill-opacity", 0)
-    } else {
-        textElements.attr("fill-opacity", 1)
-    }
-
-
-    textElements = textEnter.merge(textElements)
     
 }
 
@@ -823,15 +843,14 @@ function updateSimulation(showingText) {
     updateGraph(showingText)
 
     simulation.nodes(nodes).on('tick', () => {
-        nodeElements
-          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
-          .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
-        
         
         textElements
         .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
         .attr('y', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
         
+        nodeElements
+          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
+          .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
         
         linkElements
           .attr('x1', function (link) { return link.source.x })
