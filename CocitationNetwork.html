@@ -7,11 +7,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="flex-container">
+        <div class="flex-item">Dispelling force between Nodes   </div>
+        <div class="flex-item">Force on X_axis   </div>
+        <div class="flex-item">Force On Y_axis</div>
     <br><br>
-    <select id = "button">
+    <select id = "button", class = "flex-item">
     <option value= 1>SHOWING TEXT</option>
     <option value= 2 selected = "selected">HIDING TEXT</option>
     </select>
+    </div>
+    <div class="container">
+        <input type="range" min="-120" max="0" value="-60" class="sliderOne" id="gravity">
+        <input type="range" min="0" max="100" value="10" class="sliderTwo" id="forceX">
+        <input type="range" min="0" max="100" value="30" class="sliderThree" id="forceY">
+    </div>
+
+
     <style>
         svg {
             max-width: 100%;
@@ -20,10 +33,68 @@
             font-size: 1vw;
             font-family: sans-serif;
         }
+        /* all words shown on the slider. */ 
+        .flex-container {
+            top: 3em;
+            display: flex;
+        }
+        .flex-item {
+            position: relative;
+            top: 3em;
+            font-size: 1.5em;
+            margin-right: 3em;
+        }
+
+        /*slider containers.*/
+        .container {
+            display: flex;
+        }
+
+        .sliderOne {
+            position: relative;
+            top: 3em;
+            right: 20em;
+            -webkit-appearance: none;
+            width: 10%!important;
+            height: 25px!important;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .7s;
+            transition: opacity .7s;
+            margin-right: 11em;
+        }
+        .sliderTwo {
+            position: relative;
+            top: 3em;
+            right: 20em;
+            -webkit-appearance: none;
+            width: 10%!important;
+            height: 25px!important;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .01s;
+            transition: opacity .01s;
+            margin-right: 8em;
+        }
+        .sliderThree {
+            position: relative;
+            top: 3em;
+            right: 20em;
+            -webkit-appearance: none;
+            width: 10%!important;
+            height: 25px!important;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .7s;
+            transition: opacity .7s;
+            margin-right: 2em;
+        }
+
+        /* button for showing the text or not. */ 
         #button{
-            position:relative;
-            margin-top:1em;
-            margin-left:8em;
             height: 3em;
             width: 10em;
             color:#01070a;
@@ -88,7 +159,7 @@
         .small { font: italic 1vw sans-serif; }
         .heavy { font: bold 1vw sans-serif; }
     </style>
-    <text x="1%" y="6%" class = "big" fill="black"> DAVID M. KRACKHARDT's publications network</text>
+    
     <text x="67%" y="6%" fill="black"> Welcome to David's publication network!</text>
     <text x="67%" y="12%" fill="black"> Network links are based on the number of </text>
     <text x="67%" y="18%" fill="black"> times the publications are co-cited in other documents.</text>
@@ -612,8 +683,7 @@ var linkForce = d3
     .id(function (link) { return link.id })
     .strength(function (link) { return link.strength  })
 
-var simulation = d3
-    .forceSimulation()
+var simulation = d3.forceSimulation()
     .force('link', linkForce)
     .force('charge', d3.forceManyBody().strength(-60))
     .force('center', d3.forceCenter(width / 3, height / 2))
@@ -739,31 +809,56 @@ document.getElementById("button").addEventListener("change", function() {
     var status = d3.select(this).property("value") 
     if (status == 1) {
         showingText = true
-        updateSimulation(showingText);
-        simulation.alphaMin(0.03)
+        updateSimulation(showingText);        
     }
     else {
         showingText = false
         updateSimulation(showingText);
-        simulation.alphaMin(0.03)
     }
 });
 
-d3.selection.prototype.moveToBack = function() { 
-    console.log("in")
-    return this.each(function() { 
-        var firstChild = this.parentNode.firstChild; 
-        if (firstChild) { 
-            this.parentNode.insertBefore(this, firstChild); 
-        } 
-    });
-    };
-d3.selection.prototype.moveToFront = function() {  
-    return this.each(function(){
-    this.parentNode.appendChild(this);
-    });
-};
+// here we deal with the slider listener.
+var currGravity = -30;
+var currForceX = 0.01;
+var currForceY = 0.03;
+var gravitySlider = document.getElementById("gravity");
+gravitySlider.oninput = function() {
+    currGravity = this.value;
+    simulation = d3.forceSimulation()
+                .force('link', linkForce)
+                .force('charge', d3.forceManyBody().strength(currGravity))
+                .force('center', d3.forceCenter(width / 3, height / 2))
+                .force("x", d3.forceX().strength(currForceX))
+                .force("y", d3.forceY().strength(currForceY));
+     updateSimulation(showingText);
+    
+}
 
+var forceXSlider = document.getElementById("forceX");
+forceXSlider.oninput = function() {
+    currForceX = this.value / 1000;
+    simulation = d3.forceSimulation()
+                .force('link', linkForce)
+                .force('charge', d3.forceManyBody().strength(currGravity))
+                .force('center', d3.forceCenter(width / 3, height / 2))
+                .force("x", d3.forceX().strength(currForceX))
+                .force("y", d3.forceY().strength(currForceY));
+     updateSimulation(showingText);
+    
+}
+
+var forceYSlider = document.getElementById("forceY");
+forceYSlider.oninput = function() {
+    currForceY = this.value / 1000;
+    simulation = d3.forceSimulation()
+                .force('link', linkForce)
+                .force('charge', d3.forceManyBody().strength(currGravity))
+                .force('center', d3.forceCenter(width / 3, height / 2))
+                .force("x", d3.forceX().strength(currForceX))
+                .force("y", d3.forceY().strength(currForceY));
+     updateSimulation(showingText);
+    
+}
 function updateGraph(showingText) {
     // links
     linkElements = linkGroup.selectAll('line')
@@ -843,10 +938,6 @@ function updateGraph(showingText) {
                               +"\n" +"Cited by :  " + d.total_citation; });
 
     nodeElements = nodeEnter.merge(nodeElements)
-
-    d3.select(nodeElements).raise()
-
-    
 }
 
 function updateSimulation(showingText) {
