@@ -907,7 +907,7 @@ function updateGraph(showingText) {
 
     var scale_citation = d3.scaleSqrt()
                         .domain([get_min(nodes, "total_citation"), get_max(nodes, "total_citation")])
-                        .range([6, 10]);
+                        .range([3, 10]);
 
     var nodeEnter = nodeElements
         .enter()
