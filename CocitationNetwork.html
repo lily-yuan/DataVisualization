@@ -607,20 +607,10 @@ function get_min(data, col){
 }
 
 function get_color(curr_node){
-    var starts = [254, 0, 2];//earliest year
-    var ends = [3, 2, 252];//latest year
-
-    var max_year = get_max(nodes, "level");
-    var min_year = get_min(nodes, "level");
-
-    var scales = (curr_node.level - min_year) / (max_year - min_year);
-    var rs = starts[0] + (ends[0] - starts[0]) * scales;
-    var gs = 0;
-    var bs = starts[2] + (ends[2] - starts[2]) * scales;;
-
-    return "rgb("  + rs + ", " 
-                    + gs + ", " 
-                    + bs + ")";
+    var scale_year = d3.scaleLinear()
+                        .domain([get_min(nodes, "level"), get_max(nodes, "level")])
+                        .range([0.2, 0.8]);
+    return d3.interpolateViridis(scale_year(curr_node.level))
 }
 
 function getNeighbors(node) {
