@@ -9,19 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <div class="flex-container">
-        <div class="flex-item">Dispelling force between Nodes   </div>
-        <div class="flex-item">Force on X_axis   </div>
-        <div class="flex-item">Force On Y_axis</div>
+        <div class="flex-item"> Dispelling force between Nodes </div>
+        <div class="flex-item"> Force on X_axis </div>
+        <div class="flex-item"> Force On Y_axis </div>
     <br><br>
     <select id = "button", class = "flex-item">
-    <option value= 1>SHOWING TEXT</option>
-    <option value= 2 selected = "selected">HIDING TEXT</option>
+        <option value= 1>SHOWING TEXT</option>
+        <option value= 2 selected = "selected">HIDING TEXT</option>
     </select>
     </div>
     <div class="container">
-        <input type="range" min="-120" max="0" value="-60" class="sliderOne" id="gravity">
-        <input type="range" min="0" max="100" value="10" class="sliderTwo" id="forceX">
-        <input type="range" min="0" max="100" value="30" class="sliderThree" id="forceY">
+        <input type="range" min="-120" max="0" value="-60" class="slider_dispel" id="gravity">
+        <input type="range" min="0" max="100" value="10" class="slider_forcex" id="forceX">
+        <input type="range" min="0" max="100" value="30" class="slider_forcey" id="forceY">
     </div>
 
 
@@ -50,7 +50,7 @@
             display: flex;
         }
 
-        .sliderOne {
+        .slider_dispel {
             position: relative;
             top: 3em;
             right: 20em;
@@ -64,7 +64,7 @@
             transition: opacity .7s;
             margin-right: 11em;
         }
-        .sliderTwo {
+        .slider_forcex {
             position: relative;
             top: 3em;
             right: 20em;
@@ -78,7 +78,7 @@
             transition: opacity .01s;
             margin-right: 8em;
         }
-        .sliderThree {
+        .slider_forcey {
             position: relative;
             top: 3em;
             right: 20em;
@@ -180,8 +180,12 @@
 
 </svg>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
 <script>
+
+
+
 var baseNodes = [
   {id: "00GovStr", label: "Redudant Governance Structures - Rowley, T; Behrens, D; Krackhardt, D; Strategic Management Journal - March 2000",level:2000 ,total_citation:856},
   {id: "92Philos", label: "The Strength of Strong Ties - Krackhardt, D - Networks & Organizations: Structure, Form, & Action - 1992",level:1992 ,total_citation:630},
@@ -609,7 +613,6 @@ var nodes = [...baseNodes]
 var links = [...baseLinks]
 
 
-
 function get_max(data, col){
     max = 0;
     for(var i = 0 ; i < data.length; i ++){
@@ -632,9 +635,62 @@ function get_min(data, col){
 
 function get_color(curr_node){
     var scale_year = d3.scaleLinear()
+                        .domain([-get_max(nodes, "level"), -get_min(nodes, "level")])
+                        .range([0.5, 1]);
+    return d3.interpolateGnBu(scale_year(-curr_node.level))
+    /*
+    var scale_year = d3.scaleLinear()
                         .domain([get_min(nodes, "level"), get_max(nodes, "level")])
-                        .range([0.2, 0.8]);
+                        .range([0.5, 1]);
     return d3.interpolateViridis(scale_year(curr_node.level))
+    */
+}
+
+function wrap(description, width) {
+    width = width * window.innerWidth;
+    description.each(function () {
+        var description = d3.select(this),
+            words = description.text()
+                        .split(/\s+/)
+                        .reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            x = description.attr("x"),
+            y = description.attr("y"),
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = description.text(null)
+                        .append("tspan")
+                        .attr("x", x)
+                        .attr("y", y)
+                        .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = description.append("tspan")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                            .text(word);
+            }
+        }
+        word = "text"
+        line.push(word);
+        tspan.text(line.join(" "));
+        line.pop();
+        tspan.text(line.join(" "));
+        line = [word]
+        tspan = description.append("tspan")
+                    .attr("x", x)
+                    .attr("y", y)
+                    .attr("dy", ++lineNumber * lineHeight + dy + "em")
+                    .text(word);
+    });
 }
 
 function getNeighbors(node) {
@@ -751,7 +807,8 @@ function selectNode(selectedNode) {
                             .text("Description: " + selectedNode.label)
                             .attr("x", 0)
                             .attr("y", 120)
-                            .attr("id", "tooltip_description");
+                            .attr("id", "tooltip_description")
+                            .call(wrap, 0.5);
     tooltip_description.attr("text-anchor", "start");
     tooltip_description.attr("dx", 0);
 
@@ -980,7 +1037,9 @@ function updateSimulation(showingText) {
 
 // last but not least, we call updateSimulation
 // to trigger the initial render
+
 updateSimulation(showingText)
+
 
 </script>
 </body>
