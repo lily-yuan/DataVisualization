@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DAVID M. KRACKHARDT's cocitation network</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div class="flex-container">
+        <div class="flex-item"> Dispelling force between Nodes </div>
+        <div class="flex-item"> Force on X_axis </div>
+        <div class="flex-item"> Force On Y_axis </div>
+    <br><br>
+    <select id = "button", class = "flex-item">
+        <option value= 1>SHOWING TEXT</option>
+        <option value= 2 selected = "selected">HIDING TEXT</option>
+    </select>
+    </div>
+    <div class="container">
+        <input type="range" min="-120" max="0" value="-60" class="slider_dispel" id="gravity">
+        <input type="range" min="0" max="100" value="10" class="slider_forcex" id="forceX">
+        <input type="range" min="0" max="100" value="30" class="slider_forcey" id="forceY">
+    </div>
+
+
+    <style>
+        svg {
+            max-width: 100%;
+            margin: 0.2em;
+            padding: 10px;
+            font-size: 1vw;
+            font-family: sans-serif;
+        }
+        /* all words shown on the slider. */ 
+        .flex-container {
+            top: 3em;
+            display: flex;
+        }
+        .flex-item {
+            position: relative;
+            top: 3em;
+            font-size: 1.5em;
+            margin-right: 3em;
+        }
+
+        /*slider containers.*/
+        .container {
+            display: flex;
+        }
+
+        .slider_dispel {
+            position: relative;
+            top: 3em;
+            right: 20em;
+            -webkit-appearance: none;
+            width: 10%!important;
+            height: 25px!important;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .7s;
+            transition: opacity .7s;
+            margin-right: 11em;
+        }
+        .slider_forcex {
+            position: relative;
+            top: 3em;
+            right: 20em;
+            -webkit-appearance: none;
+            width: 10%!important;
+            height: 25px!important;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .01s;
+            transition: opacity .01s;
+            margin-right: 8em;
+        }
+        .slider_forcey {
+            position: relative;
+            top: 3em;
+            right: 20em;
+            -webkit-appearance: none;
+            width: 10%!important;
+            height: 25px!important;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .7s;
+            transition: opacity .7s;
+            margin-right: 2em;
+        }
+
+        /* button for showing the text or not. */ 
+        #button{
+            height: 3em;
+            width: 10em;
+            color:#01070a;
+            font-size: 1.5em;
+            direction: rtl;
+        }
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+            }
+
+            /* Tooltip text */
+            .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+            
+            /* Position the tooltip text - see examples below! */
+            position: absolute;
+            z-index: 1;
+            }
+        #tooltip_id {
+            font-size: 10pt;
+            font-weight: 900;
+
+            fill: #000000;
+        }
+        #tooltip_description {
+            font-size: 10pt;
+            font-weight: 900;
+
+            fill: #000000;
+            width: 150px;
+            height: 300px;
+        }
+        #tooltip_nums {
+            font-size: 10pt;
+            font-weight: 900;
+
+            fill: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="100%" height="100%">
+    <style>
+        .big {font: 10vw}
+        .small { font: italic 1vw sans-serif; }
+        .heavy { font: bold 1vw sans-serif; }
+    </style>
+    
+    <text x="67%" y="6%" fill="black"> Welcome to David's publication network!</text>
+    <text x="67%" y="12%" fill="black"> Network links are based on the number of </text>
+    <text x="67%" y="18%" fill="black"> times the publications are co-cited in other documents.</text>
+    <text x="67%" y="24%" fill="black"> Node color represents the year of documents.</text>
+    <text x="67%" y="30%" class="heavy" fill="aqua" > latest</text>
+    <text x="72%" y="30%"  fill="black"> -----> </text>
+    <text x="77%" y="30%" fill="navy" class="heavy"> oldest</text>
+    <text x="67%" y="36%" fill="black"> Thickness of links represents the number of cocitations.</text>
+    <text x="67%" y="42%" class = "small" fill="black"> less cocitations</text>
+    <text x="77%" y="42%"  fill="black"> -----> </text>
+    <text x="83%" y="42%" fill="black" class="heavy"> more cocitations</text>
+    <text x="67%" y="48%" fill="red" class="heavy"> USER GUIDE: </text>
+    <text x="67%" y="54%" fill="black"> .hover over a node to see the name of document. </text>
+    <text x="67%" y="60%" fill="black"> .drag node to see how dynamic changes. </text>
+    <text x="67%" y="66%" fill="black"> .click on a node to see its own connections and subplots. </text>
+    <text x="67%" y="72%" fill="black"> .If you are in the subplot, click on the red node to come </text>
+    <text x="67%" y="78%" fill="black"> back to the original graph.</text>
+
+</svg>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<script>
+
+
+
+var baseNodes = [
+  {id: "00GovStr", label: "Redudant Governance Structures - Rowley, T; Behrens, D; Krackhardt, D; Strategic Management Journal - March 2000",level:2000 ,total_citation:856},
+  {id: "92Philos", label: "The Strength of Strong Ties - Krackhardt, D - Networks & Organizations: Structure, Form, & Action - 1992",level:1992 ,total_citation:630},
+  {id: "90Polit", label: "Assessing the Political Landscape - Krackhardt, D; Administrative Science Quarterly - June 1992",level:1990 ,total_citation:583},
+  {id: "88Crises", label: "Informal Network and Organizational Crises - Krackhardt, D; Stern, RN; Social Psychology Quarterly - June 1988",level:1988 ,total_citation:420},
+  {id: "88QAP2", label: "Predicting with Networks - Krackhardt, D; Social Networks - Dec. 1988",level:1988 ,total_citation:440},
+  {id: "93InfNet", label: "Informal Networks - Krackhardt, D; Hanson JR - Harvard Business Review - Jul/Aug 1993",level:1993 ,total_citation:385},
+  {id: "87CSS", label: "Cognitive Social-Structures - Krackhardt, D; Social Networks - Jun 1987",level:1987 ,total_citation:364},
+  {id: "94Bring", label: "Bringing the Individual Back In; Kilduff, M; Krackhardt, D; Academy of Management Journal - Feb. 1994",level:1994 ,total_citation:303},
+  {id: "87QAP1", label: "QAP Partialling as a Test of Spuriousness; Krackhardt, D; Social Networks - Jun 1987",level:1987 ,total_citation:256},
+  {id: "07QAP3", label: "Sensitivity of MRQAP Tests; Dekker, D; Krackhardt, D; Snijders, T. A.B.; Psychometrika - Dec. 2007",level:2007 ,total_citation:237},
+  {id: "06Cent", label: "On the robustness of centrality; Borgatti, SP; Carley, KM; Krackhardt, D; Social Networks - May 2006",level:2006 ,total_citation:212},
+  {id: "10Activ", label: "Activating Cross-Boundary Knowledge; Tortoriello, Marco; Krackhardt, David; Academy of Management Journal - Feb 2010",level:2010 ,total_citation:187},
+  {id: "86Snow", label: "The Snowball Effect; Krackhardt, D; Porter, LW; Journal of Applied Psychology - Feb 1986",level:1986 ,total_citation:171},
+  {id: "00WrkGrp", label: "Choosing Work Group Members; Hinds, PJ; Carley, KM; Krackhardt, D; et al.; Organizational Behavior and Human Decision Processes - Mar 2000",level:2000 ,total_citation:149},
+  {id: "85FrLeave", label: "When Friends Leave; Krackhardt, David; Porter, LW; Administrative Science Quarterly - 1985",level:1985 ,total_citation:146},
+  {id: "99ClsFar", label: "Whether Close or Far; Krackhardt, D; Kilduff, M; Journal of Personality and Social Psychology - May 1999",level:1999 ,total_citation:112},
+  {id: "81FuncTO", label: "Functional Turnover - Dalton, DR; Krackhardt, DM; Porter, LW - Journal of Applied Psychology - 1981",level:1981 ,total_citation:95},
+  {id: "90Cult", label: "Friendship Patterns and Culture - Krackhardt, D; Kilduff, M - American Anthropologist - Mar 1990",level:1990 ,total_citation:86},
+  {id: "96Incon", label: "Cognitive Inconsistences and Non-Symmetric Friendship - Carley, KM; Krackhardt, D - Social Networks - Jan 1996",level:1996 ,total_citation:80},
+  {id: "96Lead", label: "The social capital of twenty-first century leaders - Brass, DJ; Krackhardt, D - Conference on Out of the Box Leadership - March 1996",level:1996 ,total_citation:58},
+  {id: "08SmWrld", label: "Organizational Network Perceptions - Kilduff, Martin; Crossland, Craig; Krackhardt, D - Organizational Behavior and Human Decision Processes - Sep 2008",level:2008 ,total_citation:61},
+  {id: "02Simmel3", label: "Structure, culture, and Simmelian ties in entrepreneurial firms - Krackhardt, D; Kilduff, M - Social Networks - July 2002",level:2002 ,total_citation:53},
+  {id: "99AffAcc", label: "Positive affectivity and accuracy - Casciaro, T; Carley, KM; Krackhardt, D - Motivation and Emotion - Dec 1999",level:1999 ,total_citation:54},
+  {id: "96HistBal", label: "A brief history of balance through time - Doreian, P; Kapuscinski, R; Krackhardt, D - Journal of Mathematical Sociology - 1996",level:1996 ,total_citation:50},
+  {id: "01PreTran", label: "Pre-transitive balance mechanisms for signed networks - Doreian, P; Krackhardt, D - Journal of Mathematical Sociology - 2001",level:2001 ,total_citation:40},
+  {id: "97Vis1", label: "The effect of spatial arrangement - McGrath, C; Blythe, J; Krackhardt, D - Social Networks - Aug 1997",level:1997 ,total_citation:37},
+  {id: "13Embed", label: "The impact of network embeddedness on research output - Gonzalez-Brambila, Claudia; Veloso, Francisco; Krackhardt, D - Research Policy - Nov 2013",level:2013 ,total_citation:39},
+  {id: "10HlthRec", label: "Social networks and physician adoption of electronic health records - Zheng, Kai; Padman, Rema; Krackhardt, David - Journal of the American Medical Informatics Association - May 2010",level:2010 ,total_citation:32},
+  {id: "97Viscos", label: "Organizational Viscosity and the Diffusion of Controversial Innovations - Krackhardt, D - Journal of Mathematical Sociology - 1997",level:1997 ,total_citation:25},
+  {id: "06Simmel4", label: "Heider vs simmel Emergent features in dynamic structures - Krackhardt, David; Handcock, Mark - Statistical Network Analysis: Models, Issues, and New Directions - 2007",level:2006 ,total_citation:23},
+  {id: "81EmpTO", label: "Supervisory Behavior and Employee Turnover - Krackhardt, D; McKenna, J; Porter, LW - Academy of Management Journal - 1981",level:1981 ,total_citation:22},
+  {id: "03NetChng", label: "Networked for change? Kravitz, RL, Krackhardt, D; Melnikow, J - Social Science & Medicine - Dec 2003",level:2003 ,total_citation:21},
+  {id: "15Catlst", label: "Being a Catalyst of Innovation - Tortoriello, Marco; McEvily, Bill; Krackhardt, David - Organization Science - Mar-Apr 2015",level:2015 ,total_citation:18},
+  {id: "14PeerInf", label: "Peer Influence in the Diffusion of iPhone 3G Over a Large Social Network - de Matos, Miguel Godinho; Ferreira, Pedro; Krackhardt, David - MIS Quarterly - Dec 2014",level:2014 ,total_citation:15},
+  {id: "12TeamCon", label: "Measuring Teamwork and Conflict Among Emergency Medical Technician Personnel - Patterson, P; Weaver, M; Weaver, S; Krackhardt, D - Prehospital Emergency Care - Jan/Mar 2012",level:2012 ,total_citation:15},
+  {id: "13TeamCom", label: "Network analysis of team communication in a busy emergency department - Patterson, P; Pfeiffer, A; Weaver, D; Krackhardt, D - BMC Health Services Research - Mar 2013",level:2013 ,total_citation:12},
+  {id: "15Psych", label: "The Integration of Psychological and Network Perspectives in Organizational Scholarship - Casciaro, T; Barsade, S; Edmonson, A; Krackhardt, D - Organization Science - July/Aug 2015",level:2015 ,total_citation:12},
+  {id: "12GrphTh2", label: "A second look at Krackhardt's graph theoretical dimensions of informal organizations - Everett, M; Krackhardt, D - Social Networks - May 2012",level:2012 ,total_citation:12},
+  {id: "11EMFam1", label: "Variation in Emergency Medical Technician Partner Familiarity - Patterson, P; Arnold, R; Abebe, K; Krackhardt, D - Health Services Research - Aug 2011",level:2011 ,total_citation:12},
+  {id: "96CommBK", label: "Comment on Burt and Knez's third-party effects on trust - Krackhardt, D - Rationality and Society - Feb 1996",level:1996 ,total_citation:12},
+  {id: "12EMEvnt", label: "Identification of Adverse Events in Ground Transport Emergency Medical Services - Patterson, P; Weaver, M; Abebe, K; Krackhardt, D - American Journal of Medical Quality - Mar/Apr 2012",level:2012 ,total_citation:9},
+  {id: "00LatCon", label: "Spreading and shifting costs of lateral control among peers - Lazega, E; Krackhardt, D - Quality & Quantity - May 2000",level:2000 ,total_citation:6},
+  {id: "16TeamInj", label: "Teammate familiarity and risk of injury in emergency medical services - Patterson, P; Weaver, M; Landsittel, D; Krackhardt, D - Emergency Medicine Journal - Apr 2016",level:2016 ,total_citation:5},
+  {id: "09RvJack", label: "Social and Economic Networks - Krackhardt, D - Science - Oct 2009",level:2009 ,total_citation:5},
+  {id: "03Equil", label: "An equilibrium-correction model for dynamic network data - Dekker, D; Franses, PH; Krackhardt, D - Journal of Mathematical Sociology - Apr-Sept 2003",level:2003 ,total_citation:5},
+  {id: "03Vis2", label: "The effect of graph layout on interference from social network data - Blythe, J; McGrath, C; Krackhardt, D - Graph Drawing - 1996",level:2003 ,total_citation:5},
+  {id: "15EMfam2", label: "How familiar are clinician teammates in the emergency department? Patterson, P; Pfeiffer, A; Lave, J; Krackhardt, D - Emergency Medicine Journal - Apr 2015",level:2015 ,total_citation:4},
+  {id: "14Simmel4", label: "The Role of Simmelian Friendship Ties on Retaliation with Triads - Goh, K; Krackhardt, D; Weingart, R - Small Group Research - Oct 2014",level:2014 ,total_citation:3},
+  {id: "95RevSH", label: "Structural Holes - Krackhardt, D - Administrative Science Quarterly - Jun 1995",level:1995 ,total_citation:3},
+  {id: "14AdEvnt", label: "Comparative Assessment of Adverse Event Classification in the Out-of-Hospital Setting - Patterson, P; Lave, J; Krackhardt, D - Prehospital Emergency Care - Oct-Dec 2014",level:2014 ,total_citation:2},
+  {id: "14Accur", label: "A Preliminary Look at Accuracy in Egonets - Krackhardt, D - Contemporary Perspectives on Organizational Social Networks Book Series - 2014",level:2014 ,total_citation:2},
+  {id: "02Festsch", label: "Festschrift for Linton C Freeman: Introduction - Friedkin, NE; Krackhardt, D - Social Networks - Oct 2002",level:2002 ,total_citation:1},
+  {id: "98Polyn", label: "A test of communication and cultural similarity in Polynesian prehistory - Friedkin, NE; Krackhardt, D - Current Anthropology - Dec 1998",level:1998 ,total_citation:1},
+]
+
+var baseLinks = [
+  { target: "92Philos", source: "00GovStr", strength: 0.1 ,original: 74},
+  { target: "90Polit", source: "00GovStr", strength: 0.09999999999622486 ,original: 24},
+  { target: "88Crises", source: "00GovStr", strength: 0.0999983298578152 ,original: 11},
+  { target: "88QAP2", source: "00GovStr", strength: 0.09933071490757153 ,original: 5},
+  { target: "93InfNet", source: "00GovStr", strength: 0.09975273768433654 ,original: 6},
+  { target: "87CSS", source: "00GovStr", strength: 0.09525741268224333 ,original: 3},
+  { target: "94Bring", source: "00GovStr", strength: 0.09999991684719722 ,original: 14},
+  { target: "87QAP1", source: "00GovStr", strength: 0.09990889488055994 ,original: 7},
+  { target: "07QAP3", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "06Cent", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "10Activ", source: "00GovStr", strength: 0.09999999943972035 ,original: 19},
+  { target: "86Snow", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "00WrkGrp", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+  { target: "85FrLeave", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+  { target: "99ClsFar", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "90Cult", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Incon", source: "00GovStr", strength: 0.09525741268224333 ,original: 3},
+  { target: "96Lead", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+  { target: "08SmWrld", source: "00GovStr", strength: 0.09525741268224333 ,original: 3},
+  { target: "02Simmel3", source: "00GovStr", strength: 0.09820137900379085 ,original: 4},
+  { target: "13Embed", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+  { target: "12GrphTh2", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "96CommBK", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "14Simmel4", source: "00GovStr", strength: 0.07310585786300049 ,original: 1},
+  { target: "95RevSH", source: "00GovStr", strength: 0.08807970779778823 ,original: 2},
+  { target: "90Polit", source: "92Philos", strength: 0.1 ,original: 50},
+  { target: "88Crises", source: "92Philos", strength: 0.09999999999999065 ,original: 30},
+  { target: "88QAP2", source: "92Philos", strength: 0.09999999999993085 ,original: 28},
+  { target: "93InfNet", source: "92Philos", strength: 0.09999999999999873 ,original: 32},
+  { target: "87CSS", source: "92Philos", strength: 0.0999999999986112 ,original: 25},
+  { target: "94Bring", source: "92Philos", strength: 0.09999999999999656 ,original: 31},
+  { target: "87QAP1", source: "92Philos", strength: 0.09999999847700206 ,original: 18},
+  { target: "07QAP3", source: "92Philos", strength: 0.09990889488055994 ,original: 7},
+  { target: "06Cent", source: "92Philos", strength: 0.09525741268224333 ,original: 3},
+  { target: "10Activ", source: "92Philos", strength: 0.09999999586006245 ,original: 17},
+  { target: "86Snow", source: "92Philos", strength: 0.09999999992417438 ,original: 21},
+  { target: "00WrkGrp", source: "92Philos", strength: 0.09998766054240137 ,original: 9},
+  { target: "85FrLeave", source: "92Philos", strength: 0.0999999694097773 ,original: 15},
+  { target: "99ClsFar", source: "92Philos", strength: 0.09999938558253978 ,original: 12},
+  { target: "81FuncTO", source: "92Philos", strength: 0.07310585786300049 ,original: 1},
+  { target: "90Cult", source: "92Philos", strength: 0.09999991684719722 ,original: 14},
+  { target: "96Incon", source: "92Philos", strength: 0.09998766054240137 ,original: 9},
+  { target: "96Lead", source: "92Philos", strength: 0.09933071490757153 ,original: 5},
+  { target: "08SmWrld", source: "92Philos", strength: 0.09996646498695336 ,original: 8},
+  { target: "02Simmel3", source: "92Philos", strength: 0.09990889488055994 ,original: 7},
+  { target: "99AffAcc", source: "92Philos", strength: 0.09990889488055994 ,original: 7},
+  { target: "01PreTran", source: "92Philos", strength: 0.09525741268224333 ,original: 3},
+  { target: "13Embed", source: "92Philos", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "92Philos", strength: 0.09933071490757153 ,original: 5},
+  { target: "15Psych", source: "92Philos", strength: 0.07310585786300049 ,original: 1},
+  { target: "12GrphTh2", source: "92Philos", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "92Philos", strength: 0.07310585786300049 ,original: 1},
+  { target: "88Crises", source: "90Polit", strength: 0.1 ,original: 40},
+  { target: "88QAP2", source: "90Polit", strength: 0.09999999999999953 ,original: 33},
+  { target: "93InfNet", source: "90Polit", strength: 0.1 ,original: 40},
+  { target: "87CSS", source: "90Polit", strength: 0.1 ,original: 84},
+  { target: "94Bring", source: "90Polit", strength: 0.1 ,original: 59},
+  { target: "87QAP1", source: "90Polit", strength: 0.09999998874648379 ,original: 16},
+  { target: "07QAP3", source: "90Polit", strength: 0.09975273768433654 ,original: 6},
+  { target: "06Cent", source: "90Polit", strength: 0.08807970779778823 ,original: 2},
+  { target: "10Activ", source: "90Polit", strength: 0.09999991684719722 ,original: 14},
+  { target: "86Snow", source: "90Polit", strength: 0.09999999997210532 ,original: 22},
+  { target: "00WrkGrp", source: "90Polit", strength: 0.09998766054240137 ,original: 9},
+  { target: "85FrLeave", source: "90Polit", strength: 0.09999999997210532 ,original: 22},
+  { target: "99ClsFar", source: "90Polit", strength: 0.09999999999999953 ,original: 33},
+  { target: "90Cult", source: "90Polit", strength: 0.09999999992417438 ,original: 21},
+  { target: "96Incon", source: "90Polit", strength: 0.09999999943972035 ,original: 19},
+  { target: "96Lead", source: "90Polit", strength: 0.09933071490757153 ,original: 5},
+  { target: "08SmWrld", source: "90Polit", strength: 0.09999999847700206 ,original: 18},
+  { target: "02Simmel3", source: "90Polit", strength: 0.0999983298578152 ,original: 11},
+  { target: "99AffAcc", source: "90Polit", strength: 0.09999999992417438 ,original: 21},
+  { target: "96HistBal", source: "90Polit", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Vis1", source: "90Polit", strength: 0.09525741268224333 ,original: 3},
+  { target: "13Embed", source: "90Polit", strength: 0.09525741268224333 ,original: 3},
+  { target: "97Viscos", source: "90Polit", strength: 0.08807970779778823 ,original: 2},
+  { target: "06Simmel4", source: "90Polit", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Catlst", source: "90Polit", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "90Polit", strength: 0.08807970779778823 ,original: 2},
+  { target: "00LatCon", source: "90Polit", strength: 0.07310585786300049 ,original: 1},
+  { target: "88QAP2", source: "88Crises", strength: 0.09999999979388463 ,original: 20},
+  { target: "93InfNet", source: "88Crises", strength: 0.09999999999993085 ,original: 28},
+  { target: "87CSS", source: "88Crises", strength: 0.09999991684719722 ,original: 14},
+  { target: "94Bring", source: "88Crises", strength: 0.09999999586006245 ,original: 17},
+  { target: "87QAP1", source: "88Crises", strength: 0.0999999694097773 ,original: 15},
+  { target: "07QAP3", source: "88Crises", strength: 0.09998766054240137 ,original: 9},
+  { target: "06Cent", source: "88Crises", strength: 0.09933071490757153 ,original: 5},
+  { target: "10Activ", source: "88Crises", strength: 0.09999546021312976 ,original: 10},
+  { target: "86Snow", source: "88Crises", strength: 0.0999999694097773 ,original: 15},
+  { target: "00WrkGrp", source: "88Crises", strength: 0.09975273768433654 ,original: 6},
+  { target: "85FrLeave", source: "88Crises", strength: 0.0999999694097773 ,original: 15},
+  { target: "99ClsFar", source: "88Crises", strength: 0.09933071490757153 ,original: 5},
+  { target: "90Cult", source: "88Crises", strength: 0.0999999694097773 ,original: 15},
+  { target: "96Incon", source: "88Crises", strength: 0.09975273768433654 ,original: 6},
+  { target: "96Lead", source: "88Crises", strength: 0.09975273768433654 ,original: 6},
+  { target: "08SmWrld", source: "88Crises", strength: 0.09525741268224333 ,original: 3},
+  { target: "02Simmel3", source: "88Crises", strength: 0.09820137900379085 ,original: 4},
+  { target: "01PreTran", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Vis1", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
+  { target: "10HlthRec", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "88Crises", strength: 0.09525741268224333 ,original: 3},
+  { target: "14PeerInf", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
+  { target: "13TeamCom", source: "88Crises", strength: 0.07310585786300049 ,original: 1},
+  { target: "12GrphTh2", source: "88Crises", strength: 0.08807970779778823 ,original: 2},
+  { target: "93InfNet", source: "88QAP2", strength: 0.09999938558253978 ,original: 12},
+  { target: "87CSS", source: "88QAP2", strength: 0.09999999999999873 ,original: 32},
+  { target: "94Bring", source: "88QAP2", strength: 0.0999999999986112 ,original: 25},
+  { target: "87QAP1", source: "88QAP2", strength: 0.1 ,original: 112},
+  { target: "07QAP3", source: "88QAP2", strength: 0.1 ,original: 102},
+  { target: "06Cent", source: "88QAP2", strength: 0.09998766054240137 ,original: 9},
+  { target: "10Activ", source: "88QAP2", strength: 0.09998766054240137 ,original: 9},
+  { target: "86Snow", source: "88QAP2", strength: 0.09999938558253978 ,original: 12},
+  { target: "00WrkGrp", source: "88QAP2", strength: 0.09998766054240137 ,original: 9},
+  { target: "85FrLeave", source: "88QAP2", strength: 0.09996646498695336 ,original: 8},
+  { target: "99ClsFar", source: "88QAP2", strength: 0.09996646498695336 ,original: 8},
+  { target: "90Cult", source: "88QAP2", strength: 0.09999999847700206 ,original: 18},
+  { target: "96Incon", source: "88QAP2", strength: 0.09998766054240137 ,original: 9},
+  { target: "96Lead", source: "88QAP2", strength: 0.09820137900379085 ,original: 4},
+  { target: "08SmWrld", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Simmel3", source: "88QAP2", strength: 0.08807970779778823 ,original: 2},
+  { target: "99AffAcc", source: "88QAP2", strength: 0.09525741268224333 ,original: 3},
+  { target: "96HistBal", source: "88QAP2", strength: 0.09525741268224333 ,original: 3},
+  { target: "01PreTran", source: "88QAP2", strength: 0.08807970779778823 ,original: 2},
+  { target: "97Vis1", source: "88QAP2", strength: 0.08807970779778823 ,original: 2},
+  { target: "97Viscos", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
+  { target: "06Simmel4", source: "88QAP2", strength: 0.08807970779778823 ,original: 2},
+  { target: "96CommBK", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Equil", source: "88QAP2", strength: 0.09525741268224333 ,original: 3},
+  { target: "02Festsch", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
+  { target: "98Polyn", source: "88QAP2", strength: 0.07310585786300049 ,original: 1},
+  { target: "87CSS", source: "93InfNet", strength: 0.09999999586006245 ,original: 17},
+  { target: "94Bring", source: "93InfNet", strength: 0.09999999586006245 ,original: 17},
+  { target: "87QAP1", source: "93InfNet", strength: 0.09990889488055994 ,original: 7},
+  { target: "07QAP3", source: "93InfNet", strength: 0.09820137900379085 ,original: 4},
+  { target: "06Cent", source: "93InfNet", strength: 0.09933071490757153 ,original: 5},
+  { target: "10Activ", source: "93InfNet", strength: 0.09990889488055994 ,original: 7},
+  { target: "86Snow", source: "93InfNet", strength: 0.09975273768433654 ,original: 6},
+  { target: "00WrkGrp", source: "93InfNet", strength: 0.09996646498695336 ,original: 8},
+  { target: "85FrLeave", source: "93InfNet", strength: 0.09820137900379085 ,original: 4},
+  { target: "99ClsFar", source: "93InfNet", strength: 0.09975273768433654 ,original: 6},
+  { target: "90Cult", source: "93InfNet", strength: 0.09996646498695336 ,original: 8},
+  { target: "96Incon", source: "93InfNet", strength: 0.09820137900379085 ,original: 4},
+  { target: "96Lead", source: "93InfNet", strength: 0.09975273768433654 ,original: 6},
+  { target: "08SmWrld", source: "93InfNet", strength: 0.09933071490757153 ,original: 5},
+  { target: "02Simmel3", source: "93InfNet", strength: 0.08807970779778823 ,original: 2},
+  { target: "99AffAcc", source: "93InfNet", strength: 0.09933071490757153 ,original: 5},
+  { target: "97Vis1", source: "93InfNet", strength: 0.07310585786300049 ,original: 1},
+  { target: "10HlthRec", source: "93InfNet", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "93InfNet", strength: 0.08807970779778823 ,original: 2},
+  { target: "03NetChng", source: "93InfNet", strength: 0.08807970779778823 ,original: 2},
+  { target: "13TeamCom", source: "93InfNet", strength: 0.07310585786300049 ,original: 1},
+  { target: "12GrphTh2", source: "93InfNet", strength: 0.09525741268224333 ,original: 3},
+  { target: "96CommBK", source: "93InfNet", strength: 0.09525741268224333 ,original: 3},
+  { target: "94Bring", source: "87CSS", strength: 0.09999999999999983 ,original: 34},
+  { target: "87QAP1", source: "87CSS", strength: 0.09999998874648379 ,original: 16},
+  { target: "07QAP3", source: "87CSS", strength: 0.09933071490757153 ,original: 5},
+  { target: "06Cent", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "10Activ", source: "87CSS", strength: 0.09975273768433654 ,original: 6},
+  { target: "86Snow", source: "87CSS", strength: 0.09996646498695336 ,original: 8},
+  { target: "00WrkGrp", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "85FrLeave", source: "87CSS", strength: 0.09999546021312976 ,original: 10},
+  { target: "99ClsFar", source: "87CSS", strength: 0.09999999999999983 ,original: 34},
+  { target: "90Cult", source: "87CSS", strength: 0.0999999694097773 ,original: 15},
+  { target: "96Incon", source: "87CSS", strength: 0.09999999943972035 ,original: 19},
+  { target: "96Lead", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "08SmWrld", source: "87CSS", strength: 0.09999999943972035 ,original: 19},
+  { target: "02Simmel3", source: "87CSS", strength: 0.09998766054240137 ,original: 9},
+  { target: "99AffAcc", source: "87CSS", strength: 0.09999999586006245 ,original: 17},
+  { target: "96HistBal", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "01PreTran", source: "87CSS", strength: 0.09525741268224333 ,original: 3},
+  { target: "97Vis1", source: "87CSS", strength: 0.09975273768433654 ,original: 6},
+  { target: "10HlthRec", source: "87CSS", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "87CSS", strength: 0.07310585786300049 ,original: 1},
+  { target: "03NetChng", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "15Psych", source: "87CSS", strength: 0.09525741268224333 ,original: 3},
+  { target: "12GrphTh2", source: "87CSS", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "87CSS", strength: 0.09975273768433654 ,original: 6},
+  { target: "00LatCon", source: "87CSS", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Vis2", source: "87CSS", strength: 0.07310585786300049 ,original: 1},
+  { target: "95RevSH", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "14Accur", source: "87CSS", strength: 0.08807970779778823 ,original: 2},
+  { target: "87QAP1", source: "94Bring", strength: 0.0999997739675702 ,original: 13},
+  { target: "07QAP3", source: "94Bring", strength: 0.0999983298578152 ,original: 11},
+  { target: "06Cent", source: "94Bring", strength: 0.08807970779778823 ,original: 2},
+  { target: "10Activ", source: "94Bring", strength: 0.09998766054240137 ,original: 9},
+  { target: "86Snow", source: "94Bring", strength: 0.09999999586006245 ,original: 17},
+  { target: "00WrkGrp", source: "94Bring", strength: 0.09998766054240137 ,original: 9},
+  { target: "85FrLeave", source: "94Bring", strength: 0.09999991684719722 ,original: 14},
+  { target: "99ClsFar", source: "94Bring", strength: 0.09999999999999994 ,original: 35},
+  { target: "90Cult", source: "94Bring", strength: 0.0999997739675702 ,original: 13},
+  { target: "96Incon", source: "94Bring", strength: 0.09990889488055994 ,original: 7},
+  { target: "96Lead", source: "94Bring", strength: 0.09999546021312976 ,original: 10},
+  { target: "08SmWrld", source: "94Bring", strength: 0.09999991684719722 ,original: 14},
+  { target: "02Simmel3", source: "94Bring", strength: 0.09996646498695336 ,original: 8},
+  { target: "99AffAcc", source: "94Bring", strength: 0.09999938558253978 ,original: 12},
+  { target: "96HistBal", source: "94Bring", strength: 0.07310585786300049 ,original: 1},
+  { target: "01PreTran", source: "94Bring", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Vis1", source: "94Bring", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "94Bring", strength: 0.09525741268224333 ,original: 3},
+  { target: "12GrphTh2", source: "94Bring", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "94Bring", strength: 0.09525741268224333 ,original: 3},
+  { target: "00LatCon", source: "94Bring", strength: 0.08807970779778823 ,original: 2},
+  { target: "95RevSH", source: "94Bring", strength: 0.07310585786300049 ,original: 1},
+  { target: "07QAP3", source: "87QAP1", strength: 0.1 ,original: 54},
+  { target: "06Cent", source: "87QAP1", strength: 0.09525741268224333 ,original: 3},
+  { target: "10Activ", source: "87QAP1", strength: 0.09820137900379085 ,original: 4},
+  { target: "86Snow", source: "87QAP1", strength: 0.09990889488055994 ,original: 7},
+  { target: "00WrkGrp", source: "87QAP1", strength: 0.09820137900379085 ,original: 4},
+  { target: "85FrLeave", source: "87QAP1", strength: 0.09933071490757153 ,original: 5},
+  { target: "99ClsFar", source: "87QAP1", strength: 0.09996646498695336 ,original: 8},
+  { target: "90Cult", source: "87QAP1", strength: 0.09999546021312976 ,original: 10},
+  { target: "96Incon", source: "87QAP1", strength: 0.09975273768433654 ,original: 6},
+  { target: "96Lead", source: "87QAP1", strength: 0.09820137900379085 ,original: 4},
+  { target: "08SmWrld", source: "87QAP1", strength: 0.08807970779778823 ,original: 2},
+  { target: "99AffAcc", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
+  { target: "96HistBal", source: "87QAP1", strength: 0.09820137900379085 ,original: 4},
+  { target: "01PreTran", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Vis1", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Equil", source: "87QAP1", strength: 0.07310585786300049 ,original: 1},
+  { target: "06Cent", source: "07QAP3", strength: 0.09820137900379085 ,original: 4},
+  { target: "10Activ", source: "07QAP3", strength: 0.09990889488055994 ,original: 7},
+  { target: "86Snow", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+  { target: "00WrkGrp", source: "07QAP3", strength: 0.08807970779778823 ,original: 2},
+  { target: "99ClsFar", source: "07QAP3", strength: 0.09525741268224333 ,original: 3},
+  { target: "90Cult", source: "07QAP3", strength: 0.09820137900379085 ,original: 4},
+  { target: "96Incon", source: "07QAP3", strength: 0.09525741268224333 ,original: 3},
+  { target: "96Lead", source: "07QAP3", strength: 0.08807970779778823 ,original: 2},
+  { target: "08SmWrld", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Simmel3", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+  { target: "96HistBal", source: "07QAP3", strength: 0.09525741268224333 ,original: 3},
+  { target: "97Viscos", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+  { target: "06Simmel4", source: "07QAP3", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Equil", source: "07QAP3", strength: 0.08807970779778823 ,original: 2},
+  { target: "10Activ", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+  { target: "99ClsFar", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Incon", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Lead", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+  { target: "08SmWrld", source: "06Cent", strength: 0.09525741268224333 ,original: 3},
+  { target: "02Simmel3", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+  { target: "99AffAcc", source: "06Cent", strength: 0.09525741268224333 ,original: 3},
+  { target: "97Vis1", source: "06Cent", strength: 0.08807970779778823 ,original: 2},
+  { target: "97Viscos", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+  { target: "03NetChng", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Festsch", source: "06Cent", strength: 0.07310585786300049 ,original: 1},
+  { target: "86Snow", source: "10Activ", strength: 0.09820137900379085 ,original: 4},
+  { target: "00WrkGrp", source: "10Activ", strength: 0.09525741268224333 ,original: 3},
+  { target: "99ClsFar", source: "10Activ", strength: 0.09933071490757153 ,original: 5},
+  { target: "81FuncTO", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "90Cult", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "96Incon", source: "10Activ", strength: 0.09820137900379085 ,original: 4},
+  { target: "96Lead", source: "10Activ", strength: 0.09525741268224333 ,original: 3},
+  { target: "08SmWrld", source: "10Activ", strength: 0.09820137900379085 ,original: 4},
+  { target: "02Simmel3", source: "10Activ", strength: 0.09990889488055994 ,original: 7},
+  { target: "99AffAcc", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "96HistBal", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "13Embed", source: "10Activ", strength: 0.09525741268224333 ,original: 3},
+  { target: "97Viscos", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "06Simmel4", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Catlst", source: "10Activ", strength: 0.09525741268224333 ,original: 3},
+  { target: "15Psych", source: "10Activ", strength: 0.07310585786300049 ,original: 1},
+  { target: "14Simmel4", source: "10Activ", strength: 0.08807970779778823 ,original: 2},
+  { target: "00WrkGrp", source: "86Snow", strength: 0.08807970779778823 ,original: 2},
+  { target: "85FrLeave", source: "86Snow", strength: 0.1 ,original: 47},
+  { target: "99ClsFar", source: "86Snow", strength: 0.0999983298578152 ,original: 11},
+  { target: "81FuncTO", source: "86Snow", strength: 0.0999983298578152 ,original: 11},
+  { target: "90Cult", source: "86Snow", strength: 0.09999546021312976 ,original: 10},
+  { target: "96Incon", source: "86Snow", strength: 0.09525741268224333 ,original: 3},
+  { target: "96Lead", source: "86Snow", strength: 0.09525741268224333 ,original: 3},
+  { target: "08SmWrld", source: "86Snow", strength: 0.09975273768433654 ,original: 6},
+  { target: "02Simmel3", source: "86Snow", strength: 0.09820137900379085 ,original: 4},
+  { target: "99AffAcc", source: "86Snow", strength: 0.08807970779778823 ,original: 2},
+  { target: "01PreTran", source: "86Snow", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "86Snow", strength: 0.07310585786300049 ,original: 1},
+  { target: "81EmpTO", source: "86Snow", strength: 0.08807970779778823 ,original: 2},
+  { target: "03NetChng", source: "86Snow", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "86Snow", strength: 0.08807970779778823 ,original: 2},
+  { target: "96CommBK", source: "86Snow", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Equil", source: "86Snow", strength: 0.07310585786300049 ,original: 1},
+  { target: "85FrLeave", source: "00WrkGrp", strength: 0.08807970779778823 ,original: 2},
+  { target: "99ClsFar", source: "00WrkGrp", strength: 0.09525741268224333 ,original: 3},
+  { target: "90Cult", source: "00WrkGrp", strength: 0.09525741268224333 ,original: 3},
+  { target: "96Incon", source: "00WrkGrp", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Lead", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+  { target: "08SmWrld", source: "00WrkGrp", strength: 0.08807970779778823 ,original: 2},
+  { target: "99AffAcc", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "00WrkGrp", strength: 0.07310585786300049 ,original: 1},
+  { target: "99ClsFar", source: "85FrLeave", strength: 0.09990889488055994 ,original: 7},
+  { target: "81FuncTO", source: "85FrLeave", strength: 0.09996646498695336 ,original: 8},
+  { target: "90Cult", source: "85FrLeave", strength: 0.09999546021312976 ,original: 10},
+  { target: "96Incon", source: "85FrLeave", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Lead", source: "85FrLeave", strength: 0.09820137900379085 ,original: 4},
+  { target: "08SmWrld", source: "85FrLeave", strength: 0.08807970779778823 ,original: 2},
+  { target: "02Simmel3", source: "85FrLeave", strength: 0.08807970779778823 ,original: 2},
+  { target: "01PreTran", source: "85FrLeave", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "85FrLeave", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "85FrLeave", strength: 0.08807970779778823 ,original: 2},
+  { target: "96CommBK", source: "85FrLeave", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Equil", source: "85FrLeave", strength: 0.07310585786300049 ,original: 1},
+  { target: "81FuncTO", source: "99ClsFar", strength: 0.07310585786300049 ,original: 1},
+  { target: "90Cult", source: "99ClsFar", strength: 0.09999546021312976 ,original: 10},
+  { target: "96Incon", source: "99ClsFar", strength: 0.09996646498695336 ,original: 8},
+  { target: "96Lead", source: "99ClsFar", strength: 0.08807970779778823 ,original: 2},
+  { target: "08SmWrld", source: "99ClsFar", strength: 0.0999997739675702 ,original: 13},
+  { target: "02Simmel3", source: "99ClsFar", strength: 0.09990889488055994 ,original: 7},
+  { target: "99AffAcc", source: "99ClsFar", strength: 0.0999983298578152 ,original: 11},
+  { target: "96HistBal", source: "99ClsFar", strength: 0.07310585786300049 ,original: 1},
+  { target: "01PreTran", source: "99ClsFar", strength: 0.08807970779778823 ,original: 2},
+  { target: "97Vis1", source: "99ClsFar", strength: 0.08807970779778823 ,original: 2},
+  { target: "03NetChng", source: "99ClsFar", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "99ClsFar", strength: 0.08807970779778823 ,original: 2},
+  { target: "96CommBK", source: "99ClsFar", strength: 0.08807970779778823 ,original: 2},
+  { target: "81EmpTO", source: "81FuncTO", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Incon", source: "90Cult", strength: 0.08807970779778823 ,original: 2},
+  { target: "96Lead", source: "90Cult", strength: 0.08807970779778823 ,original: 2},
+  { target: "08SmWrld", source: "90Cult", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Simmel3", source: "90Cult", strength: 0.09933071490757153 ,original: 5},
+  { target: "99AffAcc", source: "90Cult", strength: 0.08807970779778823 ,original: 2},
+  { target: "96HistBal", source: "90Cult", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "90Cult", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "90Cult", strength: 0.07310585786300049 ,original: 1},
+  { target: "96Lead", source: "96Incon", strength: 0.08807970779778823 ,original: 2},
+  { target: "08SmWrld", source: "96Incon", strength: 0.08807970779778823 ,original: 2},
+  { target: "02Simmel3", source: "96Incon", strength: 0.09820137900379085 ,original: 4},
+  { target: "99AffAcc", source: "96Incon", strength: 0.09975273768433654 ,original: 6},
+  { target: "96HistBal", source: "96Incon", strength: 0.08807970779778823 ,original: 2},
+  { target: "01PreTran", source: "96Incon", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Vis1", source: "96Incon", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "96Incon", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "96Incon", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Festsch", source: "96Incon", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Simmel3", source: "96Lead", strength: 0.07310585786300049 ,original: 1},
+  { target: "06Simmel4", source: "96Lead", strength: 0.07310585786300049 ,original: 1},
+  { target: "15Psych", source: "96Lead", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "96Lead", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Simmel3", source: "08SmWrld", strength: 0.08807970779778823 ,original: 2},
+  { target: "99AffAcc", source: "08SmWrld", strength: 0.0999983298578152 ,original: 11},
+  { target: "97Vis1", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+  { target: "12GrphTh2", source: "08SmWrld", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "08SmWrld", strength: 0.08807970779778823 ,original: 2},
+  { target: "99AffAcc", source: "02Simmel3", strength: 0.08807970779778823 ,original: 2},
+  { target: "96HistBal", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Vis1", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+  { target: "97Viscos", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+  { target: "14Simmel4", source: "02Simmel3", strength: 0.08807970779778823 ,original: 2},
+  { target: "02Festsch", source: "02Simmel3", strength: 0.07310585786300049 ,original: 1},
+  { target: "96HistBal", source: "99AffAcc", strength: 0.07310585786300049 ,original: 1},
+  { target: "96CommBK", source: "99AffAcc", strength: 0.07310585786300049 ,original: 1},
+  { target: "01PreTran", source: "96HistBal", strength: 0.09933071490757153 ,original: 5},
+  { target: "06Simmel4", source: "96HistBal", strength: 0.08807970779778823 ,original: 2},
+  { target: "97Viscos", source: "97Vis1", strength: 0.07310585786300049 ,original: 1},
+  { target: "03Vis2", source: "97Vis1", strength: 0.07310585786300049 ,original: 1},
+  { target: "02Festsch", source: "97Vis1", strength: 0.07310585786300049 ,original: 1},
+  { target: "03NetChng", source: "10HlthRec", strength: 0.09525741268224333 ,original: 3},
+  { target: "13TeamCom", source: "10HlthRec", strength: 0.07310585786300049 ,original: 1},
+  { target: "09RvJack", source: "06Simmel4", strength: 0.07310585786300049 ,original: 1},
+  { target: "13TeamCom", source: "03NetChng", strength: 0.08807970779778823 ,original: 2},
+  { target: "11EMFam1", source: "12TeamCon", strength: 0.09525741268224333 ,original: 3},
+  { target: "15EMfam2", source: "12TeamCon", strength: 0.07310585786300049 ,original: 1},
+  { target: "12EMEvnt", source: "11EMFam1", strength: 0.09525741268224333 ,original: 3},
+  { target: "16TeamInj", source: "11EMFam1", strength: 0.08807970779778823 ,original: 2},
+  { target: "15EMfam2", source: "11EMFam1", strength: 0.07310585786300049 ,original: 1},
+  { target: "95RevSH", source: "96CommBK", strength: 0.07310585786300049 ,original: 1},
+  { target: "14AdEvnt", source: "12EMEvnt", strength: 0.07310585786300049 ,original: 1},
+]
+var nodes = [...baseNodes]
+var links = [...baseLinks]
+
+
+function get_max(data, col){
+    max = 0;
+    for(var i = 0 ; i < data.length; i ++){
+        if(data[i][col] > max){
+            max = data[i][col]
+        }
+    }
+    return max;
+}
+
+function get_min(data, col){
+    min = 3000;
+    for(var i = 0 ; i < data.length; i ++){
+        if(data[i][col] < min){
+            min = data[i][col]
+        }
+    }
+    return min;
+}
+
+function get_color(curr_node){
+    var scale_year = d3.scaleLinear()
+                        .domain([-get_max(nodes, "level"), -get_min(nodes, "level")])
+                        .range([0.5, 1]);
+    return d3.interpolateGnBu(scale_year(-curr_node.level))
+    /*
+    var scale_year = d3.scaleLinear()
+                        .domain([get_min(nodes, "level"), get_max(nodes, "level")])
+                        .range([0.5, 1]);
+    return d3.interpolateViridis(scale_year(curr_node.level))
+    */
+}
+
+function wrap(description, width) {
+    width = width * window.innerWidth;
+    var height;
+    description.each(function () {
+        var description = d3.select(this),
+            words = description.text()
+                        .split(/\s+/)
+                        .reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 15, // ems
+            x = description.attr("x"),
+            y = description.attr("y"),
+            dy = 0, //parseFloat(text.attr("dy")),
+            tspan = description.text(null)
+                        .append("tspan")
+                        .attr("x", x)
+                        .attr("y", y)
+                        .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = description.append("tspan")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", ++lineNumber * lineHeight + dy)
+                            .text(word);
+            }
+        }
+        height = lineNumber * lineHeight + dy
+    });
+    return height
+}
+
+function getNeighbors(node) {
+    return baseLinks.reduce(function (neighbors, link) {
+        if (link.target.id === node.id) {
+            neighbors.push(link.source.id)
+        }else if(link.source.id === node.id) {
+            neighbors.push(link.target.id)
+        }
+    return neighbors}, [node.id])
+}
+
+function isNeighborLink(node, link, neighbors) {
+    return node.level == 2
+    return link.target.id === node.id || link.source.id === node.id
+}
+
+
+function getNodeColor(node, neighbors, selectedNode) {
+    if(node.id == selectedNode.id) {
+        return 'red'
+    }
+    return get_color(node)
+}
+
+function getTextColor(node, neighbors) {
+  return "black"
+}
+function getLinkColor(node, link, neighbors) {
+    return isNeighborLink(node, link, neighbors) ? 'green' : '#E5E5E5'
+}
+
+
+var width = window.innerWidth * 0.9
+var height = window.innerHeight * 0.9
+var radius = 10
+
+var svg = d3.select('svg')
+svg.attr('width', width).attr('height', height)
+
+
+
+
+var linkElements,
+    nodeElements,
+    textElements
+
+// we use svg groups to logically group the elements together
+var linkGroup = svg.append('g').attr('class', 'links')
+var nodeGroup = svg.append('g').attr('class', 'nodes')
+var textGroup = svg.append('g').attr('class', 'texts')
+
+// we use this reference to select/deselect
+// after clicking the same element twice
+var selectedId
+
+// simulation setup with all forces
+var linkForce = d3
+    .forceLink()
+    .id(function (link) { return link.id })
+    .strength(function (link) { return link.strength  })
+
+var simulation = d3.forceSimulation()
+    .force('link', linkForce)
+    .force('charge', d3.forceManyBody().strength(-60))
+    .force('center', d3.forceCenter(width / 3, height / 2))
+    .force("x", d3.forceX().strength(0.01))
+    .force("y", d3.forceY().strength(0.03));
+
+var dragDrop = d3.drag().on('start', function (node) {
+    node.fx = node.x
+    node.fy = node.y
+}).on('drag', function (node) {
+    simulation.alphaTarget(0.03).restart()
+    node.fx = d3.event.x
+    node.fy = d3.event.y
+}).on('end', function (node) {
+    if (!d3.event.active) {
+      simulation.alphaTarget(0)
+    }
+    node.fx = null
+    node.fy = null
+})
+
+// select node is called on every click
+// we either update the data according to the selection
+// or reset the data if the same node is clicked twice
+function selectNode(selectedNode) {
+    if (selectedId === selectedNode.id) {
+        selectedId = undefined
+        // resetData()
+        // updateSimulation()
+        location.reload()
+        if (showingText) updateSimulation(showingText)
+    } else {
+        selectedId = selectedNode.id
+        updateData(selectedNode)
+        updateSimulation(showingText)
+    }
+
+    d3.select("#tooltip_id").remove(); 
+    d3.select("#tooltip_description").remove(); 
+    d3.select("#tooltip_nums").remove(); 
+
+    var tooltip_id = nodeGroup.append("text")
+                            .text("ID: " + selectedNode.id)
+                            .attr("x", 0)
+                            .attr("y", 100)
+                            .attr("id", "tooltip_id");
+    tooltip_id.attr("text-anchor", "start");
+    tooltip_id.attr("dx", 0);
+
+    var height_description;    
+    var tooltip_description = nodeGroup.append("text")
+                            .text("Description: " + selectedNode.label)
+                            .attr("x", 0)
+                            .attr("y", 120)
+                            .attr("id", "tooltip_description")
+                            .call(function(node){
+                                    height_description = wrap(node, 0.5)
+                            });
+    tooltip_description.attr("text-anchor", "start");
+    tooltip_description.attr("dx", 0);
+
+    var tooltip_nums = nodeGroup.append("text")
+                            .text("Citation: " + selectedNode.total_citation)
+                            .attr("x", 0)
+                            .attr("y", height_description + 140)
+                            .attr("id", "tooltip_nums");
+    tooltip_nums.attr("text-anchor", "start");
+    tooltip_nums.attr("dx", 0);
+
+    var neighbors = getNeighbors(selectedNode)
+
+    // we modify the styles to highlight selected nodes
+    nodeElements.attr('fill', function (node) { 
+        return getNodeColor(node, neighbors,selectedNode) 
+    })
+    textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
+    linkElements.attr('stroke', function (link) { 
+        return getLinkColor(selectedNode, link, neighbors)
+    })
+}
+
+// this helper simple adds all nodes and links
+// that are missing, to recreate the initial state
+function resetData() {
+    var nodeIds = nodes.map(function (node) { return node.id })
+
+    baseNodes.forEach(function (node) {
+        if (nodeIds.indexOf(node.id) === -1) {
+            nodes.push(node)
+        }
+    })
+
+    links = baseLinks
+}
+
+// diffing and mutating the data
+function updateData(selectedNode) {
+    var neighbors = getNeighbors(selectedNode)
+    var newNodes = baseNodes.filter(function (node) {
+        return neighbors.indexOf(node.id) > -1 || node.level === 1
+    })
+
+    var diff = {
+        removed: nodes.filter(function (node) { return newNodes.indexOf(node) === -1 }),
+        added: newNodes.filter(function (node) { return nodes.indexOf(node) === -1 })
+    }
+
+    diff.removed.forEach(function (node) { nodes.splice(nodes.indexOf(node), 1) })
+    diff.added.forEach(function (node) { nodes.push(node) })
+
+    links = baseLinks.filter(function (link) {
+
+        if (Array.isArray(neighbors) 
+            && neighbors.indexOf(link.source.id) > -1
+            && neighbors.indexOf(link.target.id) > -1){
+            return true
+        }
+        
+        return link.target.id === selectedNode.id
+                || link.source.id === selectedNode.id
+
+    })
+}
+//these functions here to swtich the text showing and hiding.
+showingText = false;
+document.getElementById("button").addEventListener("change", function() {
+    var status = d3.select(this).property("value") 
+    if (status == 1) {
+        showingText = true
+        updateSimulation(showingText);        
+    }
+    else {
+        showingText = false
+        updateSimulation(showingText);
+    }
+});
+
+// here we deal with the slider listener.
+var currGravity = -30;
+var currForceX = 0.01;
+var currForceY = 0.03;
+var gravitySlider = document.getElementById("gravity");
+gravitySlider.oninput = function() {
+    currGravity = this.value;
+    simulation = d3.forceSimulation()
+                .force('link', linkForce)
+                .force('charge', d3.forceManyBody().strength(currGravity))
+                .force('center', d3.forceCenter(width / 3, height / 2))
+                .force("x", d3.forceX().strength(currForceX))
+                .force("y", d3.forceY().strength(currForceY));
+     updateSimulation(showingText);
+    
+}
+
+var forceXSlider = document.getElementById("forceX");
+forceXSlider.oninput = function() {
+    currForceX = this.value / 1000;
+    simulation = d3.forceSimulation()
+                .force('link', linkForce)
+                .force('charge', d3.forceManyBody().strength(currGravity))
+                .force('center', d3.forceCenter(width / 3, height / 2))
+                .force("x", d3.forceX().strength(currForceX))
+                .force("y", d3.forceY().strength(currForceY));
+     updateSimulation(showingText);
+    
+}
+
+var forceYSlider = document.getElementById("forceY");
+forceYSlider.oninput = function() {
+    currForceY = this.value / 1000;
+    simulation = d3.forceSimulation()
+                .force('link', linkForce)
+                .force('charge', d3.forceManyBody().strength(currGravity))
+                .force('center', d3.forceCenter(width / 3, height / 2))
+                .force("x", d3.forceX().strength(currForceX))
+                .force("y", d3.forceY().strength(currForceY));
+     updateSimulation(showingText);
+    
+}
+function updateGraph(showingText) {
+    // links
+    linkElements = linkGroup.selectAll('line')
+        .data(links, function (link) {
+            return link.target.id + link.source.id
+        })
+
+    linkElements.exit().remove()
+
+    var scale_opacity = d3.scaleLinear()
+                        .domain([get_min(links, "original"), get_max(links, "original")])
+                        .range([0.5, 1]);
+
+    var linkEnter = linkElements
+        .enter().append('line')
+        .attr('stroke', 'rgba(50, 50, 50, 0.2)')
+        .style("stroke-width", function(link) {
+            return Math.sqrt(link.original);
+        })
+        .style("stroke-opacity", function(link) {
+            return scale_opacity(link.original);
+    })
+
+    linkElements = linkEnter.merge(linkElements)
+
+    // we enter text element first.
+    textElements = textGroup.selectAll('text')
+    .data(nodes, function (node) { return node.id })
+
+    textElements.exit().remove()
+    textEnter = textElements
+        .enter()
+        .append('text')
+        .text(function (node) { return node.id  })
+        .attr('font-size', 0)
+        .attr('dx', 15)
+        .attr('dy', 4)
+        .attr("fill-opacity", 1)
+        .classed('noselect', true)
+
+    if (!showingText) {
+        textElements.attr("font-size", 0)
+    } else {
+        textElements.attr("font-size", 15)
+    }
+
+
+    textElements = textEnter.merge(textElements)
+
+    
+    // nodes
+    nodeElements = nodeGroup.selectAll('circle')
+        .data(nodes, function (node) { return node.id })
+
+    nodeElements.exit().remove()
+
+    var scale_citation = d3.scaleSqrt()
+                        .domain([get_min(nodes, "total_citation"), get_max(nodes, "total_citation")])
+                        .range([3, 10]);
+
+    var nodeEnter = nodeElements
+        .enter()
+        .append('circle')
+        .attr("r",  function(node) { 
+            return scale_citation(node.total_citation); 
+        })
+        .attr('fill', function(node){
+            return get_color(node);
+        })
+        .call(dragDrop)
+        // we link the selectNode method here to update the graph on every click
+        .on('click', selectNode)
+  
+    nodeEnter.append("title")
+    .text(function(d) {return "ID :  " + d.id
+                              +"\n" +"Description :  " + d.label
+                              +"\n" +"Cited by :  " + d.total_citation; });
+
+    nodeElements = nodeEnter.merge(nodeElements)
+}
+
+function updateSimulation(showingText) {
+    updateGraph(showingText)
+
+    simulation.nodes(nodes).on('tick', () => {
+        
+        textElements
+        .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
+        .attr('y', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
+        
+        nodeElements
+          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
+          .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
+        
+        linkElements
+          .attr('x1', function (link) { return link.source.x })
+          .attr('y1', function (link) { return link.source.y })
+          .attr('x2', function (link) { return link.target.x })
+          .attr('y2', function (link) { return link.target.y })
+    })
+
+    simulation.force('link').links(links)
+    simulation.alphaMin(0.03)
+}
+
+// last but not least, we call updateSimulation
+// to trigger the initial render
+
+updateSimulation(showingText)
+
+
+</script>
+</body>
+</html>
