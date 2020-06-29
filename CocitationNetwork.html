@@ -109,26 +109,6 @@
             -ms-user-select: none;
             user-select: none;
         }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-            }
-
-            /* Tooltip text */
-            .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 120px;
-            background-color: black;
-            color: #fff;
-            text-align: center;
-            padding: 5px 0;
-            border-radius: 6px;
-            
-            /* Position the tooltip text - see examples below! */
-            position: absolute;
-            z-index: 1;
-            }
         #tooltip_id {
             font-size: 10pt;
             font-weight: 900;
@@ -153,7 +133,9 @@
 </head>
 
 <body>
-    <svg width="100%" height="100%">
+
+<!-- User Instruction-->
+<svg width="100%" height="100%">
     <style>
         .big {font: 10vw}
         .small { font: italic 1vw sans-serif; }
@@ -180,96 +162,58 @@
 
 </svg>
 
+<!-- Cocitation network-->>
 <script src="https://d3js.org/d3.v5.min.js"></script>
-
-
-
 <script>
 
-function testing(graph){
+//helper function
+//wrap text
+function wrap(description, width) {
+    width = width * window.innerWidth;
+    var height;
+    description.each(function () {
+        var description = d3.select(this),
+            words = description.text()
+                        .split(/\s+/)
+                        .reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 15, // ems
+            x = description.attr("x"),
+            y = description.attr("y"),
+            dy = 0,
+            tspan = description.text(null)
+                        .append("tspan")
+                        .attr("x", x)
+                        .attr("y", y)
+                        .attr("dy", dy + "em");
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = description.append("tspan")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("dy", ++lineNumber * lineHeight + dy)
+                            .text(word);
+            }
+        }
+        height = lineNumber * lineHeight + dy
+    });
+    return height
+}
+
+function drawGraph(graph){
 
     var baseNodes = graph.nodes
     var baseLinks = graph.links
     
-
     var nodes = [...baseNodes]
     var links = [...baseLinks]
-    
-    
-    function get_max(data, col){
-        max = 0;
-        for(var i = 0 ; i < data.length; i ++){
-            if(data[i][col] > max){
-                max = data[i][col]
-            }
-        }
-        return max;
-    }
-    
-    function get_min(data, col){
-        min = 3000;
-        for(var i = 0 ; i < data.length; i ++){
-            if(data[i][col] < min){
-                min = data[i][col]
-            }
-        }
-        return min;
-    }
-    
-    function get_color(curr_node){
-        var scale_year = d3.scaleLinear()
-                            .domain([-get_max(nodes, "year"), -get_min(nodes, "year")])
-                            .range([0.5, 1]);
-        return d3.interpolateGnBu(scale_year(-curr_node.year))
-
-    }
-    
-    function wrap(description, width) {
-        width = width * window.innerWidth;
-        description.each(function () {
-            var description = d3.select(this),
-                words = description.text()
-                            .split(/\s+/)
-                            .reverse(),
-                word,
-                line = [],
-                lineNumber = 0,
-                lineHeight = 1.1, // ems
-                x = description.attr("x"),
-                y = description.attr("y"),
-                dy = 0, //parseFloat(text.attr("dy")),
-                tspan = description.text(null)
-                            .append("tspan")
-                            .attr("x", x)
-                            .attr("y", y)
-                            .attr("dy", dy + "em");
-            while (word = words.pop()) {
-                line.push(word);
-                tspan.text(line.join(" "));
-                if (tspan.node().getComputedTextLength() > width) {
-                    line.pop();
-                    tspan.text(line.join(" "));
-                    line = [word];
-                    tspan = description.append("tspan")
-                                .attr("x", x)
-                                .attr("y", y)
-                                .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                                .text(word);
-                }
-            }
-            word = "text"
-            line.push(word);
-            tspan.text(line.join(" "));
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word]
-            tspan = description.append("tspan")
-                        .attr("x", x)
-                        .attr("y", y)
-                        .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                        .text(word);
-        });
-    }
     
     function getNeighbors(node) {
         return baseLinks.reduce(function (neighbors, link) {
@@ -285,7 +229,15 @@ function testing(graph){
         return node.level == 2
         return link.target.id === node.id || link.source.id === node.id
     }
-    
+
+    function get_color(curr_node){
+        var scale_year = d3.scaleLinear()
+                            .domain(d3.extent(nodes, function(node){
+                                return -node.year
+                            }))
+                            .range([0.5, 1]);
+        return d3.interpolateGnBu(scale_year(-curr_node.year))
+    }    
     
     function getNodeColor(node, neighbors, selectedNode) {
         if(node.id == selectedNode.id) {
@@ -297,20 +249,18 @@ function testing(graph){
     function getTextColor(node, neighbors) {
       return "black"
     }
+
     function getLinkColor(node, link, neighbors) {
         return isNeighborLink(node, link, neighbors) ? 'green' : '#E5E5E5'
-    }
+    }    
     
-    
-    var width = window.innerWidth * 0.9
-    var height = window.innerHeight * 0.9
-    var radius = 10
+    var width_network = window.innerWidth * 0.9
+    var height_network = window.innerHeight * 0.9
+    var radius_max_network = 10
+    var radius_min_network = 3
     
     var svg = d3.select('svg')
-    svg.attr('width', width).attr('height', height)
-    
-    
-    
+    svg.attr('width', width_network).attr('height', height_network)
     
     var linkElements,
         nodeElements,
@@ -334,7 +284,7 @@ function testing(graph){
     var simulation = d3.forceSimulation()
         .force('link', linkForce)
         .force('charge', d3.forceManyBody().strength(-60))
-        .force('center', d3.forceCenter(width / 3, height / 2))
+        .force('center', d3.forceCenter(width_network / 3, height_network / 2))
         .force("x", d3.forceX().strength(0.01))
         .force("y", d3.forceY().strength(0.03));
     
@@ -352,6 +302,42 @@ function testing(graph){
         node.fx = null
         node.fy = null
     })
+
+    function add_description(nodeGroup, selectedNode){
+        if(d3.select("#tooltip_id") !== null){
+            d3.select("#tooltip_id").remove(); 
+            d3.select("#tooltip_description").remove(); 
+            d3.select("#tooltip_nums").remove(); 
+        }
+    
+        var tooltip_id = nodeGroup.append("text")
+                                .text("ID: " + selectedNode.id)
+                                .attr("x", 0)
+                                .attr("y", 100)
+                                .attr("id", "tooltip_id");
+        tooltip_id.attr("text-anchor", "start");
+        tooltip_id.attr("dx", 0);
+        
+        var height_description;
+        var tooltip_description = nodeGroup.append("text")
+                                .text("Description: " + selectedNode.description)
+                                .attr("x", 0)
+                                .attr("y", 120)
+                                .attr("id", "tooltip_description")
+                                .call(function(node){
+                                    height_description = wrap(node, 0.5)
+                                });
+        tooltip_description.attr("text-anchor", "start");
+        tooltip_description.attr("dx", 0); 
+
+        var tooltip_nums = nodeGroup.append("text")
+                                .text("Citation: " + selectedNode.total_citation)
+                                .attr("x", 0)
+                                .attr("y", height_description + 140)
+                                .attr("id", "tooltip_nums");
+        tooltip_nums.attr("text-anchor", "start");
+        tooltip_nums.attr("dx", 0); 
+    }
     
     // select node is called on every click
     // we either update the data according to the selection
@@ -362,41 +348,16 @@ function testing(graph){
             // resetData()
             // updateSimulation()
             location.reload()
-            if (showingText) updateSimulation(showingText)
+            if (showingText) {
+                updateSimulation(showingText)
+            }
         } else {
             selectedId = selectedNode.id
             updateData(selectedNode)
             updateSimulation(showingText)
         }
     
-        d3.select("#tooltip_id").remove(); 
-        d3.select("#tooltip_description").remove(); 
-        d3.select("#tooltip_nums").remove(); 
-    
-        var tooltip_id = nodeGroup.append("text")
-                                .text("ID: " + selectedNode.id)
-                                .attr("x", 0)
-                                .attr("y", 100)
-                                .attr("id", "tooltip_id");
-        tooltip_id.attr("text-anchor", "start");
-        tooltip_id.attr("dx", 0);
-                
-        var tooltip_description = nodeGroup.append("text")
-                                .text("Description: " + selectedNode.description)
-                                .attr("x", 0)
-                                .attr("y", 120)
-                                .attr("id", "tooltip_description")
-                                .call(wrap, 0.5);
-        tooltip_description.attr("text-anchor", "start");
-        tooltip_description.attr("dx", 0);
-    
-        var tooltip_nums = nodeGroup.append("text")
-                                .text("Citation: " + selectedNode.total_citation)
-                                .attr("x", 0)
-                                .attr("y", 140)
-                                .attr("id", "tooltip_nums");
-        tooltip_nums.attr("text-anchor", "start");
-        tooltip_nums.attr("dx", 0);
+        add_description(nodeGroup, selectedNode)
     
         var neighbors = getNeighbors(selectedNode)
     
@@ -404,7 +365,9 @@ function testing(graph){
         nodeElements.attr('fill', function (node) { 
             return getNodeColor(node, neighbors,selectedNode) 
         })
-        textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
+        textElements.attr('fill', function (node) { 
+            return getTextColor(node, neighbors) 
+        })
         linkElements.attr('stroke', function (link) { 
             return getLinkColor(selectedNode, link, neighbors)
         })
@@ -432,12 +395,20 @@ function testing(graph){
         })
     
         var diff = {
-            removed: nodes.filter(function (node) { return newNodes.indexOf(node) === -1 }),
-            added: newNodes.filter(function (node) { return nodes.indexOf(node) === -1 })
+            removed: nodes.filter(function (node) { 
+                return newNodes.indexOf(node) === -1 
+            }),
+            added: newNodes.filter(function (node) { 
+                return nodes.indexOf(node) === -1 
+            })
         }
     
-        diff.removed.forEach(function (node) { nodes.splice(nodes.indexOf(node), 1) })
-        diff.added.forEach(function (node) { nodes.push(node) })
+        diff.removed.forEach(function (node) { 
+            nodes.splice(nodes.indexOf(node), 1) 
+        })
+        diff.added.forEach(function (node) { 
+            nodes.push(node) 
+        })
     
         links = baseLinks.filter(function (link) {
     
@@ -476,7 +447,8 @@ function testing(graph){
         simulation = d3.forceSimulation()
                     .force('link', linkForce)
                     .force('charge', d3.forceManyBody().strength(currGravity))
-                    .force('center', d3.forceCenter(width / 3, height / 2))
+                    .force('center', d3.forceCenter(width_network / 3, 
+                                                    height_network / 2))
                     .force("x", d3.forceX().strength(currForceX))
                     .force("y", d3.forceY().strength(currForceY));
          updateSimulation(showingText);
@@ -489,7 +461,8 @@ function testing(graph){
         simulation = d3.forceSimulation()
                     .force('link', linkForce)
                     .force('charge', d3.forceManyBody().strength(currGravity))
-                    .force('center', d3.forceCenter(width / 3, height / 2))
+                    .force('center', d3.forceCenter(width_network / 3, 
+                                                    height_network / 2))
                     .force("x", d3.forceX().strength(currForceX))
                     .force("y", d3.forceY().strength(currForceY));
          updateSimulation(showingText);
@@ -502,12 +475,14 @@ function testing(graph){
         simulation = d3.forceSimulation()
                     .force('link', linkForce)
                     .force('charge', d3.forceManyBody().strength(currGravity))
-                    .force('center', d3.forceCenter(width / 3, height / 2))
+                    .force('center', d3.forceCenter(width_network / 3, 
+                                                    height_network / 2))
                     .force("x", d3.forceX().strength(currForceX))
                     .force("y", d3.forceY().strength(currForceY));
          updateSimulation(showingText);
         
     }
+    
     function updateGraph(showingText) {
         // links
         linkElements = linkGroup.selectAll('line')
@@ -518,7 +493,9 @@ function testing(graph){
         linkElements.exit().remove()
     
         var scale_opacity = d3.scaleLinear()
-                            .domain([get_min(links, "num_cocitation"), get_max(links, "num_cocitation")])
+                            .domain(d3.extent(links, function(links){
+                                return links.num_cocitation
+                            }))
                             .range([0.5, 1]);
     
         var linkEnter = linkElements
@@ -565,8 +542,10 @@ function testing(graph){
         nodeElements.exit().remove()
     
         var scale_citation = d3.scaleSqrt()
-                            .domain([get_min(nodes, "total_citation"), get_max(nodes, "total_citation")])
-                            .range([3, 10]);
+                                .domain(d3.extent(nodes, function(nodes){
+                                    return nodes.total_citation
+                                }))
+                                .range([radius_min_network, radius_max_network]);
     
         var nodeEnter = nodeElements
             .enter()
@@ -595,33 +574,42 @@ function testing(graph){
         simulation.nodes(nodes).on('tick', () => {
             
             textElements
-            .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
-            .attr('y', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
+                .attr('x', function (node) { 
+                    var min_x = Math.min(0.5 * width_network - radius_max_network, node.x)
+                    return Math.max(radius_max_network, min_x); 
+                })
+                .attr('y', function (node) { 
+                    var min_y = Math.min(height_network - radius_max_network, node.y)
+                    return (node.y = Math.max(radius_max_network, min_y)); 
+                })
             
             nodeElements
-              .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
-              .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
+                .attr('cx', function (node) { 
+                    var min_x = Math.min(0.5 * width_network - radius_max_network, node.x)
+                    return (node.x = Math.max(radius_max_network, min_x)); 
+                })
+                .attr('cy', function (node) { 
+                    var min_y = Math.min(height_network - radius_max_network, node.y)
+                    return (node.y = Math.max(radius_max_network, min_y)); 
+                })
             
             linkElements
-              .attr('x1', function (link) { return link.source.x })
-              .attr('y1', function (link) { return link.source.y })
-              .attr('x2', function (link) { return link.target.x })
-              .attr('y2', function (link) { return link.target.y })
+                .attr('x1', function (link) { return link.source.x })
+                .attr('y1', function (link) { return link.source.y })
+                .attr('x2', function (link) { return link.target.x })
+                .attr('y2', function (link) { return link.target.y })
         })
     
         simulation.force('link').links(links)
         simulation.alphaMin(0.03)
     }
     
-    // last but not least, we call updateSimulation
-    // to trigger the initial render
-    
     updateSimulation(showingText)
     
     }
 
     d3.json("link_node.json")
-        .then(testing);
+        .then(drawGraph);
 
     </script>
 
