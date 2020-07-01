@@ -154,6 +154,7 @@
 </svg>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/d3-force-boundary@0.0.1/dist/d3-force-boundary.min.js"></script>
 
 <script>
 
@@ -718,7 +719,8 @@ var simulation = d3.forceSimulation()
     .force('charge', d3.forceManyBody().strength(-200))
     .force('center', d3.forceCenter(1.2 * width / 2, 0.8 * height / 2))
     .force("x", d3.forceX().strength(0.001))
-    .force("y", d3.forceY().strength(0.003));
+    .force("y", d3.forceY().strength(0.003))
+    .force("boundary", forceBoundary(0,0,width, height));
 
 var dragDrop = d3.drag().on('start', function (node) {
     node.fx = node.x
@@ -738,6 +740,7 @@ var dragDrop = d3.drag().on('start', function (node) {
 // select node is called on every click
 // we either update the data according to the selection
 // or reset the data if the same node is clicked twice
+
 function selectNode(selectedNode) {
     if (selectedId === selectedNode.id) {
         selectedId = undefined
@@ -748,6 +751,7 @@ function selectNode(selectedNode) {
     } else {
         selectedId = selectedNode.id
         updateData(selectedNode)
+        updateSimulation(false)
         updateSimulation(showingText)
     }
 
@@ -838,7 +842,7 @@ function updateData(selectedNode) {
     })
 }
 //these functions here to swtich the text showing and hiding.
-showingText = false;
+var showingText = false;
 document.getElementById("button").addEventListener("change", function() {
     var status = d3.select(this).property("value") 
     if (status == 1) {
@@ -857,22 +861,7 @@ var currLinkForce = 1;
 var gravitySlider = document.getElementById("nodeForceSlider");
 gravitySlider.oninput = function() {
     currGravity = parseInt(this.value);
-    console.log(this.value)
     currLinkForce = (parseInt(this.value) + 400) / 200;
-    console.log(currLinkForce)
-    /*
-    linkForce = d3
-    .forceLink()
-    .id(function (link) { return link.id })
-    .strength(function (link) { return link.strength * currLinkForce});
-
-    simulation = d3.forceSimulation()
-    .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(currGravity))
-    .force('center', d3.forceCenter(1.2 * width / 2, 0.8 * height / 2))
-    .force("x", d3.forceX().strength(0.001))
-    .force("y", d3.forceY().strength(0.003));
-    */
     simulation.force("link")
         .id(function(d) {return d.id;})
         .strength(function (link) { return link.strength * currLinkForce});
@@ -913,6 +902,7 @@ function updateGraph(showingText) {
     .data(nodes, function (node) { return node.id })
 
     textElements.exit().remove()
+    var textEnter;
     textEnter = textElements
         .enter()
         .append('text')
@@ -922,11 +912,10 @@ function updateGraph(showingText) {
         .attr('dy', 4)
         .attr("fill-opacity", 1)
         .classed('noselect', true)
-
     if (!showingText) {
-        textElements.attr("font-size", 0)
+        textElements.attr('font-size', 0);
     } else {
-        textElements.attr("font-size", 15)
+        textElements.attr('font-size', 15);
     }
 
 
