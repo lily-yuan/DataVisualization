@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <div class="flex-container">
-        <div class="flex-item"> Dispelling force between Nodes </div>
-        <div class="flex-item"> Force on X_axis </div>
-        <div class="flex-item"> Force On Y_axis </div>
+        <div class="flex-item"></div>
     <br><br>
     <select id = "button", class = "flex-item">
         <option value= 1>SHOWING TEXT</option>
@@ -19,9 +17,7 @@
     </select>
     </div>
     <div class="container">
-        <input type="range" min="-120" max="0" value="-60" class="slider_dispel" id="gravity">
-        <input type="range" min="0" max="100" value="10" class="slider_forcex" id="forceX">
-        <input type="range" min="0" max="100" value="30" class="slider_forcey" id="forceY">
+        <input type="range" min="-400" max="0" value="-200" class="slider_dispel" id="nodeForceSlider">
     </div>
 
 
@@ -51,46 +47,17 @@
         }
 
         .slider_dispel {
-            position: relative;
-            top: 3em;
-            right: 20em;
+            top: 30%;
+            right: 40%;
             -webkit-appearance: none;
-            width: 10%!important;
-            height: 25px!important;
+            width: 10%;
+            height: 5%;
             background: #d3d3d3;
             outline: none;
             opacity: 0.7;
             -webkit-transition: .7s;
             transition: opacity .7s;
             margin-right: 11em;
-        }
-        .slider_forcex {
-            position: relative;
-            top: 3em;
-            right: 20em;
-            -webkit-appearance: none;
-            width: 10%!important;
-            height: 25px!important;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .01s;
-            transition: opacity .01s;
-            margin-right: 8em;
-        }
-        .slider_forcey {
-            position: relative;
-            top: 3em;
-            right: 20em;
-            -webkit-appearance: none;
-            width: 10%!important;
-            height: 25px!important;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .7s;
-            transition: opacity .7s;
-            margin-right: 2em;
         }
 
         /* button for showing the text or not. */
@@ -154,33 +121,10 @@
 
 <body>
     <svg width="100%" height="100%">
-    <style>
-        .big {font: 10vw}
-        .small { font: italic 1vw sans-serif; }
-        .heavy { font: bold 1vw sans-serif; }
-    </style>
-
-    <text x="67%" y="6%" fill="black"> Welcome to David's publication network!</text>
-    <text x="67%" y="12%" fill="black"> Network links are based on the number of </text>
-    <text x="67%" y="18%" fill="black"> times the publications are co-cited in other documents.</text>
-    <text x="67%" y="24%" fill="black"> Node color represents the year of documents.</text>
-    <text x="67%" y="30%" class="heavy" fill="aqua" > latest</text>
-    <text x="72%" y="30%"  fill="black"> -----> </text>
-    <text x="77%" y="30%" fill="navy" class="heavy"> oldest</text>
-    <text x="67%" y="36%" fill="black"> Thickness of links represents the number of cocitations.</text>
-    <text x="67%" y="42%" class = "small" fill="black"> less cocitations</text>
-    <text x="77%" y="42%"  fill="black"> -----> </text>
-    <text x="83%" y="42%" fill="black" class="heavy"> more cocitations</text>
-    <text x="67%" y="48%" fill="red" class="heavy"> USER GUIDE: </text>
-    <text x="67%" y="54%" fill="black"> .hover over a node to see the name of document. </text>
-    <text x="67%" y="60%" fill="black"> .drag node to see how dynamic changes. </text>
-    <text x="67%" y="66%" fill="black"> .click on a node to see its own connections and subplots. </text>
-    <text x="67%" y="72%" fill="black"> .If you are in the subplot, click on the red node to come </text>
-    <text x="67%" y="78%" fill="black"> back to the original graph.</text>
-
 </svg>
 
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/d3-force-boundary@0.0.1/dist/d3-force-boundary.min.js"></script>
 
 <script>
 
@@ -651,19 +595,6 @@ function get_color(curr_node){
                     + bs + ")";
 }
 
-//function get_color(curr_node){
-//    var scale_year = d3.scaleLinear()
-//                        .domain([-get_max(nodes, "level"), -get_min(nodes, "level")])
-//                        .range([0.5, 1]);
-//    return d3.interpolateGnBu(scale_year(-curr_node.level))
-    /*
-    var scale_year = d3.scaleLinear()
-                        .domain([get_min(nodes, "level"), get_max(nodes, "level")])
-                        .range([0.5, 1]);
-    return d3.interpolateViridis(scale_year(curr_node.level))
-    */
-//}
-
 function wrap(description, width) {
     width = width * window.innerWidth;
     var height;
@@ -772,10 +703,11 @@ var linkForce = d3
 
 var simulation = d3.forceSimulation()
     .force('link', linkForce)
-    .force('charge', d3.forceManyBody().strength(-60))
-    .force('center', d3.forceCenter(width / 3, height / 2))
-    .force("x", d3.forceX().strength(0.01))
-    .force("y", d3.forceY().strength(0.03));
+    .force('charge', d3.forceManyBody().strength(-200))
+    .force('center', d3.forceCenter(1.2 * width / 2, 0.8 * height / 2))
+    .force("x", d3.forceX().strength(0.001))
+    .force("y", d3.forceY().strength(0.003))
+    .force("boundary", forceBoundary(0,0,width, height));
 
 var dragDrop = d3.drag().on('start', function (node) {
     node.fx = node.x
@@ -795,6 +727,7 @@ var dragDrop = d3.drag().on('start', function (node) {
 // select node is called on every click
 // we either update the data according to the selection
 // or reset the data if the same node is clicked twice
+
 function selectNode(selectedNode) {
     if (selectedId === selectedNode.id) {
         selectedId = undefined
@@ -805,6 +738,7 @@ function selectNode(selectedNode) {
     } else {
         selectedId = selectedNode.id
         updateData(selectedNode)
+        updateSimulation(false)
         updateSimulation(showingText)
     }
 
@@ -900,7 +834,7 @@ function updateData(selectedNode) {
     })
 }
 //these functions here to swtich the text showing and hiding.
-showingText = false;
+var showingText = false;
 document.getElementById("button").addEventListener("change", function() {
     var status = d3.select(this).property("value")
     if (status == 1) {
@@ -914,47 +848,22 @@ document.getElementById("button").addEventListener("change", function() {
 });
 
 // here we deal with the slider listener.
-var currGravity = -30;
-var currForceX = 0.01;
-var currForceY = 0.03;
-var gravitySlider = document.getElementById("gravity");
+var currGravity = -200;
+var currLinkForce = 1;
+var gravitySlider = document.getElementById("nodeForceSlider");
 gravitySlider.oninput = function() {
-    currGravity = this.value;
-    simulation = d3.forceSimulation()
-                .force('link', linkForce)
-                .force('charge', d3.forceManyBody().strength(currGravity))
-                .force('center', d3.forceCenter(width / 3, height / 2))
-                .force("x", d3.forceX().strength(currForceX))
-                .force("y", d3.forceY().strength(currForceY));
-     updateSimulation(showingText);
+    currGravity = parseInt(this.value);
+    currLinkForce = (parseInt(this.value) + 400) / 200;
+    simulation.force("link")
+        .id(function(d) {return d.id;})
+        .strength(function (link) { return link.strength * currLinkForce});
+    simulation.force("charge")
+        .strength(currGravity);
+
+    simulation.alpha(0.7).restart();
 
 }
 
-var forceXSlider = document.getElementById("forceX");
-forceXSlider.oninput = function() {
-    currForceX = this.value / 1000;
-    simulation = d3.forceSimulation()
-                .force('link', linkForce)
-                .force('charge', d3.forceManyBody().strength(currGravity))
-                .force('center', d3.forceCenter(width / 3, height / 2))
-                .force("x", d3.forceX().strength(currForceX))
-                .force("y", d3.forceY().strength(currForceY));
-     updateSimulation(showingText);
-
-}
-
-var forceYSlider = document.getElementById("forceY");
-forceYSlider.oninput = function() {
-    currForceY = this.value / 1000;
-    simulation = d3.forceSimulation()
-                .force('link', linkForce)
-                .force('charge', d3.forceManyBody().strength(currGravity))
-                .force('center', d3.forceCenter(width / 3, height / 2))
-                .force("x", d3.forceX().strength(currForceX))
-                .force("y", d3.forceY().strength(currForceY));
-     updateSimulation(showingText);
-
-}
 function updateGraph(showingText) {
     // links
     linkElements = linkGroup.selectAll('line')
@@ -985,6 +894,7 @@ function updateGraph(showingText) {
     .data(nodes, function (node) { return node.id })
 
     textElements.exit().remove()
+    var textEnter;
     textEnter = textElements
         .enter()
         .append('text')
@@ -994,11 +904,10 @@ function updateGraph(showingText) {
         .attr('dy', 4)
         .attr("fill-opacity", 1)
         .classed('noselect', true)
-
     if (!showingText) {
-        textElements.attr("font-size", 0)
+        textElements.attr('font-size', 0);
     } else {
-        textElements.attr("font-size", 15)
+        textElements.attr('font-size', 15);
     }
 
 
@@ -1042,11 +951,11 @@ function updateSimulation(showingText) {
     simulation.nodes(nodes).on('tick', () => {
 
         textElements
-        .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
+        .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
         .attr('y', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
 
         nodeElements
-          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(0.5 * width - radius, node.x))); })
+          .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
           .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
 
         linkElements
@@ -1057,7 +966,7 @@ function updateSimulation(showingText) {
     })
 
     simulation.force('link').links(links)
-    simulation.alphaTarget(0.05)
+    simulation.alpha(1).restart();
 }
 
 // last but not least, we call updateSimulation
