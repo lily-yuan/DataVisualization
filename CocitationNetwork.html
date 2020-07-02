@@ -9,9 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <div class="flex-container">
-        <div class="flex-item"> Dispelling force between Nodes </div>
-        <div class="flex-item"> Force on X_axis </div>
-        <div class="flex-item"> Force On Y_axis </div>
+        <div class="flex-item"></div>
     <br><br>
     <select id = "button", class = "flex-item">
         <option value= 1>SHOWING TEXT</option>
@@ -19,9 +17,7 @@
     </select>
     </div>
     <div class="container">
-        <input type="range" min="-120" max="0" value="-60" class="slider_dispel" id="gravity">
-        <input type="range" min="0" max="100" value="10" class="slider_forcex" id="forceX">
-        <input type="range" min="0" max="100" value="30" class="slider_forcey" id="forceY">
+        <input type="range" min="-400" max="0" value="-200" class="slider_dispel" id="nodeForceSlider">
     </div>
 
 
@@ -51,12 +47,11 @@
         }
 
         .slider_dispel {
-            position: relative;
-            top: 3em;
-            right: 20em;
+            top: 30%;
+            right: 40%;
             -webkit-appearance: none;
-            width: 10%!important;
-            height: 25px!important;
+            width: 10%;
+            height: 5%;
             background: #d3d3d3;
             outline: none;
             opacity: 0.7;
@@ -64,37 +59,11 @@
             transition: opacity .7s;
             margin-right: 11em;
         }
-        .slider_forcex {
-            position: relative;
-            top: 3em;
-            right: 20em;
-            -webkit-appearance: none;
-            width: 10%!important;
-            height: 25px!important;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .01s;
-            transition: opacity .01s;
-            margin-right: 8em;
-        }
-        .slider_forcey {
-            position: relative;
-            top: 3em;
-            right: 20em;
-            -webkit-appearance: none;
-            width: 10%!important;
-            height: 25px!important;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .7s;
-            transition: opacity .7s;
-            margin-right: 2em;
-        }
 
         /* button for showing the text or not. */ 
         #button{
+            top: 5em;
+            right: 1em;
             height: 3em;
             width: 10em;
             color:#01070a;
@@ -134,36 +103,14 @@
 
 <body>
 
-<!-- User Instruction-->
 <svg width="100%" height="100%">
-    <style>
-        .big {font: 10vw}
-        .small { font: italic 1vw sans-serif; }
-        .heavy { font: bold 1vw sans-serif; }
-    </style>
-    
-    <text x="67%" y="6%" fill="black"> Welcome to David's publication network!</text>
-    <text x="67%" y="12%" fill="black"> Network links are based on the number of </text>
-    <text x="67%" y="18%" fill="black"> times the publications are co-cited in other documents.</text>
-    <text x="67%" y="24%" fill="black"> Node color represents the year of documents.</text>
-    <text x="67%" y="30%" class="heavy" fill="aqua" > latest</text>
-    <text x="72%" y="30%"  fill="black"> -----> </text>
-    <text x="77%" y="30%" fill="navy" class="heavy"> oldest</text>
-    <text x="67%" y="36%" fill="black"> Thickness of links represents the number of cocitations.</text>
-    <text x="67%" y="42%" class = "small" fill="black"> less cocitations</text>
-    <text x="77%" y="42%"  fill="black"> -----> </text>
-    <text x="83%" y="42%" fill="black" class="heavy"> more cocitations</text>
-    <text x="67%" y="48%" fill="red" class="heavy"> USER GUIDE: </text>
-    <text x="67%" y="54%" fill="black"> .hover over a node to see the name of document. </text>
-    <text x="67%" y="60%" fill="black"> .drag node to see how dynamic changes. </text>
-    <text x="67%" y="66%" fill="black"> .click on a node to see its own connections and subplots. </text>
-    <text x="67%" y="72%" fill="black"> .If you are in the subplot, click on the red node to come </text>
-    <text x="67%" y="78%" fill="black"> back to the original graph.</text>
 
 </svg>
 
 <!-- Cocitation network-->>
 <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://unpkg.com/d3-force-boundary@0.0.1/dist/d3-force-boundary.min.js"></script>
+
 <script>
 
 //helper function
@@ -187,7 +134,7 @@ function wrap(description, width) {
                         .append("tspan")
                         .attr("x", x)
                         .attr("y", y)
-                        .attr("dy", dy + "em");
+                        .attr("dy", dy);
         while (word = words.pop()) {
             line.push(word);
             tspan.text(line.join(" "));
@@ -207,6 +154,68 @@ function wrap(description, width) {
     return height
 }
 
+function getTextColor() {
+    return "black"
+}
+
+function getLinkColor() {
+    return '#E5E5E5'//grey
+}
+
+function getNodeOutline(node, selectedNode) {
+    if(node.id == selectedNode.id) {
+        return 3
+    }
+    return 0
+}
+
+function getNeighbors(baselink, node) {
+    return baselink.reduce(function (neighbors, link) {
+        if (link.target.id === node.id) {
+            neighbors.push(link.source.id)
+        }else if(link.source.id === node.id) {
+            neighbors.push(link.target.id)
+        }
+        return neighbors}, [node.id])
+}
+
+function add_description(nodeGroup, selectedNode){
+        
+    if(d3.select("#tooltip_id") !== null){
+        d3.select("#tooltip_id").remove(); 
+        d3.select("#tooltip_description").remove(); 
+        d3.select("#tooltip_nums").remove(); 
+    }
+    
+    var tooltip_id = nodeGroup.append("text")
+                                .text("ID: " + selectedNode.id)
+                                .attr("x", 0)
+                                .attr("y", 100)
+                                .attr("id", "tooltip_id");
+    tooltip_id.attr("text-anchor", "start");
+    tooltip_id.attr("dx", 0);
+        
+    var height_description;
+    var tooltip_description = nodeGroup.append("text")
+                                .text("Description: " + selectedNode.description)
+                                .attr("x", 0)
+                                .attr("y", 120)
+                                .attr("id", "tooltip_description")
+                                .call(function(node){
+                                    height_description = wrap(node, 0.5)
+                                });
+    tooltip_description.attr("text-anchor", "start");
+    tooltip_description.attr("dx", 0); 
+
+    var tooltip_nums = nodeGroup.append("text")
+                                .text("Citation: " + selectedNode.total_citation)
+                                .attr("x", 0)
+                                .attr("y", height_description + 140)
+                                .attr("id", "tooltip_nums");
+    tooltip_nums.attr("text-anchor", "start");
+    tooltip_nums.attr("dx", 0); 
+}
+
 function drawGraph(graph){
 
     var baseNodes = graph.nodes
@@ -215,49 +224,22 @@ function drawGraph(graph){
     var nodes = [...baseNodes]
     var links = [...baseLinks]
     
-    function getNeighbors(node) {
-        return baseLinks.reduce(function (neighbors, link) {
-            if (link.target.id === node.id) {
-                neighbors.push(link.source.id)
-            }else if(link.source.id === node.id) {
-                neighbors.push(link.target.id)
-            }
-        return neighbors}, [node.id])
-    }
-    
-    function isNeighborLink(node, link, neighbors) {
-        return node.level == 2
-        return link.target.id === node.id || link.source.id === node.id
-    }
-
-    function get_color(curr_node){
+    function getNodeColor(node, selectedNode) {
+        if(node.id === selectedNode.id) {
+            return 'gold'
+        }
         var scale_year = d3.scaleLinear()
                             .domain(d3.extent(nodes, function(node){
                                 return -node.year
                             }))
                             .range([0.5, 1]);
-        return d3.interpolateGnBu(scale_year(-curr_node.year))
-    }    
-    
-    function getNodeColor(node, neighbors, selectedNode) {
-        if(node.id == selectedNode.id) {
-            return 'red'
-        }
-        return get_color(node)
-    }
-    
-    function getTextColor(node, neighbors) {
-      return "black"
+        return d3.interpolateGnBu(scale_year(-node.year))
     }
 
-    function getLinkColor(node, link, neighbors) {
-        return isNeighborLink(node, link, neighbors) ? 'green' : '#E5E5E5'
-    }    
-    
     var width_network = window.innerWidth * 0.9
     var height_network = window.innerHeight * 0.9
     var radius_max_network = 10
-    var radius_min_network = 3
+    var radius_min_network = 4
     
     var svg = d3.select('svg')
     svg.attr('width', width_network).attr('height', height_network)
@@ -283,65 +265,34 @@ function drawGraph(graph){
     
     var simulation = d3.forceSimulation()
         .force('link', linkForce)
-        .force('charge', d3.forceManyBody().strength(-60))
-        .force('center', d3.forceCenter(width_network / 3, height_network / 2))
-        .force("x", d3.forceX().strength(0.01))
-        .force("y", d3.forceY().strength(0.03));
+        .force('charge', d3.forceManyBody().strength(-200))
+        .force('center', d3.forceCenter(1.2 * width_network / 2, 0.8 * height_network / 2))
+        .force("x", d3.forceX().strength(0.001))
+        .force("y", d3.forceY().strength(0.003))
+        .force("boundary", forceBoundary(0, 0, width_network, height_network));
     
-    var dragDrop = d3.drag().on('start', function (node) {
-        node.fx = node.x
-        node.fy = node.y
-    }).on('drag', function (node) {
-        simulation.alphaTarget(0.03).restart()
-        node.fx = d3.event.x
-        node.fy = d3.event.y
-    }).on('end', function (node) {
-        if (!d3.event.active) {
-          simulation.alphaTarget(0)
-        }
-        node.fx = null
-        node.fy = null
-    })
+    var dragDrop = d3.drag()
+                        .on('start', function (node) {
+                            node.fx = node.x
+                            node.fy = node.y
+                        })
+                        .on('drag', function (node) {
+                            simulation.alphaTarget(0.03).restart()
+                            node.fx = d3.event.x
+                            node.fy = d3.event.y
+                        })
+                        .on('end', function (node) {
+                            if (!d3.event.active) {
+                                simulation.alphaTarget(0)
+                            }
+                            node.fx = null
+                            node.fy = null
+                        })
 
-    function add_description(nodeGroup, selectedNode){
-        if(d3.select("#tooltip_id") !== null){
-            d3.select("#tooltip_id").remove(); 
-            d3.select("#tooltip_description").remove(); 
-            d3.select("#tooltip_nums").remove(); 
-        }
-    
-        var tooltip_id = nodeGroup.append("text")
-                                .text("ID: " + selectedNode.id)
-                                .attr("x", 0)
-                                .attr("y", 100)
-                                .attr("id", "tooltip_id");
-        tooltip_id.attr("text-anchor", "start");
-        tooltip_id.attr("dx", 0);
-        
-        var height_description;
-        var tooltip_description = nodeGroup.append("text")
-                                .text("Description: " + selectedNode.description)
-                                .attr("x", 0)
-                                .attr("y", 120)
-                                .attr("id", "tooltip_description")
-                                .call(function(node){
-                                    height_description = wrap(node, 0.5)
-                                });
-        tooltip_description.attr("text-anchor", "start");
-        tooltip_description.attr("dx", 0); 
-
-        var tooltip_nums = nodeGroup.append("text")
-                                .text("Citation: " + selectedNode.total_citation)
-                                .attr("x", 0)
-                                .attr("y", height_description + 140)
-                                .attr("id", "tooltip_nums");
-        tooltip_nums.attr("text-anchor", "start");
-        tooltip_nums.attr("dx", 0); 
-    }
-    
     // select node is called on every click
     // we either update the data according to the selection
     // or reset the data if the same node is clicked twice
+
     function selectNode(selectedNode) {
         if (selectedId === selectedNode.id) {
             selectedId = undefined
@@ -354,23 +305,22 @@ function drawGraph(graph){
         } else {
             selectedId = selectedNode.id
             updateData(selectedNode)
+            updateSimulation(false)
             updateSimulation(showingText)
         }
     
         add_description(nodeGroup, selectedNode)
     
-        var neighbors = getNeighbors(selectedNode)
-    
         // we modify the styles to highlight selected nodes
         nodeElements.attr('fill', function (node) { 
-            return getNodeColor(node, neighbors,selectedNode) 
-        })
-        textElements.attr('fill', function (node) { 
-            return getTextColor(node, neighbors) 
-        })
-        linkElements.attr('stroke', function (link) { 
-            return getLinkColor(selectedNode, link, neighbors)
-        })
+                        return getNodeColor(node, selectedNode) 
+                    })
+                    .attr('stroke', "black")
+                    .attr('stroke-width', function (node){
+                        return getNodeOutline(node, selectedNode)
+                    })
+        textElements.attr('fill', getTextColor)
+        linkElements.attr('stroke', getLinkColor)
     }
     
     // this helper simple adds all nodes and links
@@ -389,7 +339,7 @@ function drawGraph(graph){
     
     // diffing and mutating the data
     function updateData(selectedNode) {
-        var neighbors = getNeighbors(selectedNode)
+        var neighbors = getNeighbors(baseLinks, selectedNode)
         var newNodes = baseNodes.filter(function (node) {
             return neighbors.indexOf(node.id) > -1 || node.level === 1
         })
@@ -424,7 +374,7 @@ function drawGraph(graph){
         })
     }
     //these functions here to swtich the text showing and hiding.
-    showingText = false;
+    var showingText = false;
     document.getElementById("button").addEventListener("change", function() {
         var status = d3.select(this).property("value") 
         if (status == 1) {
@@ -438,51 +388,22 @@ function drawGraph(graph){
     });
     
     // here we deal with the slider listener.
-    var currGravity = -30;
-    var currForceX = 0.01;
-    var currForceY = 0.03;
-    var gravitySlider = document.getElementById("gravity");
+    var currGravity = -200;
+    var currLinkForce = 1;
+    var gravitySlider = document.getElementById("nodeForceSlider");
     gravitySlider.oninput = function() {
-        currGravity = this.value;
-        simulation = d3.forceSimulation()
-                    .force('link', linkForce)
-                    .force('charge', d3.forceManyBody().strength(currGravity))
-                    .force('center', d3.forceCenter(width_network / 3, 
-                                                    height_network / 2))
-                    .force("x", d3.forceX().strength(currForceX))
-                    .force("y", d3.forceY().strength(currForceY));
-         updateSimulation(showingText);
+        currGravity = parseInt(this.value);
+        currLinkForce = (parseInt(this.value) + 400) / 200;
+        simulation.force("link")
+            .id(function(d) {return d.id;})
+            .strength(function (link) { return link.strength * currLinkForce});
+        simulation.force("charge")
+            .strength(currGravity);
+        
+        simulation.alpha(0.7).restart();
         
     }
-    
-    var forceXSlider = document.getElementById("forceX");
-    forceXSlider.oninput = function() {
-        currForceX = this.value / 1000;
-        simulation = d3.forceSimulation()
-                    .force('link', linkForce)
-                    .force('charge', d3.forceManyBody().strength(currGravity))
-                    .force('center', d3.forceCenter(width_network / 3, 
-                                                    height_network / 2))
-                    .force("x", d3.forceX().strength(currForceX))
-                    .force("y", d3.forceY().strength(currForceY));
-         updateSimulation(showingText);
-        
-    }
-    
-    var forceYSlider = document.getElementById("forceY");
-    forceYSlider.oninput = function() {
-        currForceY = this.value / 1000;
-        simulation = d3.forceSimulation()
-                    .force('link', linkForce)
-                    .force('charge', d3.forceManyBody().strength(currGravity))
-                    .force('center', d3.forceCenter(width_network / 3, 
-                                                    height_network / 2))
-                    .force("x", d3.forceX().strength(currForceX))
-                    .force("y", d3.forceY().strength(currForceY));
-         updateSimulation(showingText);
-        
-    }
-    
+
     function updateGraph(showingText) {
         // links
         linkElements = linkGroup.selectAll('line')
@@ -515,6 +436,7 @@ function drawGraph(graph){
         .data(nodes, function (node) { return node.id })
     
         textElements.exit().remove()
+        var textEnter;
         textEnter = textElements
             .enter()
             .append('text')
@@ -524,11 +446,10 @@ function drawGraph(graph){
             .attr('dy', 4)
             .attr("fill-opacity", 1)
             .classed('noselect', true)
-    
         if (!showingText) {
-            textElements.attr("font-size", 0)
+            textElements.attr('font-size', 0);
         } else {
-            textElements.attr("font-size", 15)
+            textElements.attr('font-size', 15);
         }
     
     
@@ -537,7 +458,7 @@ function drawGraph(graph){
         
         // nodes
         nodeElements = nodeGroup.selectAll('circle')
-            .data(nodes, function (node) { return node.id })
+                                .data(nodes, function (node) { return node.id })
     
         nodeElements.exit().remove()
     
@@ -554,29 +475,30 @@ function drawGraph(graph){
                 return scale_citation(node.total_citation); 
             })
             .attr('fill', function(node){
-                return get_color(node);
+                return getNodeColor(node, []);
             })
             .call(dragDrop)
-            // we link the selectNode method here to update the graph on every click
             .on('click', selectNode)
       
         nodeEnter.append("title")
-        .text(function(d) {return "ID :  " + d.id
-                                  +"\n" +"Description :  " + d.description
-                                  +"\n" +"Cited by :  " + d.total_citation; });
+                    .text(function(d) {
+                        return "ID :  " + d.id
+                                +"\n" +"Description :  " + d.description
+                                +"\n" +"Cited by :  " + d.total_citation; 
+                    });
     
         nodeElements = nodeEnter.merge(nodeElements)
     }
     
     function updateSimulation(showingText) {
         updateGraph(showingText)
-    
+
         simulation.nodes(nodes).on('tick', () => {
             
             textElements
                 .attr('x', function (node) { 
-                    var min_x = Math.min(0.5 * width_network - radius_max_network, node.x)
-                    return Math.max(radius_max_network, min_x); 
+                    var min_x = Math.min(width_network - radius_max_network, node.x)
+                    return (node.x = Math.max(radius_max_network, min_x)); 
                 })
                 .attr('y', function (node) { 
                     var min_y = Math.min(height_network - radius_max_network, node.y)
@@ -585,7 +507,7 @@ function drawGraph(graph){
             
             nodeElements
                 .attr('cx', function (node) { 
-                    var min_x = Math.min(0.5 * width_network - radius_max_network, node.x)
+                    var min_x = Math.min(width_network - radius_max_network, node.x)
                     return (node.x = Math.max(radius_max_network, min_x)); 
                 })
                 .attr('cy', function (node) { 
@@ -601,7 +523,7 @@ function drawGraph(graph){
         })
     
         simulation.force('link').links(links)
-        simulation.alphaMin(0.03)
+        simulation.alpha(1).restart();
     }
     
     updateSimulation(showingText)
