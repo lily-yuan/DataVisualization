@@ -29,7 +29,7 @@
             font-size: 1vw;
             font-family: sans-serif;
         }
-        /* all words shown on the slider. */ 
+        /* all words shown on the slider. */
         .flex-container {
             top: 3em;
             display: flex;
@@ -60,7 +60,7 @@
             margin-right: 11em;
         }
 
-        /* button for showing the text or not. */ 
+        /* button for showing the text or not. */
         #button{
             top: 5em;
             right: 1em;
@@ -93,7 +93,7 @@
             text-align: center;
             padding: 5px 0;
             border-radius: 6px;
-            
+
             /* Position the tooltip text - see examples below! */
             position: absolute;
             z-index: 1;
@@ -189,7 +189,7 @@ var baseNodes = [
 ]
 
 var baseLinks = [
-  { target: "03NetChng", source: "16TeamInj", strength: 0.07310585786300049 ,original: 1},  
+  { target: "03NetChng", source: "16TeamInj", strength: 0.07310585786300049 ,original: 1},
   { target: "92Philos", source: "00GovStr", strength: 0.1 ,original: 74},
   { target: "90Polit", source: "00GovStr", strength: 0.09999999999622486 ,original: 24},
   { target: "88Crises", source: "00GovStr", strength: 0.0999983298578152 ,original: 11},
@@ -581,10 +581,20 @@ function get_min(data, col){
 }
 
 function get_color(curr_node){
-    var scale_year = d3.scaleLinear()
-                        .domain([-get_max(nodes, "level"), -get_min(nodes, "level")])
-                        .range([0.5, 1]);
-    return d3.interpolateGnBu(scale_year(-curr_node.level))
+    var starts = [254, 0, 2];//earliest year
+    var ends = [3, 2, 252];//latest year
+
+    var max_year = get_max(nodes, "level");
+    var min_year = get_min(nodes, "level");
+
+    var scales = (curr_node.level - min_year) / (max_year - min_year);
+    var rs = starts[0] + (ends[0] - starts[0]) * scales;
+    var gs = starts[1] + (ends[1] - starts[1]) * scales;
+    var bs = starts[2] + (ends[2] - starts[2]) * scales;;
+
+    return "rgb("  + rs + ", "
+                    + gs + ", "
+                    + bs + ")";
 }
 
 function wrap(description, width) {
@@ -644,9 +654,16 @@ function isNeighborLink(node, link, neighbors) {
 
 function getNodeColor(node, neighbors, selectedNode) {
     if(node.id == selectedNode.id) {
-        return 'red'
+        return 'gold'
     }
     return get_color(node)
+}
+
+function getNodeOutline(node, selectedNode) {
+    if(node.id == selectedNode.id) {
+        return 3
+    }
+    return 0
 }
 
 function getTextColor(node, neighbors) {
@@ -727,9 +744,9 @@ function selectNode(selectedNode) {
         updateSimulation(showingText)
     }
 
-    d3.select("#tooltip_id").remove(); 
-    d3.select("#tooltip_description").remove(); 
-    d3.select("#tooltip_nums").remove(); 
+    d3.select("#tooltip_id").remove();
+    d3.select("#tooltip_description").remove();
+    d3.select("#tooltip_nums").remove();
 
     var tooltip_id = nodeGroup.append("text")
                             .text("ID: " + selectedNode.id)
@@ -739,7 +756,7 @@ function selectNode(selectedNode) {
     tooltip_id.attr("text-anchor", "start");
     tooltip_id.attr("dx", 0);
 
-    var height_description;    
+    var height_description;
     var tooltip_description = nodeGroup.append("text")
                             .text("Description: " + selectedNode.label)
                             .attr("x", 0)
@@ -762,11 +779,16 @@ function selectNode(selectedNode) {
     var neighbors = getNeighbors(selectedNode)
 
     // we modify the styles to highlight selected nodes
-    nodeElements.attr('fill', function (node) { 
-        return getNodeColor(node, neighbors,selectedNode) 
+    nodeElements.attr('fill', function (node) {
+        return getNodeColor(node, neighbors,selectedNode)
     })
+    nodeElements.attr('stroke', "black")
+            .attr('stroke-width', function (node){
+              return getNodeOutline(node, selectedNode)
+            })
+
     textElements.attr('fill', function (node) { return getTextColor(node, neighbors) })
-    linkElements.attr('stroke', function (link) { 
+    linkElements.attr('stroke', function (link) {
         return getLinkColor(selectedNode, link, neighbors)
     })
 }
@@ -802,12 +824,12 @@ function updateData(selectedNode) {
 
     links = baseLinks.filter(function (link) {
 
-        if (Array.isArray(neighbors) 
+        if (Array.isArray(neighbors)
             && neighbors.indexOf(link.source.id) > -1
             && neighbors.indexOf(link.target.id) > -1){
             return true
         }
-        
+
         return link.target.id === selectedNode.id
                 || link.source.id === selectedNode.id
 
@@ -816,10 +838,10 @@ function updateData(selectedNode) {
 //these functions here to swtich the text showing and hiding.
 var showingText = false;
 document.getElementById("button").addEventListener("change", function() {
-    var status = d3.select(this).property("value") 
+    var status = d3.select(this).property("value")
     if (status == 1) {
         showingText = true
-        updateSimulation(showingText);        
+        updateSimulation(showingText);
     }
     else {
         showingText = false
@@ -839,9 +861,9 @@ gravitySlider.oninput = function() {
         .strength(function (link) { return link.strength * currLinkForce});
     simulation.force("charge")
         .strength(currGravity);
-    
+
     simulation.alpha(0.7).restart();
-    
+
 }
 
 function updateGraph(showingText) {
@@ -893,7 +915,7 @@ function updateGraph(showingText) {
 
     textElements = textEnter.merge(textElements)
 
-    
+
     // nodes
     nodeElements = nodeGroup.selectAll('circle')
         .data(nodes, function (node) { return node.id })
@@ -907,8 +929,8 @@ function updateGraph(showingText) {
     var nodeEnter = nodeElements
         .enter()
         .append('circle')
-        .attr("r",  function(node) { 
-            return scale_citation(node.total_citation); 
+        .attr("r",  function(node) {
+            return scale_citation(node.total_citation);
         })
         .attr('fill', function(node){
             return get_color(node);
@@ -916,7 +938,7 @@ function updateGraph(showingText) {
         .call(dragDrop)
         // we link the selectNode method here to update the graph on every click
         .on('click', selectNode)
-  
+
     nodeEnter.append("title")
     .text(function(d) {return "ID :  " + d.id
                               +"\n" +"Description :  " + d.label
@@ -929,15 +951,15 @@ function updateSimulation(showingText) {
     updateGraph(showingText)
 
     simulation.nodes(nodes).on('tick', () => {
-        
+
         textElements
         .attr('x', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
         .attr('y', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
-        
+
         nodeElements
           .attr('cx', function (node) { return (node.x = Math.max(radius, Math.min(width - radius, node.x))); })
           .attr('cy', function (node) { return (node.y = Math.max(radius, Math.min(height - radius, node.y))); })
-        
+
         linkElements
           .attr('x1', function (link) { return link.source.x })
           .attr('y1', function (link) { return link.source.y })
