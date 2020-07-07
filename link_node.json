@@ -8,145 +8,145 @@
   },
   {
    "num_cocitation": 24,
-   "scaled_cocitation": 0.09999999999622486,
+   "scaled_cocitation": 0.0999999999929815,
    "source": "00GovStr",
    "target": "90Polit"
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "00GovStr",
    "target": "88Crises"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "00GovStr",
    "target": "88QAP2"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "00GovStr",
    "target": "93InfNet"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "00GovStr",
    "target": "87CSS"
   },
   {
    "num_cocitation": 14,
-   "scaled_cocitation": 0.09999991684719722,
+   "scaled_cocitation": 0.09999984540722223,
    "source": "00GovStr",
    "target": "94Bring"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "00GovStr",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "06Cent"
   },
   {
    "num_cocitation": 19,
-   "scaled_cocitation": 0.09999999943972035,
+   "scaled_cocitation": 0.0999999989583612,
    "source": "00GovStr",
    "target": "10Activ"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "86Snow"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00GovStr",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00GovStr",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "90Cult"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "00GovStr",
    "target": "96Incon"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00GovStr",
    "target": "96Lead"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "00GovStr",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "00GovStr",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00GovStr",
    "target": "13Embed"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00GovStr",
    "target": "14Simmel4"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00GovStr",
    "target": "95RevSH"
   },
@@ -158,157 +158,157 @@
   },
   {
    "num_cocitation": 30,
-   "scaled_cocitation": 0.09999999999999065,
+   "scaled_cocitation": 0.09999999999998263,
    "source": "92Philos",
    "target": "88Crises"
   },
   {
    "num_cocitation": 28,
-   "scaled_cocitation": 0.09999999999993085,
+   "scaled_cocitation": 0.09999999999987146,
    "source": "92Philos",
    "target": "88QAP2"
   },
   {
    "num_cocitation": 32,
-   "scaled_cocitation": 0.09999999999999873,
+   "scaled_cocitation": 0.09999999999999765,
    "source": "92Philos",
    "target": "93InfNet"
   },
   {
    "num_cocitation": 25,
-   "scaled_cocitation": 0.0999999999986112,
+   "scaled_cocitation": 0.09999999999741803,
    "source": "92Philos",
    "target": "87CSS"
   },
   {
    "num_cocitation": 31,
-   "scaled_cocitation": 0.09999999999999656,
+   "scaled_cocitation": 0.09999999999999361,
    "source": "92Philos",
    "target": "94Bring"
   },
   {
    "num_cocitation": 18,
-   "scaled_cocitation": 0.09999999847700206,
+   "scaled_cocitation": 0.09999999716853221,
    "source": "92Philos",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "92Philos",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "92Philos",
    "target": "06Cent"
   },
   {
    "num_cocitation": 17,
-   "scaled_cocitation": 0.09999999586006245,
+   "scaled_cocitation": 0.09999999230327271,
    "source": "92Philos",
    "target": "10Activ"
   },
   {
    "num_cocitation": 21,
-   "scaled_cocitation": 0.09999999992417438,
+   "scaled_cocitation": 0.0999999998590295,
    "source": "92Philos",
    "target": "86Snow"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "92Philos",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 15,
-   "scaled_cocitation": 0.0999999694097773,
+   "scaled_cocitation": 0.09999994312846541,
    "source": "92Philos",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 12,
-   "scaled_cocitation": 0.09999938558253978,
+   "scaled_cocitation": 0.0999988577113613,
    "source": "92Philos",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "92Philos",
    "target": "81FuncTO"
   },
   {
    "num_cocitation": 14,
-   "scaled_cocitation": 0.09999991684719722,
+   "scaled_cocitation": 0.09999984540722223,
    "source": "92Philos",
    "target": "90Cult"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "92Philos",
    "target": "96Incon"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "92Philos",
    "target": "96Lead"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "92Philos",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "92Philos",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "92Philos",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "92Philos",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "92Philos",
    "target": "13Embed"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "92Philos",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "92Philos",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "92Philos",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "92Philos",
    "target": "96CommBK"
   },
@@ -320,7 +320,7 @@
   },
   {
    "num_cocitation": 33,
-   "scaled_cocitation": 0.09999999999999953,
+   "scaled_cocitation": 0.09999999999999915,
    "source": "90Polit",
    "target": "88QAP2"
   },
@@ -344,295 +344,295 @@
   },
   {
    "num_cocitation": 16,
-   "scaled_cocitation": 0.09999998874648379,
+   "scaled_cocitation": 0.0999999790781276,
    "source": "90Polit",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "90Polit",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "90Polit",
    "target": "06Cent"
   },
   {
    "num_cocitation": 14,
-   "scaled_cocitation": 0.09999991684719722,
+   "scaled_cocitation": 0.09999984540722223,
    "source": "90Polit",
    "target": "10Activ"
   },
   {
    "num_cocitation": 22,
-   "scaled_cocitation": 0.09999999997210532,
+   "scaled_cocitation": 0.09999999994813985,
    "source": "90Polit",
    "target": "86Snow"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "90Polit",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 22,
-   "scaled_cocitation": 0.09999999997210532,
+   "scaled_cocitation": 0.09999999994813985,
    "source": "90Polit",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 33,
-   "scaled_cocitation": 0.09999999999999953,
+   "scaled_cocitation": 0.09999999999999915,
    "source": "90Polit",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 21,
-   "scaled_cocitation": 0.09999999992417438,
+   "scaled_cocitation": 0.0999999998590295,
    "source": "90Polit",
    "target": "90Cult"
   },
   {
    "num_cocitation": 19,
-   "scaled_cocitation": 0.09999999943972035,
+   "scaled_cocitation": 0.0999999989583612,
    "source": "90Polit",
    "target": "96Incon"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "90Polit",
    "target": "96Lead"
   },
   {
    "num_cocitation": 18,
-   "scaled_cocitation": 0.09999999847700206,
+   "scaled_cocitation": 0.09999999716853221,
    "source": "90Polit",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "90Polit",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 21,
-   "scaled_cocitation": 0.09999999992417438,
+   "scaled_cocitation": 0.0999999998590295,
    "source": "90Polit",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Polit",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "90Polit",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "90Polit",
    "target": "13Embed"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "90Polit",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Polit",
    "target": "06Simmel4"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Polit",
    "target": "15Catlst"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "90Polit",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Polit",
    "target": "00LatCon"
   },
   {
    "num_cocitation": 20,
-   "scaled_cocitation": 0.09999999979388463,
+   "scaled_cocitation": 0.09999999961680249,
    "source": "88Crises",
    "target": "88QAP2"
   },
   {
    "num_cocitation": 28,
-   "scaled_cocitation": 0.09999999999993085,
+   "scaled_cocitation": 0.09999999999987146,
    "source": "88Crises",
    "target": "93InfNet"
   },
   {
    "num_cocitation": 14,
-   "scaled_cocitation": 0.09999991684719722,
+   "scaled_cocitation": 0.09999984540722223,
    "source": "88Crises",
    "target": "87CSS"
   },
   {
    "num_cocitation": 17,
-   "scaled_cocitation": 0.09999999586006245,
+   "scaled_cocitation": 0.09999999230327271,
    "source": "88Crises",
    "target": "94Bring"
   },
   {
    "num_cocitation": 15,
-   "scaled_cocitation": 0.0999999694097773,
+   "scaled_cocitation": 0.09999994312846541,
    "source": "88Crises",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "88Crises",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "88Crises",
    "target": "06Cent"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "88Crises",
    "target": "10Activ"
   },
   {
    "num_cocitation": 15,
-   "scaled_cocitation": 0.0999999694097773,
+   "scaled_cocitation": 0.09999994312846541,
    "source": "88Crises",
    "target": "86Snow"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "88Crises",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 15,
-   "scaled_cocitation": 0.0999999694097773,
+   "scaled_cocitation": 0.09999994312846541,
    "source": "88Crises",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "88Crises",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 15,
-   "scaled_cocitation": 0.0999999694097773,
+   "scaled_cocitation": 0.09999994312846541,
    "source": "88Crises",
    "target": "90Cult"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "88Crises",
    "target": "96Incon"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "88Crises",
    "target": "96Lead"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "88Crises",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "88Crises",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88Crises",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88Crises",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88Crises",
    "target": "10HlthRec"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "88Crises",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88Crises",
    "target": "14PeerInf"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88Crises",
    "target": "13TeamCom"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "88Crises",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 12,
-   "scaled_cocitation": 0.09999938558253978,
+   "scaled_cocitation": 0.0999988577113613,
    "source": "88QAP2",
    "target": "93InfNet"
   },
   {
    "num_cocitation": 32,
-   "scaled_cocitation": 0.09999999999999873,
+   "scaled_cocitation": 0.09999999999999765,
    "source": "88QAP2",
    "target": "87CSS"
   },
   {
    "num_cocitation": 25,
-   "scaled_cocitation": 0.0999999999986112,
+   "scaled_cocitation": 0.09999999999741803,
    "source": "88QAP2",
    "target": "94Bring"
   },
@@ -650,565 +650,565 @@
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "88QAP2",
    "target": "06Cent"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "88QAP2",
    "target": "10Activ"
   },
   {
    "num_cocitation": 12,
-   "scaled_cocitation": 0.09999938558253978,
+   "scaled_cocitation": 0.0999988577113613,
    "source": "88QAP2",
    "target": "86Snow"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "88QAP2",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "88QAP2",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "88QAP2",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 18,
-   "scaled_cocitation": 0.09999999847700206,
+   "scaled_cocitation": 0.09999999716853221,
    "source": "88QAP2",
    "target": "90Cult"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "88QAP2",
    "target": "96Incon"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "88QAP2",
    "target": "96Lead"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88QAP2",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "88QAP2",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "88QAP2",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "88QAP2",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "88QAP2",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "88QAP2",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88QAP2",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "88QAP2",
    "target": "06Simmel4"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88QAP2",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "88QAP2",
    "target": "03Equil"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88QAP2",
    "target": "02Festsch"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "88QAP2",
    "target": "98Polyn"
   },
   {
    "num_cocitation": 17,
-   "scaled_cocitation": 0.09999999586006245,
+   "scaled_cocitation": 0.09999999230327271,
    "source": "93InfNet",
    "target": "87CSS"
   },
   {
    "num_cocitation": 17,
-   "scaled_cocitation": 0.09999999586006245,
+   "scaled_cocitation": 0.09999999230327271,
    "source": "93InfNet",
    "target": "94Bring"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "93InfNet",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "93InfNet",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "93InfNet",
    "target": "06Cent"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "93InfNet",
    "target": "10Activ"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "93InfNet",
    "target": "86Snow"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "93InfNet",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "93InfNet",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "93InfNet",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "93InfNet",
    "target": "90Cult"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "93InfNet",
    "target": "96Incon"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "93InfNet",
    "target": "96Lead"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "93InfNet",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "93InfNet",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "93InfNet",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "93InfNet",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "93InfNet",
    "target": "10HlthRec"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "93InfNet",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "93InfNet",
    "target": "03NetChng"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "93InfNet",
    "target": "13TeamCom"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "93InfNet",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "93InfNet",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 34,
-   "scaled_cocitation": 0.09999999999999983,
+   "scaled_cocitation": 0.09999999999999967,
    "source": "87CSS",
    "target": "94Bring"
   },
   {
    "num_cocitation": 16,
-   "scaled_cocitation": 0.09999998874648379,
+   "scaled_cocitation": 0.0999999790781276,
    "source": "87CSS",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "87CSS",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "06Cent"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "87CSS",
    "target": "10Activ"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "87CSS",
    "target": "86Snow"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "87CSS",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 34,
-   "scaled_cocitation": 0.09999999999999983,
+   "scaled_cocitation": 0.09999999999999967,
    "source": "87CSS",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 15,
-   "scaled_cocitation": 0.0999999694097773,
+   "scaled_cocitation": 0.09999994312846541,
    "source": "87CSS",
    "target": "90Cult"
   },
   {
    "num_cocitation": 19,
-   "scaled_cocitation": 0.09999999943972035,
+   "scaled_cocitation": 0.0999999989583612,
    "source": "87CSS",
    "target": "96Incon"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "96Lead"
   },
   {
    "num_cocitation": 19,
-   "scaled_cocitation": 0.09999999943972035,
+   "scaled_cocitation": 0.0999999989583612,
    "source": "87CSS",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "87CSS",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 17,
-   "scaled_cocitation": 0.09999999586006245,
+   "scaled_cocitation": 0.09999999230327271,
    "source": "87CSS",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "87CSS",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "87CSS",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87CSS",
    "target": "10HlthRec"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87CSS",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "03NetChng"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "87CSS",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87CSS",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "87CSS",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87CSS",
    "target": "00LatCon"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87CSS",
    "target": "03Vis2"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "95RevSH"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87CSS",
    "target": "14Accur"
   },
   {
    "num_cocitation": 13,
-   "scaled_cocitation": 0.0999997739675702,
+   "scaled_cocitation": 0.09999957977386184,
    "source": "94Bring",
    "target": "87QAP1"
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "94Bring",
    "target": "07QAP3"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "94Bring",
    "target": "06Cent"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "94Bring",
    "target": "10Activ"
   },
   {
    "num_cocitation": 17,
-   "scaled_cocitation": 0.09999999586006245,
+   "scaled_cocitation": 0.09999999230327271,
    "source": "94Bring",
    "target": "86Snow"
   },
   {
    "num_cocitation": 9,
-   "scaled_cocitation": 0.09998766054240137,
+   "scaled_cocitation": 0.09997705920951899,
    "source": "94Bring",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 14,
-   "scaled_cocitation": 0.09999991684719722,
+   "scaled_cocitation": 0.09999984540722223,
    "source": "94Bring",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 35,
-   "scaled_cocitation": 0.09999999999999994,
+   "scaled_cocitation": 0.09999999999999988,
    "source": "94Bring",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 13,
-   "scaled_cocitation": 0.0999997739675702,
+   "scaled_cocitation": 0.09999957977386184,
    "source": "94Bring",
    "target": "90Cult"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "94Bring",
    "target": "96Incon"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "94Bring",
    "target": "96Lead"
   },
   {
    "num_cocitation": 14,
-   "scaled_cocitation": 0.09999991684719722,
+   "scaled_cocitation": 0.09999984540722223,
    "source": "94Bring",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "94Bring",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 12,
-   "scaled_cocitation": 0.09999938558253978,
+   "scaled_cocitation": 0.0999988577113613,
    "source": "94Bring",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "94Bring",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "94Bring",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "94Bring",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "94Bring",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "94Bring",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "94Bring",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "94Bring",
    "target": "00LatCon"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "94Bring",
    "target": "95RevSH"
   },
@@ -1220,361 +1220,361 @@
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "87QAP1",
    "target": "06Cent"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "87QAP1",
    "target": "10Activ"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "87QAP1",
    "target": "86Snow"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "87QAP1",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "87QAP1",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "87QAP1",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "87QAP1",
    "target": "90Cult"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "87QAP1",
    "target": "96Incon"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "87QAP1",
    "target": "96Lead"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "87QAP1",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87QAP1",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "87QAP1",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87QAP1",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87QAP1",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87QAP1",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "87QAP1",
    "target": "03Equil"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "07QAP3",
    "target": "06Cent"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "07QAP3",
    "target": "10Activ"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "07QAP3",
    "target": "86Snow"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "07QAP3",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "07QAP3",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "07QAP3",
    "target": "90Cult"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "07QAP3",
    "target": "96Incon"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "07QAP3",
    "target": "96Lead"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "07QAP3",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "07QAP3",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "07QAP3",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "07QAP3",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "07QAP3",
    "target": "06Simmel4"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "07QAP3",
    "target": "03Equil"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "06Cent",
    "target": "10Activ"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "06Cent",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "06Cent",
    "target": "96Incon"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Cent",
    "target": "96Lead"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "06Cent",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Cent",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "06Cent",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "06Cent",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Cent",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Cent",
    "target": "03NetChng"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Cent",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Cent",
    "target": "02Festsch"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "10Activ",
    "target": "86Snow"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "10Activ",
    "target": "00WrkGrp"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "10Activ",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "81FuncTO"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "90Cult"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "10Activ",
    "target": "96Incon"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "10Activ",
    "target": "96Lead"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "10Activ",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "10Activ",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "10Activ",
    "target": "13Embed"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "06Simmel4"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "10Activ",
    "target": "15Catlst"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10Activ",
    "target": "15Psych"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "10Activ",
    "target": "14Simmel4"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "86Snow",
    "target": "00WrkGrp"
   },
@@ -1586,607 +1586,607 @@
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "86Snow",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "86Snow",
    "target": "81FuncTO"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "86Snow",
    "target": "90Cult"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "86Snow",
    "target": "96Incon"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "86Snow",
    "target": "96Lead"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "86Snow",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "86Snow",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "86Snow",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "86Snow",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "86Snow",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "86Snow",
    "target": "81EmpTO"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "86Snow",
    "target": "03NetChng"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "86Snow",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "86Snow",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "86Snow",
    "target": "03Equil"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00WrkGrp",
    "target": "85FrLeave"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "00WrkGrp",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "00WrkGrp",
    "target": "90Cult"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00WrkGrp",
    "target": "96Incon"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00WrkGrp",
    "target": "96Lead"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "00WrkGrp",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00WrkGrp",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "00WrkGrp",
    "target": "15Psych"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "85FrLeave",
    "target": "99ClsFar"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "85FrLeave",
    "target": "81FuncTO"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "85FrLeave",
    "target": "90Cult"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "85FrLeave",
    "target": "96Incon"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "85FrLeave",
    "target": "96Lead"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "85FrLeave",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "85FrLeave",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "85FrLeave",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "85FrLeave",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "85FrLeave",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "85FrLeave",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "85FrLeave",
    "target": "03Equil"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "99ClsFar",
    "target": "81FuncTO"
   },
   {
    "num_cocitation": 10,
-   "scaled_cocitation": 0.09999546021312976,
+   "scaled_cocitation": 0.09999155989648767,
    "source": "99ClsFar",
    "target": "90Cult"
   },
   {
    "num_cocitation": 8,
-   "scaled_cocitation": 0.09996646498695336,
+   "scaled_cocitation": 0.09993765368518578,
    "source": "99ClsFar",
    "target": "96Incon"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "99ClsFar",
    "target": "96Lead"
   },
   {
    "num_cocitation": 13,
-   "scaled_cocitation": 0.0999997739675702,
+   "scaled_cocitation": 0.09999957977386184,
    "source": "99ClsFar",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 7,
-   "scaled_cocitation": 0.09990889488055994,
+   "scaled_cocitation": 0.09983062274495322,
    "source": "99ClsFar",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "99ClsFar",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "99ClsFar",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "99ClsFar",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "99ClsFar",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "99ClsFar",
    "target": "03NetChng"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "99ClsFar",
    "target": "15Psych"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "99ClsFar",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "81FuncTO",
    "target": "81EmpTO"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "90Cult",
    "target": "96Incon"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "90Cult",
    "target": "96Lead"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Cult",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "90Cult",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "90Cult",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Cult",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Cult",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "90Cult",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "96Incon",
    "target": "96Lead"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "96Incon",
    "target": "08SmWrld"
   },
   {
    "num_cocitation": 4,
-   "scaled_cocitation": 0.09820137900379085,
+   "scaled_cocitation": 0.0966561101167553,
    "source": "96Incon",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 6,
-   "scaled_cocitation": 0.09975273768433654,
+   "scaled_cocitation": 0.09954030451240292,
    "source": "96Incon",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "96Incon",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Incon",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Incon",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Incon",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Incon",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Incon",
    "target": "02Festsch"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Lead",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Lead",
    "target": "06Simmel4"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Lead",
    "target": "15Psych"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96Lead",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "08SmWrld",
    "target": "02Simmel3"
   },
   {
    "num_cocitation": 11,
-   "scaled_cocitation": 0.0999983298578152,
+   "scaled_cocitation": 0.09999689497033168,
    "source": "08SmWrld",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "08SmWrld",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "08SmWrld",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "08SmWrld",
    "target": "12GrphTh2"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "08SmWrld",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "02Simmel3",
    "target": "99AffAcc"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "02Simmel3",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "02Simmel3",
    "target": "97Vis1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "02Simmel3",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "02Simmel3",
    "target": "14Simmel4"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "02Simmel3",
    "target": "02Festsch"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "99AffAcc",
    "target": "96HistBal"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "99AffAcc",
    "target": "96CommBK"
   },
   {
    "num_cocitation": 5,
-   "scaled_cocitation": 0.09933071490757153,
+   "scaled_cocitation": 0.09875570470138234,
    "source": "96HistBal",
    "target": "01PreTran"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "96HistBal",
    "target": "06Simmel4"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "97Vis1",
    "target": "97Viscos"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "97Vis1",
    "target": "03Vis2"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "97Vis1",
    "target": "02Festsch"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "10HlthRec",
    "target": "03NetChng"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "10HlthRec",
    "target": "13TeamCom"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "06Simmel4",
    "target": "09RvJack"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "03NetChng",
    "target": "13TeamCom"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "12TeamCon",
    "target": "11EMFam1"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "12TeamCon",
    "target": "15EMfam2"
   },
   {
    "num_cocitation": 3,
-   "scaled_cocitation": 0.09525741268224333,
+   "scaled_cocitation": 0.09118286187825254,
    "source": "11EMFam1",
    "target": "12EMEvnt"
   },
   {
    "num_cocitation": 2,
-   "scaled_cocitation": 0.08807970779778823,
+   "scaled_cocitation": 0.07783849705729697,
    "source": "11EMFam1",
    "target": "16TeamInj"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "11EMFam1",
    "target": "15EMfam2"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "96CommBK",
    "target": "95RevSH"
   },
   {
    "num_cocitation": 1,
-   "scaled_cocitation": 0.07310585786300049,
+   "scaled_cocitation": 0.05,
    "source": "12EMEvnt",
    "target": "14AdEvnt"
   }
