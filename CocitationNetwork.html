@@ -176,10 +176,10 @@ function getNodeColor(node, selectedNode, nodes) {
     var starts = [254, 0, 2];//earliest year
     var ends = [3, 2, 252];//latest year
 
-    var max_year = get_max(nodes, "level");
-    var min_year = get_min(nodes, "level");
+    var max_year = get_max(nodes, "year");
+    var min_year = get_min(nodes, "year");
 
-    var scales = (node.level - min_year) / (max_year - min_year);
+    var scales = (node.year - min_year) / (max_year - min_year);
     var rs = starts[0] + (ends[0] - starts[0]) * scales;
     var gs = starts[1] + (ends[1] - starts[1]) * scales;
     var bs = starts[2] + (ends[2] - starts[2]) * scales;;
@@ -232,7 +232,7 @@ function addDescription(nodeGroup, selectedNode){
             
     var height_description;
     var tooltip_description = nodeGroup.append("text")
-                                    .text("Description: " + selectedNode.label)
+                                    .text("Description: " + selectedNode.description)
                                     .attr("x", 0)
                                     .attr("y", 120)
                                     .attr("id", "tooltip_description")
@@ -260,7 +260,7 @@ function sliderListener(simulation){
         currLinkForce = (parseInt(this.value) + 400) / 200;
         simulation.force("link")
             .id(function(d) {return d.id;})
-            .strength(function (link) { return link.strength * currLinkForce});
+            .strength(function (link) { return link.scaled_cocitation * currLinkForce});
         simulation.force("charge")
             .strength(currGravity);
 
@@ -302,7 +302,7 @@ function testing(graph){
     var linkForce = d3
         .forceLink()
         .id(function (link) { return link.id })
-        .strength(function (link) { return link.strength  })
+        .strength(function (link) { return link.scaled_cocitation  })
 
     var simulation = d3.forceSimulation()
         .force('link', linkForce)
@@ -381,7 +381,7 @@ function testing(graph){
     function updateData(selectedNode) {
         var neighbors = getNeighbors(baseLinks, selectedNode)
         var newNodes = baseNodes.filter(function (node) {
-            return neighbors.indexOf(node.id) > -1 || node.level === 1
+            return neighbors.indexOf(node.id) > -1
         })
 
         var diff = {
@@ -511,7 +511,7 @@ function testing(graph){
             .append("title")
             .text(function(d) {
                 return "ID :  " + d.id
-                        +"\n" +"Description :  " + d.label
+                        +"\n" +"Description :  " + d.description
                         +"\n" +"Cited by :  " + d.total_citation; 
             });
 
@@ -523,19 +523,29 @@ function testing(graph){
 
         simulation.nodes(nodes).on('tick', () => {
 
+            //the elements should in [radius, width/height - radius]
+
             textElements
-            .attr('x', function (node) { return (node.x = Math.max(radius_max_network, Math.min(width_network - radius_max_network, node.x))); })
-            .attr('y', function (node) { return (node.y = Math.max(radius_max_network, Math.min(height_network - radius_max_network, node.y))); })
+                .attr('x', function (node) { 
+                    return (node.x = Math.max(radius_max_network, Math.min(width_network - radius_max_network, node.x))); 
+                })
+                .attr('y', function (node) { 
+                    return (node.y = Math.max(radius_max_network, Math.min(height_network - radius_max_network, node.y))); 
+                })
 
             nodeElements
-            .attr('cx', function (node) { return (node.x = Math.max(radius_max_network, Math.min(width_network - radius_max_network, node.x))); })
-            .attr('cy', function (node) { return (node.y = Math.max(radius_max_network, Math.min(height_network - radius_max_network, node.y))); })
+                .attr('cx', function (node) { 
+                    return (node.x = Math.max(radius_max_network, Math.min(width_network - radius_max_network, node.x))); 
+                })
+                .attr('cy', function (node) { 
+                    return (node.y = Math.max(radius_max_network, Math.min(height_network - radius_max_network, node.y))); 
+                })
 
             linkElements
-            .attr('x1', function (link) { return link.source.x })
-            .attr('y1', function (link) { return link.source.y })
-            .attr('x2', function (link) { return link.target.x })
-            .attr('y2', function (link) { return link.target.y })
+                .attr('x1', function (link) { return link.source.x })
+                .attr('y1', function (link) { return link.source.y })
+                .attr('x2', function (link) { return link.target.x })
+                .attr('y2', function (link) { return link.target.y })
         })
 
         simulation.force('link').links(links)
