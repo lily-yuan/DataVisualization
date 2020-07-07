@@ -29,7 +29,7 @@
             font-size: 1vw;
             font-family: sans-serif;
         }
-        /* all words shown on the slider. */ 
+        /* all words shown on the slider. */
         .flex-container {
             top: 3em;
             display: flex;
@@ -60,7 +60,7 @@
             margin-right: 11em;
         }
 
-        /* button for showing the text or not. */ 
+        /* button for showing the text or not. */
         #button{
             top: 5em;
             right: 1em;
@@ -102,19 +102,14 @@
 </head>
 
 <body>
-
-<svg width="100%" height="100%">
-
+    <svg width="100%" height="100%">
 </svg>
 
-<!-- Cocitation network-->>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://unpkg.com/d3-force-boundary@0.0.1/dist/d3-force-boundary.min.js"></script>
 
 <script>
 
-//helper function
-//wrap text
 function wrap(description, width) {
     width = width * window.innerWidth;
     var height;
@@ -154,12 +149,44 @@ function wrap(description, width) {
     return height
 }
 
-function getTextColor() {
-    return "black"
+function get_max(data, col){
+    max = 0;
+    for(var i = 0 ; i < data.length; i ++){
+        if(data[i][col] > max){
+            max = data[i][col]
+        }
+    }
+    return max;
 }
 
-function getLinkColor() {
-    return '#E5E5E5'//grey
+function get_min(data, col){
+    min = 3000;
+    for(var i = 0 ; i < data.length; i ++){
+        if(data[i][col] < min){
+            min = data[i][col]
+        }
+    }
+    return min;
+}
+
+function getNodeColor(node, selectedNode, nodes) {
+    if(node.id == selectedNode.id) {
+        return 'gold'
+    }
+    var starts = [254, 0, 2];//earliest year
+    var ends = [3, 2, 252];//latest year
+
+    var max_year = get_max(nodes, "level");
+    var min_year = get_min(nodes, "level");
+
+    var scales = (node.level - min_year) / (max_year - min_year);
+    var rs = starts[0] + (ends[0] - starts[0]) * scales;
+    var gs = starts[1] + (ends[1] - starts[1]) * scales;
+    var bs = starts[2] + (ends[2] - starts[2]) * scales;;
+
+    return "rgb("  + rs + ", "
+                    + gs + ", "
+                    + bs + ")";
 }
 
 function getNodeOutline(node, selectedNode) {
@@ -169,6 +196,14 @@ function getNodeOutline(node, selectedNode) {
     return 0
 }
 
+function getLinkColor() {
+    return '#E5E5E5'//grey
+}
+
+function getTextColor() {
+  return "black"
+}
+
 function getNeighbors(baselink, node) {
     return baselink.reduce(function (neighbors, link) {
         if (link.target.id === node.id) {
@@ -176,218 +211,47 @@ function getNeighbors(baselink, node) {
         }else if(link.source.id === node.id) {
             neighbors.push(link.target.id)
         }
-        return neighbors}, [node.id])
+    return neighbors}, [node.id])
 }
 
-function add_description(nodeGroup, selectedNode){
+function addDescription(nodeGroup, selectedNode){
         
     if(d3.select("#tooltip_id") !== null){
         d3.select("#tooltip_id").remove(); 
         d3.select("#tooltip_description").remove(); 
         d3.select("#tooltip_nums").remove(); 
     }
-    
+        
     var tooltip_id = nodeGroup.append("text")
                                 .text("ID: " + selectedNode.id)
                                 .attr("x", 0)
                                 .attr("y", 100)
-                                .attr("id", "tooltip_id");
-    tooltip_id.attr("text-anchor", "start");
-    tooltip_id.attr("dx", 0);
-        
+                                .attr("id", "tooltip_id")
+                                .attr("text-anchor", "start")
+                                .attr("dx", 0);
+            
     var height_description;
     var tooltip_description = nodeGroup.append("text")
-                                .text("Description: " + selectedNode.description)
-                                .attr("x", 0)
-                                .attr("y", 120)
-                                .attr("id", "tooltip_description")
-                                .call(function(node){
-                                    height_description = wrap(node, 0.5)
-                                });
-    tooltip_description.attr("text-anchor", "start");
-    tooltip_description.attr("dx", 0); 
-
+                                    .text("Description: " + selectedNode.label)
+                                    .attr("x", 0)
+                                    .attr("y", 120)
+                                    .attr("id", "tooltip_description")
+                                    .call(function(node){
+                                        height_description = wrap(node, 0.5)
+                                    })
+                                    .attr("text-anchor", "start")
+                                    .attr("dx", 0); 
+    
     var tooltip_nums = nodeGroup.append("text")
-                                .text("Citation: " + selectedNode.total_citation)
-                                .attr("x", 0)
-                                .attr("y", height_description + 140)
-                                .attr("id", "tooltip_nums");
+                                    .text("Citation: " + selectedNode.total_citation)
+                                    .attr("x", 0)
+                                    .attr("y", height_description + 140)
+                                    .attr("id", "tooltip_nums");
     tooltip_nums.attr("text-anchor", "start");
     tooltip_nums.attr("dx", 0); 
 }
 
-function drawGraph(graph){
-
-    var baseNodes = graph.nodes
-    var baseLinks = graph.links
-    
-    var nodes = [...baseNodes]
-    var links = [...baseLinks]
-    
-    function getNodeColor(node, selectedNode) {
-        if(node.id === selectedNode.id) {
-            return 'gold'
-        }
-        var scale_year = d3.scaleLinear()
-                            .domain(d3.extent(nodes, function(node){
-                                return -node.year
-                            }))
-                            .range([0.5, 1]);
-        return d3.interpolateGnBu(scale_year(-node.year))
-    }
-
-    var width_network = window.innerWidth * 0.9
-    var height_network = window.innerHeight * 0.9
-    var radius_max_network = 10
-    var radius_min_network = 4
-    
-    var svg = d3.select('svg')
-    svg.attr('width', width_network).attr('height', height_network)
-    
-    var linkElements,
-        nodeElements,
-        textElements
-    
-    // we use svg groups to logically group the elements together
-    var linkGroup = svg.append('g').attr('class', 'links')
-    var nodeGroup = svg.append('g').attr('class', 'nodes')
-    var textGroup = svg.append('g').attr('class', 'texts')
-    
-    // we use this reference to select/deselect
-    // after clicking the same element twice
-    var selectedId
-    
-    // simulation setup with all forces
-    var linkForce = d3
-        .forceLink()
-        .id(function (link) { return link.id })
-        .strength(function (link) { return link.scaled_cocitation  })
-    
-    var simulation = d3.forceSimulation()
-        .force('link', linkForce)
-        .force('charge', d3.forceManyBody().strength(-200))
-        .force('center', d3.forceCenter(1.2 * width_network / 2, 0.8 * height_network / 2))
-        .force("x", d3.forceX().strength(0.001))
-        .force("y", d3.forceY().strength(0.003))
-        .force("boundary", forceBoundary(0, 0, width_network, height_network));
-    
-    var dragDrop = d3.drag()
-                        .on('start', function (node) {
-                            node.fx = node.x
-                            node.fy = node.y
-                        })
-                        .on('drag', function (node) {
-                            simulation.alphaTarget(0.03).restart()
-                            node.fx = d3.event.x
-                            node.fy = d3.event.y
-                        })
-                        .on('end', function (node) {
-                            if (!d3.event.active) {
-                                simulation.alphaTarget(0)
-                            }
-                            node.fx = null
-                            node.fy = null
-                        })
-
-    // select node is called on every click
-    // we either update the data according to the selection
-    // or reset the data if the same node is clicked twice
-
-    function selectNode(selectedNode) {
-        if (selectedId === selectedNode.id) {
-            selectedId = undefined
-            // resetData()
-            // updateSimulation()
-            location.reload()
-            if (showingText) {
-                updateSimulation(showingText)
-            }
-        } else {
-            selectedId = selectedNode.id
-            updateData(selectedNode)
-            updateSimulation(false)
-            updateSimulation(showingText)
-        }
-    
-        add_description(nodeGroup, selectedNode)
-    
-        // we modify the styles to highlight selected nodes
-        nodeElements.attr('fill', function (node) { 
-                        return getNodeColor(node, selectedNode) 
-                    })
-                    .attr('stroke', "black")
-                    .attr('stroke-width', function (node){
-                        return getNodeOutline(node, selectedNode)
-                    })
-        textElements.attr('fill', getTextColor)
-        linkElements.attr('stroke', getLinkColor)
-    }
-    
-    // this helper simple adds all nodes and links
-    // that are missing, to recreate the initial state
-    function resetData() {
-        var nodeIds = nodes.map(function (node) { return node.id })
-    
-        baseNodes.forEach(function (node) {
-            if (nodeIds.indexOf(node.id) === -1) {
-                nodes.push(node)
-            }
-        })
-    
-        links = baseLinks
-    }
-    
-    // diffing and mutating the data
-    function updateData(selectedNode) {
-        var neighbors = getNeighbors(baseLinks, selectedNode)
-        var newNodes = baseNodes.filter(function (node) {
-            return neighbors.indexOf(node.id) > -1 || node.level === 1
-        })
-    
-        var diff = {
-            removed: nodes.filter(function (node) { 
-                return newNodes.indexOf(node) === -1 
-            }),
-            added: newNodes.filter(function (node) { 
-                return nodes.indexOf(node) === -1 
-            })
-        }
-    
-        diff.removed.forEach(function (node) { 
-            nodes.splice(nodes.indexOf(node), 1) 
-        })
-        diff.added.forEach(function (node) { 
-            nodes.push(node) 
-        })
-    
-        links = baseLinks.filter(function (link) {
-    
-            if (Array.isArray(neighbors) 
-                && neighbors.indexOf(link.source.id) > -1
-                && neighbors.indexOf(link.target.id) > -1){
-                return true
-            }
-            
-            return link.target.id === selectedNode.id
-                    || link.source.id === selectedNode.id
-    
-        })
-    }
-    //these functions here to swtich the text showing and hiding.
-    var showingText = false;
-    document.getElementById("button").addEventListener("change", function() {
-        var status = d3.select(this).property("value") 
-        if (status == 1) {
-            showingText = true
-            updateSimulation(showingText);        
-        }
-        else {
-            showingText = false
-            updateSimulation(showingText);
-        }
-    });
-    
-    // here we deal with the slider listener.
+function sliderListener(simulation){
     var currGravity = -200;
     var currLinkForce = 1;
     var gravitySlider = document.getElementById("nodeForceSlider");
@@ -399,10 +263,175 @@ function drawGraph(graph){
             .strength(function (link) { return link.strength * currLinkForce});
         simulation.force("charge")
             .strength(currGravity);
-        
+
         simulation.alpha(0.7).restart();
-        
     }
+}
+
+
+
+function testing(graph){
+
+    var width_network = window.innerWidth * 0.9
+    var height_network = window.innerHeight * 0.9
+    var radius_max_network = 10
+    var radius_min_network = 4
+
+    var baseNodes = graph.nodes
+    var baseLinks = graph.links
+
+    var nodes = [...baseNodes]
+    var links = [...baseLinks]    
+
+    var svg = d3.select('svg')
+                .attr('width', width_network).attr('height', height_network)
+
+    var linkElements,
+        nodeElements,
+        textElements
+        
+    // group the elements
+    var linkGroup = svg.append('g').attr('class', 'links')
+    var nodeGroup = svg.append('g').attr('class', 'nodes')
+    var textGroup = svg.append('g').attr('class', 'texts')
+
+    // select/deselect nodes after clicks
+    var selectedId
+
+    // simulation setup with all forces
+    var linkForce = d3
+        .forceLink()
+        .id(function (link) { return link.id })
+        .strength(function (link) { return link.strength  })
+
+    var simulation = d3.forceSimulation()
+        .force('link', linkForce)
+        .force('charge', d3.forceManyBody().strength(-200))
+        .force('center', d3.forceCenter(1.2 * width_network / 2, 0.8 * height_network / 2))
+        .force("x", d3.forceX().strength(0.001))
+        .force("y", d3.forceY().strength(0.003))
+        .force("boundary", forceBoundary(0, 0, width_network, height_network));
+
+    var dragDrop = d3.drag()
+                    .on('start', function (node) {
+                        node.fx = node.x
+                        node.fy = node.y
+                    })
+                    .on('drag', function (node) {
+                        simulation.alphaTarget(0.03).restart()
+                        node.fx = d3.event.x
+                        node.fy = d3.event.y
+                    })
+                    .on('end', function (node) {
+                        if (!d3.event.active) {
+                            simulation.alphaTarget(0)
+                        }
+                        node.fx = null
+                        node.fy = null
+                    })
+
+    // select node is called on every click
+    // we either update the data according to the selection
+    // or reset the data if the same node is clicked twice
+
+    function selectNode(selectedNode) {
+
+        if (selectedId === selectedNode.id) {
+            selectedId = undefined
+            location.reload()
+            if (showingText) {
+                updateSimulation(showingText)
+            }
+        }else {
+            selectedId = selectedNode.id
+            updateData(selectedNode)
+            updateSimulation(false)
+            updateSimulation(showingText)
+        }
+
+        addDescription(nodeGroup, selectedNode)
+
+        // modify the styles to highlight selected nodes
+        nodeElements.attr('fill', function (node) {
+                        return getNodeColor(node, selectedNode, nodes)
+                    })
+                    .attr('stroke', "black")
+                    .attr('stroke-width', function (node){
+                        return getNodeOutline(node, selectedNode)
+                    })
+        textElements.attr('fill', getTextColor)
+        linkElements.attr('stroke', getLinkColor)
+    }
+
+    // this helper simple adds all nodes and links
+    // that are missing, to recreate the initial state
+    function resetData() {
+        var nodeIds = nodes.map(function (node) { return node.id })
+
+        baseNodes.forEach(function (node) {
+            if (nodeIds.indexOf(node.id) === -1) {
+                nodes.push(node)
+            }
+        })
+
+        links = baseLinks
+    }
+
+    // diffing and mutating the data
+    function updateData(selectedNode) {
+        var neighbors = getNeighbors(baseLinks, selectedNode)
+        var newNodes = baseNodes.filter(function (node) {
+            return neighbors.indexOf(node.id) > -1 || node.level === 1
+        })
+
+        var diff = {
+            removed: nodes.filter(function (node) { 
+                return newNodes.indexOf(node) === -1 
+                }),
+            added: newNodes.filter(function (node) { 
+                return nodes.indexOf(node) === -1 
+                })
+        }
+
+        diff.removed.forEach(function (node) { 
+            nodes.splice(nodes.indexOf(node), 1) 
+            })
+        diff.added.forEach(function (node) { 
+            nodes.push(node) 
+            })
+
+        links = baseLinks.filter(function (link) {
+
+            if (Array.isArray(neighbors)
+                && neighbors.indexOf(link.source.id) > -1
+                && neighbors.indexOf(link.target.id) > -1){
+                return true
+            }
+
+            return link.target.id === selectedNode.id
+                    || link.source.id === selectedNode.id
+
+        })
+    }
+
+    //swtich the text showing and hiding.
+    var showingText = false;
+    document.getElementById("button").addEventListener("change", function() {
+        var status = d3.select(this).property("value")
+        if (status == 1) {
+            showingText = true
+            updateSimulation(showingText);
+        }
+        else {
+            showingText = false
+            updateSimulation(showingText);
+        }
+    });
+
+    
+
+    sliderListener(simulation)
+    
 
     function updateGraph(showingText) {
         // links
@@ -410,17 +439,18 @@ function drawGraph(graph){
             .data(links, function (link) {
                 return link.target.id + link.source.id
             })
-    
+
         linkElements.exit().remove()
-    
+
         var scale_opacity = d3.scaleLinear()
-                            .domain(d3.extent(links, function(links){
-                                return links.num_cocitation
-                            }))
-                            .range([0.5, 1]);
-    
+                                .domain(d3.extent(links, function(links){
+                                    return links.num_cocitation
+                                }))
+                                .range([0.5, 1]);
+
         var linkEnter = linkElements
-            .enter().append('line')
+            .enter()
+            .append('line')
             .attr('stroke', 'rgba(50, 50, 50, 0.2)')
             .style("stroke-width", function(link) {
                 return Math.sqrt(link.num_cocitation);
@@ -428,14 +458,15 @@ function drawGraph(graph){
             .style("stroke-opacity", function(link) {
                 return scale_opacity(link.num_cocitation);
         })
-    
+
         linkElements = linkEnter.merge(linkElements)
-    
+
         // we enter text element first.
         textElements = textGroup.selectAll('text')
-        .data(nodes, function (node) { return node.id })
-    
+                                .data(nodes, function (node) { return node.id })
+
         textElements.exit().remove()
+
         var textEnter;
         textEnter = textElements
             .enter()
@@ -446,94 +477,77 @@ function drawGraph(graph){
             .attr('dy', 4)
             .attr("fill-opacity", 1)
             .classed('noselect', true)
+
         if (!showingText) {
             textElements.attr('font-size', 0);
         } else {
             textElements.attr('font-size', 15);
         }
-    
-    
+
         textElements = textEnter.merge(textElements)
-    
-        
+
+
         // nodes
         nodeElements = nodeGroup.selectAll('circle')
-                                .data(nodes, function (node) { return node.id })
-    
+            .data(nodes, function (node) { return node.id })
+
         nodeElements.exit().remove()
-    
+
         var scale_citation = d3.scaleSqrt()
-                                .domain(d3.extent(nodes, function(nodes){
-                                    return nodes.total_citation
-                                }))
-                                .range([radius_min_network, radius_max_network]);
-    
+                                    .domain(d3.extent(nodes, function(nodes){
+                                        return nodes.total_citation
+                                    }))
+                                    .range([radius_min_network, radius_max_network]);
+
         var nodeEnter = nodeElements
             .enter()
             .append('circle')
-            .attr("r",  function(node) { 
-                return scale_citation(node.total_citation); 
-            })
-            .attr('fill', function(node){
-                return getNodeColor(node, []);
-            })
+            .attr("r",  function(node) { return scale_citation(node.total_citation); })
+            .attr('fill', function(node) { return getNodeColor(node, [], nodes); })
             .call(dragDrop)
             .on('click', selectNode)
-      
-        nodeEnter.append("title")
-                    .text(function(d) {
-                        return "ID :  " + d.id
-                                +"\n" +"Description :  " + d.description
-                                +"\n" +"Cited by :  " + d.total_citation; 
-                    });
-    
+
+        nodeEnter
+            .append("title")
+            .text(function(d) {
+                return "ID :  " + d.id
+                        +"\n" +"Description :  " + d.label
+                        +"\n" +"Cited by :  " + d.total_citation; 
+            });
+
         nodeElements = nodeEnter.merge(nodeElements)
     }
-    
+
     function updateSimulation(showingText) {
         updateGraph(showingText)
 
         simulation.nodes(nodes).on('tick', () => {
-            
+
             textElements
-                .attr('x', function (node) { 
-                    var min_x = Math.min(width_network - radius_max_network, node.x)
-                    return (node.x = Math.max(radius_max_network, min_x)); 
-                })
-                .attr('y', function (node) { 
-                    var min_y = Math.min(height_network - radius_max_network, node.y)
-                    return (node.y = Math.max(radius_max_network, min_y)); 
-                })
-            
+            .attr('x', function (node) { return (node.x = Math.max(radius_max_network, Math.min(width_network - radius_max_network, node.x))); })
+            .attr('y', function (node) { return (node.y = Math.max(radius_max_network, Math.min(height_network - radius_max_network, node.y))); })
+
             nodeElements
-                .attr('cx', function (node) { 
-                    var min_x = Math.min(width_network - radius_max_network, node.x)
-                    return (node.x = Math.max(radius_max_network, min_x)); 
-                })
-                .attr('cy', function (node) { 
-                    var min_y = Math.min(height_network - radius_max_network, node.y)
-                    return (node.y = Math.max(radius_max_network, min_y)); 
-                })
-            
+            .attr('cx', function (node) { return (node.x = Math.max(radius_max_network, Math.min(width_network - radius_max_network, node.x))); })
+            .attr('cy', function (node) { return (node.y = Math.max(radius_max_network, Math.min(height_network - radius_max_network, node.y))); })
+
             linkElements
-                .attr('x1', function (link) { return link.source.x })
-                .attr('y1', function (link) { return link.source.y })
-                .attr('x2', function (link) { return link.target.x })
-                .attr('y2', function (link) { return link.target.y })
+            .attr('x1', function (link) { return link.source.x })
+            .attr('y1', function (link) { return link.source.y })
+            .attr('x2', function (link) { return link.target.x })
+            .attr('y2', function (link) { return link.target.y })
         })
-    
+
         simulation.force('link').links(links)
         simulation.alpha(1).restart();
     }
-    
+
     updateSimulation(showingText)
-    
-    }
+}
 
-    d3.json("link_node.json")
-        .then(drawGraph);
+d3.json("link_node.json").then(testing);
 
-    </script>
 
+</script>
 </body>
 </html>
