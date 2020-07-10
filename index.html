@@ -11,16 +11,16 @@
 						<div class="flex-item"></div>
 						<br>
 							<br>
-								<select id = "button", class = "flex-item">
-									<option value= 1>SHOWING TEXT</option>
-									<option value= 2 selected = "selected">HIDING TEXT</option>
-								</select>
 							</div>
 							<div class="container">
 								<div class="flex-item">
 									<p> Dispelling Force </p>
 								</div>
-								<input type="range" min="-400" max="0" value="-200" class="slider_dispel" id="nodeForceSlider">
+								<input type="range" min="0" max="400" value="200" class="slider_dispel" id="nodeForceSlider">
+									<select id = "button", class = "flex-container">
+										<option value= 1>Show Text</option>
+										<option value= 2 selected = "selected">Hide Text</option>
+									</select>
 								</div>
 								<style>
         svg {
@@ -62,8 +62,8 @@
         /* button for showing the text or not. */
         #button{
             top: 5em;
-            height: 3em;
-            width: 15em;
+            height: 2.5em;
+            width: 8em;
             color:#01070a;
             font-size: 1em;
             direction: rtl;
@@ -848,8 +848,8 @@ var currGravity = -200;
 var currLinkForce = 1;
 var gravitySlider = document.getElementById("nodeForceSlider");
 gravitySlider.oninput = function() {
-    currGravity = parseInt(this.value);
-    currLinkForce = (parseInt(this.value) + 400) / 200;
+    currGravity = -parseInt(this.value);
+    currLinkForce = (-parseInt(this.value) + 400) / 200;
     simulation.force("link")
         .id(function(d) {return d.id;})
         .strength(function (link) { return link.strength * currLinkForce});
