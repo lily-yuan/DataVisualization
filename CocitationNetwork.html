@@ -268,7 +268,7 @@ function sliderListener(simulation){
     }
 }
 
-function testing(graph){
+function drawGraph(graph){
 
     var width_network = window.innerWidth * 0.95
     var height_network = window.innerHeight * 0.95
@@ -554,7 +554,7 @@ function testing(graph){
     updateSimulation(showingText)
 }
 
-d3.json("link_node.json").then(testing);
+d3.json("link_node.json").then(drawGraph);
 
 
 </script>
