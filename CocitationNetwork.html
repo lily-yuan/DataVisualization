@@ -63,7 +63,7 @@
         /* button for showing the text or not. */
         #button{
             top: 5em;
-            right: 1em;
+            right: 60%;
             height: 3em;
             width: 10em;
             color:#01070a;
@@ -197,7 +197,7 @@ function getNodeOutline(node, selectedNode) {
 }
 
 function getLinkColor() {
-    return '#E5E5E5'//grey
+    return rgba(50, 50, 50, 0.2)//grey
 }
 
 function getTextColor() {
@@ -268,12 +268,10 @@ function sliderListener(simulation){
     }
 }
 
+function drawGraph(graph){
 
-
-function testing(graph){
-
-    var width_network = window.innerWidth * 0.9
-    var height_network = window.innerHeight * 0.9
+    var width_network = window.innerWidth * 0.95
+    var height_network = window.innerHeight * 0.95
     var radius_max_network = 10
     var radius_min_network = 4
 
@@ -307,10 +305,10 @@ function testing(graph){
     var simulation = d3.forceSimulation()
         .force('link', linkForce)
         .force('charge', d3.forceManyBody().strength(-200))
-        .force('center', d3.forceCenter(1.2 * width_network / 2, 0.8 * height_network / 2))
+        .force('center', d3.forceCenter(1.2 * width_network / 2, height_network / 2))
         .force("x", d3.forceX().strength(0.001))
         .force("y", d3.forceY().strength(0.003))
-        .force("boundary", forceBoundary(0, 0, width_network, height_network));
+        .force("boundary", forceBoundary(0, height_network * 0.1, width_network * 0.95, height_network * 0.95));
 
     var dragDrop = d3.drag()
                     .on('start', function (node) {
@@ -359,8 +357,8 @@ function testing(graph){
                     .attr('stroke-width', function (node){
                         return getNodeOutline(node, selectedNode)
                     })
-        textElements.attr('fill', getTextColor)
-        linkElements.attr('stroke', getLinkColor)
+        //textElements.attr('fill', getTextColor)
+
     }
 
     // this helper simple adds all nodes and links
@@ -412,6 +410,7 @@ function testing(graph){
                     || link.source.id === selectedNode.id
 
         })
+        return links
     }
 
     //swtich the text showing and hiding.
@@ -457,7 +456,7 @@ function testing(graph){
             })
             .style("stroke-opacity", function(link) {
                 return scale_opacity(link.num_cocitation);
-        })
+            })
 
         linkElements = linkEnter.merge(linkElements)
 
@@ -555,7 +554,7 @@ function testing(graph){
     updateSimulation(showingText)
 }
 
-d3.json("link_node.json").then(testing);
+d3.json("link_node.json").then(drawGraph);
 
 
 </script>
